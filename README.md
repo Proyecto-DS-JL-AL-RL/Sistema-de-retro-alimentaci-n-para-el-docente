@@ -1,4 +1,4 @@
-<h1><center>Sistema de  Retroalimentación de Docente</h1>
+<h1><center>Sistema de  Retroalimentación para el Docente</h1>
 
 ## 📚 Descripción
 Nosotros buscamos desarrollar una plataforma que provea de feed back para el docente y que tenga un mejor desempeño en las clases.
