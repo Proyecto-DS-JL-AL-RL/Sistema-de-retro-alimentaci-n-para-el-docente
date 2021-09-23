@@ -3,6 +3,13 @@
 ## 📚 Descripción
 Nosotros buscamos desarrollar una plataforma que provea de feed back para el docente y que tenga un mejor desempeño en las clases.
 
+**📝 Entregables**
+
+- [**Definición del tema**]()
+- [**Programación lado cliente**]()
+- [**Programación del lado del lado servidor**]()
+- [**Programación de la integracion cliente - servidor**]()
+- [**Proyecto Final**]()
 
 ## 👨‍💻 Equipo
 * Alexander Leonardo Lique Lamas, Github: [alexliqu09](https://github.com/alexliqu09), Email: alexander.lique.l@uni.pe
