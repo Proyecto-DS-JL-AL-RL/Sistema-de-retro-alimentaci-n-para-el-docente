@@ -5,7 +5,7 @@ Nosotros buscamos desarrollar una plataforma que provea de feed back para el doc
 
 **📝 Entregables**
 
-- [**Definición del tema**]()
+- [**Definición del tema**](https://docs.google.com/document/d/16VzdgVvcpdEmi_5c5pzhZEY0ycLdxTEF1aT4UCFR4x8/edit?usp=sharing)
 - [**Fase de Análisis**]()
 - [**Fase de Diseño**]()
 - [**Implementación (Lado del Cliente)**]()
