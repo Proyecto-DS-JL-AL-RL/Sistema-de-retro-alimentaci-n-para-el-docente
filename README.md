@@ -6,10 +6,12 @@ Nosotros buscamos desarrollar una plataforma que provea de feed back para el doc
 **📝 Entregables**
 
 - [**Definición del tema**]()
-- [**Programación lado cliente**]()
-- [**Programación del lado del lado servidor**]()
-- [**Programación de la integracion cliente - servidor**]()
-- [**Proyecto Final**]()
+- [**Fase de Análisis**]()
+- [**Fase de Diseño**]()
+- [**Implementación del lado cliente**]()
+- [**Implementación del lado servidor**]()
+- [**Implementación de integracion cliente - servidor**]()
+- [**Presentación Final**]()
 
 ## 👨‍💻 Equipo
 * Alexander Leonardo Lique Lamas, Github: [alexliqu09](https://github.com/alexliqu09), Email: alexander.lique.l@uni.pe
