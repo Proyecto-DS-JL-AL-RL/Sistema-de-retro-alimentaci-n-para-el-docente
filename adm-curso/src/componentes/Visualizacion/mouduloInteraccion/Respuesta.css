@@ -1,0 +1,8 @@
+.ctnPregunta{
+    width: 100%;
+    max-height: 500px;
+    overflow-wrap: break-word;
+}
+.itmalt{
+    overflow-wrap: break-word;
+}
