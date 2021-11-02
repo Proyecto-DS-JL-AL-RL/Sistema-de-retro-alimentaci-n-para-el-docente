@@ -1,0 +1,95 @@
+[input="text"]{
+    font-size:0.8em;
+}
+.unselect{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+.ctnCont{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:1.5em;
+}
+.ctnPrevius{
+    border:solid 2px black;
+    padding: 8px;
+}
+.lblform{
+    display: block;
+    
+}
+.itmform{
+    width:100%;
+
+}
+.ctnTipos{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.check1{
+    display:none;
+}
+.check1lbl{
+    padding-left: 0.2em;
+    position:relative;
+    color:red;
+}
+.check1lbl:before{
+    content:'\02716';
+    font-size: 0.9em;
+    color:red;
+    
+    transition: content 1s; 
+}
+.check1:checked + .check1lbl:before{
+    content:'\02714';
+    color:green;
+}
+.check1:checked + .check1lbl{
+    color:green;
+}
+
+
+
+.check{
+    display: none;
+}
+.checklbl{
+    padding-left: 1.3em;
+    position:relative;
+    
+}
+.checklbl:before{
+    content:'';
+    border:solid 0.2em green;
+    border-radius: 50%;
+    position:absolute;
+    width:0.6em;
+    height:0.6em;
+    top: 0.2em;
+    left:0.2em;
+    transition: background-color 0.5s;
+}
+.check:checked + .checklbl:before{
+    content:'';
+    border:solid 0.1em blue;
+    background-color: green;
+    width: 0.7em;
+    height:0.7em;
+    top: 0.3em;
+    left:0.2em;
+}
+/*.check:checked + .checklbl{
+    
+}*/
+.txtform{
+    font-size: 1.5em;
+    width:100%;
+    text-align: justify;
+}
