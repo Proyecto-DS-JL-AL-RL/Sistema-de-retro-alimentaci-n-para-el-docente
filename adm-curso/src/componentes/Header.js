@@ -35,7 +35,9 @@ class Header extends  React.Component {
                     </div>
             </div>
             <div id="List" onClick={this.imageClick}> 
-                <Avatar avatar={test[0].getImagen()}/> 
+                <div id="Foto">
+                    <Avatar avatar={test[0].getImagen()}/> 
+                </div>
                 <div id="menu-avatar">{this.state.avatar?<SelectedListAvatar/>:false}</div>
             </div>
             <div id="NombreCurso">
