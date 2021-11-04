@@ -1,9 +1,9 @@
 import React from 'react';
-
+//"FotoPerfil"
 function Avatar(props) {
         return ( 
         <div>
-            <img id="FotoPerfil" src={props.avatar} alt="foto"></img>
+            <img id={props.style} src={props.avatar} alt="foto"></img>
         </div>
         )
 }

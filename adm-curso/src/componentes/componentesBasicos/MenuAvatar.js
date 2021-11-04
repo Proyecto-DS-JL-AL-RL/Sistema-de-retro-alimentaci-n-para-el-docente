@@ -21,8 +21,8 @@ export default function SelectedListAvatar() {
           <ListItemText primary="Ver Perfil"/>
         </ListItemButton>
         <ListItemButton
-          selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
+          selected={selectedIndex === 1}
+          onClick={(event) => handleListItemClick(event, 1)}
         >
           <ListItemText primary="Ver Notas"/>
         </ListItemButton>

@@ -5,6 +5,7 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 import SelectedListItem  from './componentesBasicos/MenuCurso';
 import Avatar from './componentesBasicos/Avatar'
 import SelectedListAvatar from './componentesBasicos/MenuAvatar.js';
+//import { style } from '@mui/system';
 
 
 class Header extends  React.Component {
@@ -12,7 +13,8 @@ class Header extends  React.Component {
         super(props);
         this.state = {
           menu: false,
-          avatar:false
+          avatar:false,
+          avatar_style:"FotoPerfil" 
         };
     }   
     handClick = (e) => {
@@ -36,7 +38,7 @@ class Header extends  React.Component {
             </div>
             <div id="List" onClick={this.imageClick}> 
                 <div id="Foto">
-                    <Avatar avatar={test[0].getImagen()}/> 
+                    <Avatar style={this.state.avatar_style} avatar={test[0].getImagen()}/> 
                 </div>
                 <div id="menu-avatar">{this.state.avatar?<SelectedListAvatar/>:false}</div>
             </div>

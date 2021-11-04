@@ -27,6 +27,20 @@
                     ]
             },
             {
+                "Nota":[
+                    {
+                        "id_curso":"CC421",
+                        "tipo_practica":"PC1",
+                        "puntuacion":12
+                    },
+                    {
+                        "id":"CC3S2",
+                        "tipo_pc":"Tarea06",
+                        "puntuacion":10
+                    }
+                ]
+            },
+            {
                 "Profesor":
                     [
                         {"id":"19942196K",
