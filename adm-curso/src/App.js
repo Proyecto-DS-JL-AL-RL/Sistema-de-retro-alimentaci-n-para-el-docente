@@ -1,9 +1,11 @@
 import './App.css';
-import Curso from './componentes/Visualizacion/Curso'
+import VerCurso from './componentes/Curso'
 
 function App() {
   return (
-    <Curso />  
+    <div id="Fondo">
+      <VerCurso />  
+    </div>
 );
 }
 

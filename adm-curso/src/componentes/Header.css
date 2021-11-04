@@ -1,0 +1,38 @@
+#Header{
+    padding: 5% 50%;
+    top:0%;
+    position: absolute;
+    left: 0%;
+    background:rgba(0, 0, 0, 0.219);
+}
+
+#button{
+    width: 100%;
+    height: 100%;
+    background-color:blue;
+}
+
+#Dehaze{
+    top: 5%;
+    color:white;
+    left: 0%;
+    position: absolute;
+}
+
+#menu-avatar{
+    position: absolute;
+    right:1%;
+    color:white;
+}
+
+#Titulo{
+    position: absolute;
+    left:10%;
+    top:0%;
+}
+
+
+#NombreCurso{
+    color:whitesmoke;
+    font-size: 2vw;
+}
