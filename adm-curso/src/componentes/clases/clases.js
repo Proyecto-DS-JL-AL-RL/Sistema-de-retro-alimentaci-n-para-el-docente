@@ -113,17 +113,20 @@ class Curso{
     setFinalizarCurso(){
         this.estado_curso = false
     }
-}
+}   
 
 let test_alumno = data['Datos'][0]['Alumnos'][0]; 
 let test_curso = data['Datos'][3]['Cursos'][0]
+let test_curso2 = data['Datos'][3]['Cursos'][1]
 let test_nota = data['Datos'][1]['Nota'][0]
 
 let user1 = new User(test_alumno.id, test_alumno.nombre, test_alumno.apellido, test_alumno.edad, test_alumno.correo, test_alumno.contrasena)
 user1.setImage("https://i.pinimg.com/736x/c1/d4/ab/c1d4ab48262c819bc8c865818d1b2cff.jpg")
 let curso1 = new Curso(test_curso.nombre_curso, test_curso.fecha_Inicio, test_curso.fecha_Final, test_curso.id_profesor, test_curso.codigo)
+let curso2 = new Curso(test_curso2.nombre_curso, test_curso2.fecha_Inicio, test_curso2.fecha_Final, test_curso2.id_profesor, test_curso2.codigo)
+
 let Nota1 = new Nota(test_nota.id_curso, test_nota.tipo_practica, test_nota.puntuacion)
 
-let test = [user1, curso1, Nota1]
+let test = [user1, curso2, Nota1]
 
 export default test

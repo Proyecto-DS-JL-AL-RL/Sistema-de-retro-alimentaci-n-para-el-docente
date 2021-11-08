@@ -10,14 +10,14 @@ class VerPerfil extends  React.Component {
         this.state = {
           avatar_style:"img" ,
           variant_button:"contained",
-          id_style:"button"
+          id_style:"pbutton"
         };
     }   
     render() {
         return ( 
         <div>
             <h1 id="Titulo">Mi Perfil</h1>
-            <div id="Cuadro">
+            <div id="pCuadro">
                     <Avatar style={this.state.avatar_style} avatar={test[0].getImagen()}/>
                     <div id="Perfil">
                         <h2>Nombre:</h2>

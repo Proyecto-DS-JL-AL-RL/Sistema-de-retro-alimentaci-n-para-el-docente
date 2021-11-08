@@ -1,4 +1,4 @@
-#Cuadro{
+#pCuadro{
     position:absolute center;
     padding:2%;
     width:auto;
@@ -9,11 +9,11 @@
 }
 
 
-#button{
+#pbutton{
     color:whitesmoke;
-    font-size:2vw;
+    font-size:1vw;
     position:absolute;
-    margin: 0% 30%;
+    margin: 0% 2%;
 }
 
 #Titulo{

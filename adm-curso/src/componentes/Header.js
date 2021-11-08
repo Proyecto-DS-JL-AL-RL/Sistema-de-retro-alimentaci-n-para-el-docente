@@ -4,7 +4,6 @@ import './Header.css'
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import SelectedListItem  from './componentesBasicos/MenuCurso';
 import Avatar from './componentesBasicos/Avatar'
-import SelectedListAvatar from './componentesBasicos/MenuAvatar.js';
 //import { style } from '@mui/system';
 
 
@@ -40,10 +39,10 @@ class Header extends  React.Component {
                 <div id="Foto">
                     <Avatar style={this.state.avatar_style} avatar={test[0].getImagen()}/> 
                 </div>
-                <div id="menu-avatar">{this.state.avatar?<SelectedListAvatar/>:false}</div>
+                <div id="menu-avatar">{this.state.avatar?this.props.componentes:false}</div>
             </div>
             <div id="NombreCurso">
-                    <h1 id="Titulo">{test[1].nombre_curso}</h1>
+                    <h1 id="Titulo">{this.props.NameCurso}</h1>
             </div>
            </div>
         )}
