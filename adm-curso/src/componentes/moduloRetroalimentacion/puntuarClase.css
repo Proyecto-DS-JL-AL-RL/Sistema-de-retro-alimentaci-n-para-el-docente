@@ -1,0 +1,92 @@
+
+#PCContainer{
+    position: absolute;
+    height: 26vh;
+    width: 50vw;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    margin-top: -13vh;
+    margin-left: -25vw;    
+}
+#starContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    height: 20px;
+    position: absolute;
+    left: 25vw;
+    top: 8vh;
+    margin-left: -75px;
+}
+
+#PCTitle{
+    font-size: x-large;
+    font-weight: 700;
+    position: absolute;
+    width: 180px;
+    left:25vw;
+    top: 4vh;
+    margin-left: -90px;
+}
+#PCAddComentary{
+    position: absolute;
+    width: 140px;
+    left:25vw;
+    top: 15vh;
+    margin-left: -70px;
+}
+#PCsendButton{
+    width: 70px;
+    height: 30px;
+    position: absolute;
+    left: 25vw;
+    top: 20vh;
+    margin-left: -35px;
+}
+
+@media (max-width: 600px){
+    #PCContainer{    
+        height: 26vh;
+        width: 96vw;
+        position: fixed;
+        left: 50vw;
+        top: 50vh;
+        margin-top: -13vh;
+        margin-left: -50vw;
+    }
+    #starContainer{
+        left: 48vw;
+    }
+    
+    #PCTitle{
+        left: 48vw;
+    }
+    #PCAddComentary{
+        left: 48vw;
+    }
+    #PCsendButton{
+        left: 48vw;
+    }    
+}
+
+
+
+.sActivado{
+    color: rgb(238, 104, 51);
+    font-weight: 2000;
+    font-size: xx-large;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.sDesactivado{
+    color:blue;
+    font-weight: 2000;
+    font-size: xx-large;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}   
+
+

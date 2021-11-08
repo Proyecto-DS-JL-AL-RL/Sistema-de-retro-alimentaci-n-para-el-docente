@@ -1,0 +1,43 @@
+#FPContainer{
+    width: 100%;
+    height: auto;
+}
+.CFPInputOpt{
+    display: flex;
+}
+.CFPInput{
+    position:relative;
+    width: 80%;
+    height: 20px;
+}
+#CFPregTitulo{
+    width: 90%;
+    margin: 2px;
+}
+#CFPreglDesc{
+    width: 90%;
+    margin : 2px;
+}
+
+.CFPDelButton{
+    position: relative;
+    left: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+#CFPAddButton{
+    position: relative;
+    left: 5%;
+    top: 5%;
+    height: 30px;
+    width: 30px;
+}
+
+#CFPConfirm{
+    position:relative;
+    left: 50vw;
+    height: 30px;
+    width: 100px;
+    margin-left: -50px;
+}
