@@ -1,9 +1,9 @@
 
 
 .popUpContainer{
-    background-color: rgb(233, 248, 166);
+    background-color: rgb(137, 173, 108);
     border-radius: 30px;
-    border: black solid 10px;
+    border: rgb(223, 116, 116) solid 10px;
     height: 100%;
     width: 100%;
 }
