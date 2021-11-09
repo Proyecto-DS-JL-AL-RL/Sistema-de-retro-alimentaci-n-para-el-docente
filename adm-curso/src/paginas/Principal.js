@@ -55,10 +55,9 @@ export default function Principal() {
                     </Route>
                     <Route path = "/CrearForm">
                         <CrearFormulario/>
-
+                    </Route>
                     <Route path="/VerEstadisticas">
                         <VerEstadisticas/>
-
                     </Route>
                 </Switch>
             </Router>
