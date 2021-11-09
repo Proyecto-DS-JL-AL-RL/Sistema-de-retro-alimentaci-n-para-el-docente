@@ -1,0 +1,32 @@
+
+
+#CFTittle{
+    width: 90vw;
+    font-size: xx-large;
+    font-weight: 1200;
+}
+#CFContainer{
+    height: 100%;
+    width: 96vw;
+    margin-left: 2vw;
+}
+
+.CFPregunta{
+    width: 96%;
+    background-color: rgb(138, 103, 103);
+    
+    margin: 2%;
+}
+#CFPconfirmSection{
+    position: relative;
+    left: 90%;
+}
+
+#CFPconfirmButton{
+    width: 60px;
+    height: 30px;
+}
+#CVPAddButton{
+    width: 30px;
+    height: 30px;
+}

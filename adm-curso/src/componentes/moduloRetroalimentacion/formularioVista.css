@@ -1,0 +1,28 @@
+
+
+#tituloGeneral{
+    width: 90vw;
+    font-size: xx-large;
+    font-weight: 1200;
+}
+#fVContainer{
+    height: 100%;
+    width: 96vw;
+    margin-left: 2vw;
+}
+
+.fVPregunta{
+    width: 96%;
+    background-color: rgb(138, 103, 103);
+    
+    margin: 2%;
+}
+#CVconfirmSection{
+    position: relative;
+    left: 90%;
+}
+
+#CVconfirmButton{
+    width: 60px;
+    height: 30px;
+}
