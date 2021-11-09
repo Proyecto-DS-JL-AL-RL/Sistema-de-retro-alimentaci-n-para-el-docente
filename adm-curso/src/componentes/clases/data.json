@@ -1,0 +1,83 @@
+{
+    "Datos":[
+            {
+                "Alumnos":
+                    [
+                        {"id":"20192196K",
+                        "nombre":"Alexander",
+                        "apellido":"Lique",
+                        "correo":"alexander.lique.l@uni.pe",
+                        "contrasena":"NoSeaSapo",
+                        "edad":20
+                        },
+                        {"id":"20201295A",
+                            "nombre":"Iino",
+                            "apellido":"Miko",
+                            "correo":"iino.miko.m@uni.pe",
+                            "contrasena":"NoSeaSapo",
+                            "edad":16
+                        },
+                        {"id":"20191956F",
+                            "nombre":"Jose",
+                            "apellido":"Gomez",
+                            "correo":"jose.gomez.g@uni.pe",
+                            "contrasena":"NoSeaSapo",
+                            "edad":21
+                        }
+                    ]
+            },
+            {
+                "Nota":[
+                    {
+                        "id_curso":"CC421",
+                        "tipo_practica":"PC1",
+                        "puntuacion":12
+                    },
+                    {
+                        "id":"CC3S2",
+                        "tipo_pc":"Tarea06",
+                        "puntuacion":10
+                    }
+                ]
+            },
+            {
+                "Profesor":
+                    [
+                        {"id":"19942196K",
+                        "nombre":"Roberto",
+                        "apellido":"Dominguez",
+                        "correo":"roberto.dominguez.d@uni.edu.pe",
+                        "contrasena":"NoSeaSapo",
+                        "edad":27
+                        },
+                        {   "id":"19801295J",
+                            "nombre":"Ernesto",
+                            "apellido":"Muller",
+                            "correo":"Ernesto.muller.m@uni.edu.pe",
+                            "contrasena":"NoSeaSapo",
+                            "edad":41
+                        }
+                    ]
+            },
+            {
+                "Cursos":[
+                    {
+                        "nombre_curso":"Inteligencia Artificial",
+                        "fecha_Inicio": [2021, 3, 15],
+                        "fecha_Final":[2021, 8, 20],
+                        "id_profesor": "19942196K",
+                        "codigo":"CC421"
+                    },
+                    {
+                        "nombre_curso":"Administracion de Redes",
+                        "fecha_Inicio": [2021, 3, 15],
+                        "fecha_Final":[2021, 8, 20],
+                        "id_profesor": "19801295J",
+                        "codigo":"CC312"
+                    }
+            ]
+            }
+    
+        ]    
+}
+    
