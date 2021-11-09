@@ -5,7 +5,7 @@ import VerPerfil from './componentes/Perfil';
 import Inicio from './componentes/Inicio'
 import test from './componentes/clases/clases.js'
 
-import Curso from './componentes/Visualizacion/Curso'
+import Curso from './componentes/Curso'
 import Principal from './paginas/Principal';
 
 
