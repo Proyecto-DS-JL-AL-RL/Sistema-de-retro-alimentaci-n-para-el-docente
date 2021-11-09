@@ -1,0 +1,16 @@
+[input="text"]{
+    font-size:0.8em;
+}
+
+.itmAlt{
+    display: grid;
+    grid-template-columns: 1fr 1.2em 1.2em;
+    
+}
+.txtAlt{
+    font-size: 0.8em;
+    
+}
+.btnAlt{
+    font-size: 0.9em;
+}
