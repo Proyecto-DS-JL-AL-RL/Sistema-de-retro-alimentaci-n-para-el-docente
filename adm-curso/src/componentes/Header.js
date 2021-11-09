@@ -6,7 +6,6 @@ import SelectedListItem  from './componentesBasicos/MenuCurso';
 import Avatar from './componentesBasicos/Avatar'
 //import { style } from '@mui/system';
 
-
 class Header extends  React.Component {
     constructor(props) {
         super(props);
