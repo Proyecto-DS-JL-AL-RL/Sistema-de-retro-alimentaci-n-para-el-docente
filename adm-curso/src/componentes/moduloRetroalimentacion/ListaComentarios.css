@@ -1,0 +1,9 @@
+.LCComent{
+    position:relative;
+    left: 0%;
+    top: 0%;
+    height: 80px;
+    width: 100%;
+    margin:1px;
+    cursor:pointer;
+}

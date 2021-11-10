@@ -1,0 +1,55 @@
+body{
+    background-color: white;
+}
+
+.PClaseBtnContainers{
+    display:flex;
+    position:fixed;
+    left: 0vh;
+    top: 10vh;  
+    width: 102vw;
+}
+.PCbtnChange2{
+    width: 51vw;
+    height: 40px;
+
+}
+
+.PCbtnChange3{
+    width: 34vw;
+    height: 40px;
+
+}
+
+.pagMblListaAlumnos{
+    position: absolute;
+    width: 100vw;
+    left:0vh;
+    top: 10vh;
+    margin-top: 40px;
+}
+
+.pagListaAlumnos{
+    position: fixed;
+    width: 25vw;
+    height: 60vh;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+.statMblWindowContainer{
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    left:0vh;
+    top: 10vh;
+    margin-top: 40px;
+}
+
+.statWindowContainer{
+    right: 25vw;
+    width: 75vw;
+    bottom: 0;
+    position:fixed;
+    height: 90vh;
+}

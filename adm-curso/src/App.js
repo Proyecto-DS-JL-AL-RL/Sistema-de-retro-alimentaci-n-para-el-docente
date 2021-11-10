@@ -7,6 +7,7 @@ import test from './componentes/clases/clases.js'
 
 import Curso from './componentes/Curso'
 import Principal from './paginas/Principal';
+import PagClase from './paginas/pagClase';
 
 
 
@@ -14,7 +15,7 @@ import Principal from './paginas/Principal';
  
 function App() {
   return (
-    <VerPerfil/> 
+    <PagClase/> 
 );
 }
 
