@@ -4,6 +4,7 @@ import test  from './clases/clases.js'
 import './Perfil.css'
 import BasicButtons from './componentesBasicos/CommonButton'
 
+
 class VerPerfil extends  React.Component {
     constructor(props) {
         super(props);
@@ -16,18 +17,18 @@ class VerPerfil extends  React.Component {
     render() {
         return ( 
         <div>
-            <h1 id="Titulo">Mi Perfil</h1>
             <div id="pCuadro">
-                    <Avatar style={this.state.avatar_style} avatar={test[0].getImagen()}/>
+                    <Avatar style={this.state.avatar_style} avatar={test['user'].getImagen()}/>
                     <div id="Perfil">
+            <h1 id="Titulo">Mi Perfil</h1>
                         <h2>Nombre:</h2>
-                        <input id="input" value={test[0].getNombre()} disabled/>
+                        <input id="input" value={test['user'].getNombre()} disabled/>
                         <h2>Apellido:</h2>
-                        <input id="input" value={test[0].getApellido()} disabled/>
+                        <input id="input" value={test['user'].getApellido()} disabled/>
                         <h2>Edad:</h2>
-                        <input id="input" value={test[0].getEdad()} disabled/>
+                        <input id="input" value={test['user'].getEdad()} disabled/>
                         <h2>Correo:</h2>
-                        <input id="input" value={test[0].getCorreo()} disabled/>
+                        <input id="input" value={test['user'].getCorreo()} disabled/>
                 </div>
             </div>         
                 <BasicButtons style={this.state.id_style} variant={this.state.variant_button} text="Volver a Inicio"/>

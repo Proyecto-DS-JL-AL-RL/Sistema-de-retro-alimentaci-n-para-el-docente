@@ -4,6 +4,12 @@ import {Link,BrowserRouter as Router,
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
 
 
+import VerCurso from '../componentes/Curso'
+import VerPerfil from '../componentes/Perfil';
+import Inicio from '../componentes/Inicio'
+import test from '../componentes/clases/clases.js'
+
+
 import CrearClase  from '../componentes/moduloRetroalimentacion/crearClase';
 import ComentarioForm from '../componentes/moduloRetroalimentacion/ComentarioForm';
 import FormVista from '../componentes/moduloRetroalimentacion/formularioVista';
@@ -28,8 +34,8 @@ export default function Principal() {
 
                 <Link to="/VerRespuesta">VerRespuesta</Link>
                 <Link to="/VerEstadisticas">VerEstadisticas</Link>
-                
-      
+                <Link to="/Inicio">Ver Cursos</Link>
+                <Link to="/VerPerfil">mi perfil</Link>
                 <Switch>
                     <Route exact path="/">
 
@@ -58,6 +64,12 @@ export default function Principal() {
                     </Route>
                     <Route path="/VerEstadisticas">
                         <VerEstadisticas/>
+                    </Route>
+                    <Route path="/Inicio">
+                        <Inicio/>
+                    </Route>
+                    <Route path="/VerPerfil">
+                        <VerPerfil/>
                     </Route>
                 </Switch>
             </Router>

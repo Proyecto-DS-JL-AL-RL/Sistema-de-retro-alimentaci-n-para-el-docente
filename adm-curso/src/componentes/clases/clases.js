@@ -127,6 +127,6 @@ let curso2 = new Curso(test_curso2.nombre_curso, test_curso2.fecha_Inicio, test_
 
 let Nota1 = new Nota(test_nota.id_curso, test_nota.tipo_practica, test_nota.puntuacion)
 
-let test = [user1, curso2, Nota1]
+let test = {user: user1, cursos: [curso1, curso2], notas: Nota1}
 
 export default test

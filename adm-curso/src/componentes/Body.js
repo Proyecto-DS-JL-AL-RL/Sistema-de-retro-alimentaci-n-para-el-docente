@@ -13,8 +13,8 @@ class Body extends  React.Component {
     }
     render() {
         return ( 
-        <div id="Cuadro">
-            <BasicTable text_style={this.state.text} style={this.state.style} Nota={test[2]}/>
+        <div id="bCuadro">
+            <BasicTable text_style={this.state.text} style={this.state.style} Nota={test['notas']}/>
         </div>
         )}
 }

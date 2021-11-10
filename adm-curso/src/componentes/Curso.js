@@ -3,6 +3,10 @@ import Body from './Body'
 import Header from './Header'
 import test  from './clases/clases.js'
 import SelectedListAvatar from './componentesBasicos/MenuAvatar.js';
+import VerPerfil from './Perfil'
+let curso = test['cursos']
+
+
 
 class VerCurso extends  React.Component {
     
@@ -10,7 +14,7 @@ class VerCurso extends  React.Component {
         return ( 
             <div>
                 <div>
-                    <Header NameCurso={test[1].nombre_curso} componentes={<SelectedListAvatar/>}/>
+                    <Header NameCurso={curso[0].nombre_curso} componentes={<SelectedListAvatar perfil={<VerPerfil/>}/>}/>
                 </div>
                 <div>
                     <Body/>
