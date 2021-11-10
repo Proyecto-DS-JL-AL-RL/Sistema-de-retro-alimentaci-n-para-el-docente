@@ -1,0 +1,41 @@
+
+.interaccion{
+    position:absolute;
+    right:0px;
+    display: flex;
+    
+    align-items:center;
+    top:30vh;
+    
+    z-index: 100;
+}
+.actionModule{
+    height:60px;
+    width:60px;
+    background-color: black;
+    color : var(--colortext);
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    font-size:50px;
+    border:none;
+    border-left: 2px solid var(--colortext);
+    animation: 1s infinite alternate crece;
+    
+}
+@keyframes crece{
+    to {
+      height: 70px;
+      width:70px;  
+    }
+}
+.actionModule:active{
+    border-right: 2px solid var(--colortext);
+    
+}
+.contenido{
+    
+    
+    
+    background-color: black;
+    z-index: 110;
+}

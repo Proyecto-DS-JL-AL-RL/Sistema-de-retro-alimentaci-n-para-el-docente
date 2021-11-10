@@ -3,12 +3,13 @@
     margin-right: auto;
     margin-left: auto;
     max-height:100vh;
-    background-color: yellow;
+    background-color: #1119;
     display:flex;
     
     flex-direction: column;
     align-items: center;
     justify-content:center;
+    box-shadow: 15px 15px #1115;
 }
 
 

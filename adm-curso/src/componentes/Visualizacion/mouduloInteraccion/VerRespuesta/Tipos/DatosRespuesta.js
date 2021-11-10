@@ -3,7 +3,7 @@ const respuestaAlternativas = [
     'Pregunta5'
 ]
 const tamAlt = [6,3,7,8,9];
-const vof = [1,2,3,4,5];
+const vof = [4,5];
 const palabras = ['hola','uno','además','vulgar','asociativo','retraso',
 'exclamación'];
 const frases = [

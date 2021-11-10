@@ -15,13 +15,13 @@ import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/Ver
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import Header from '../componentes/Header';
 import Cabecera from './Cabecera';
-
+import ModuloInteraccion from './Interaccion/ModuloInteraccion.js';
 export default function Principal() {
     
     return (
         <div>
-            <Cabecera/>
-            <Header/>          
+            <Cabecera/> 
+            
             <Router>
                 
                 <Link to="/CrearPregunta"> CrearPregunta</Link>
@@ -35,10 +35,10 @@ export default function Principal() {
                 <Link to="/VerRespuesta">VerRespuesta</Link>
                 <Link to="/VerEstadisticas">VerEstadisticas</Link>
                 
-      
+                <ModuloInteraccion/>
                 <Switch>
                     <Route exact path="/">
-
+                        
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>

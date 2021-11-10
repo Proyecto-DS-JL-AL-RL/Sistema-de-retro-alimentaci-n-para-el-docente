@@ -4,7 +4,9 @@ import './estiloPreguntas.css'
 import {tipos,alterIni} from './Datos.js';
 import ResponderPregunta from './ResponderPregunta';
 import CrearAlternativas from './CrearAlternativas';
+import { useHistory } from 'react-router-dom';
 export default function CrearPregunta() {
+    const history = useHistory();
     const [pregunta,setPregunta] = useState('');
     const [archivo,setArchivo] = useState(false);
     const [tipo,setTipo] = useState(3);
@@ -21,7 +23,9 @@ export default function CrearPregunta() {
     const changeTipo = (e) =>{
         setTipo(e.target.id);
     }
-     
+    function verRespuesta(){
+        history.push("/VerRespuesta")
+    }
     return (
         <div className="ctnCont">
             <form>
@@ -34,12 +38,12 @@ export default function CrearPregunta() {
                 ></textarea>
                 <label className="itmform lblform">Tipo de Respuesta:</label>
                 <div className="ctnTipos">
-                    {tipos.map(e=>{
+                    {tipos.map((e,i)=>{
                         return <>
                         <input className="check" id={e.id} 
                         type="radio" name="tipos" onChange={changeTipo}
-                         defaultChecked={e.id==tipo?true:false}/>
-                        <label className="checklbl unselect"  htmlFor={e.id} >
+                         defaultChecked={e.id==tipo?true:false} key={i}/>
+                        <label className="checklbl unselect"  htmlFor={e.id} key={i}>
                             {e.descp}
                         </label>
                         </>
@@ -67,7 +71,7 @@ export default function CrearPregunta() {
                     alternativas = {alternativas}
                     />
                 </div>
-                <input type="submit" value="Crear"/>
+                <button className="btnCrear" onClick={verRespuesta}>Crear</button>
             </form>
         </div>
     )

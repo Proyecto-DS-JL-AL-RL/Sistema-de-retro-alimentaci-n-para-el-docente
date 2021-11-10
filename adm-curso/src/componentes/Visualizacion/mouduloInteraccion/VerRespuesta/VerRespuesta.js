@@ -11,6 +11,7 @@ import Tipo from './Tipo';
 
 const pregunta = "¿Cuanto es 1 +1 ?";
 export default function VerRespuesta() {
+    
     const [tipo,setTipo] = useState(4);
     function cambioTipo(t){
         console.log(t);

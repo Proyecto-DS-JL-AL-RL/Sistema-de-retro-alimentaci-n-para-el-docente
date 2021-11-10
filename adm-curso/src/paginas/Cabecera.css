@@ -1,7 +1,10 @@
+:root{
+    --heightNav: 100px;
+}
 .cabecera{
     width:100%;
     background-color:rgba(2, 1, 1, 0.411);
-    height:100px;
+    height:var(--heightNav);
     position:relative;
     color:white;
 }

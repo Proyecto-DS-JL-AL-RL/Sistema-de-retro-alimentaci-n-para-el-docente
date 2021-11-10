@@ -6,7 +6,8 @@
 :root{
     --colorfondo: #222;
     --colortext: #eee;
+    --colorfondoContenido : #333;
 }
 body{
-    color:var(--colorfondo);
+    color:var(--colortext);
 }
