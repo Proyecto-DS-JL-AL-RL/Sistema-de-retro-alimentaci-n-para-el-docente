@@ -15,11 +15,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Inicio.css'
+import VerCurso from '../componentes/Curso';
 import VerPerfil from '../componentes/Perfil';
-
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import test from './clases/clases'
 
 let curso = test['cursos']
@@ -42,6 +43,11 @@ const cards = Array.from(range(1, curso.length+1))
 export default function Album(props) {
   return (
     <div>
+      <Router>
+      <Route path="/VerCurso">
+            <VerCurso/>
+      </Route>
+      </Router> 
        <Header NameCurso={props.Inicio} componentes={<SelectedListIncio iperfil={<VerPerfil/>}/>}/>
       <div id="Cards">
         <Container sx={{ py: 8 }} maxWidth="md">
@@ -65,13 +71,12 @@ export default function Album(props) {
                       {curso[card-1].nombre_curso}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                            Cursos 
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    <Button size="small"><Link to="/VerCurso">ver</Link></Button>
+                    <Button size="small"><Link to="/">Editar</Link></Button>
                   </CardActions>
                 </Card>
               </Grid>

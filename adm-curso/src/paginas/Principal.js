@@ -71,6 +71,10 @@ export default function Principal() {
                     <Route path="/VerPerfil">
                         <VerPerfil/>
                     </Route>
+                    <Route path="/VerCurso">
+                        <VerCurso/>
+                    </Route>
+       
                 </Switch>
             </Router>
             

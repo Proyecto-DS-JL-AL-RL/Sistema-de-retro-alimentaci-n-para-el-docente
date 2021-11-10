@@ -3,8 +3,10 @@ import Avatar from './componentesBasicos/Avatar.js'
 import test  from './clases/clases.js'
 import './Perfil.css'
 import BasicButtons from './componentesBasicos/CommonButton'
-
-
+import Principal from '../paginas/Principal'
+import {Link,BrowserRouter as Router,
+    Route,Switch} from 'react-router-dom';
+  
 class VerPerfil extends  React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +19,11 @@ class VerPerfil extends  React.Component {
     render() {
         return ( 
         <div>
+            <Router>
+                <Route path="/Principal">
+                    <Principal/>
+                </Route>
+            </Router>
             <div id="pCuadro">
                     <Avatar style={this.state.avatar_style} avatar={test['user'].getImagen()}/>
                     <div id="Perfil">
@@ -31,7 +38,7 @@ class VerPerfil extends  React.Component {
                         <input id="input" value={test['user'].getCorreo()} disabled/>
                 </div>
             </div>         
-                <BasicButtons style={this.state.id_style} variant={this.state.variant_button} text="Volver a Inicio"/>
+                <BasicButtons onClick={<Link to="/Perfil">volver inicio</Link>} style={this.state.id_style} variant={this.state.variant_button} text="Volver a Inicio"/>
         </div>
     )}
 }
