@@ -1,5 +1,5 @@
 .ctnEstadisticas{
-    color: blue;
+    margin-top: var(--tamanoNav);
     width: 80vw;
     height:80vh;
     background-color: var(--colorfondo);
@@ -8,39 +8,36 @@
     margin-right: auto;
     text-align: center;
     font-size: 30px;
-    display:flex;
-    flex-direction: column;
+    display:grid;
+    grid-template-rows: 40px 400px 1fr;
     
 }
 .ctnContenido{
-    display:flex;
+    background-color:red;
+    text-align: center;
+    grid-row: 1;
 }
-.ctnPreguntas{
-    width:70%;
-    
-}
-.ctnConsolidado{
-    width:30%;
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-row: 2;
 }
 .ctnGrafico{
+    width: 45%;
     height:400px;
-    width:100%;
-    height:400px;
-    
+    margin-left: auto;
+    margin-right: auto;
+}
+.grafico{
+    width: 100%;
+    height:80%;
 }
 .ctnRespuestas{
-    
-    width:100%;
-    height: calc(80vh - 450px);
-    overflow-y: scroll;
-}
-
-@media (max-width: 700px) {
-    .ctnEstadisticas{
-        width:100%;
-        height:90vh;
-    }
-    .ctnRespuestas{
-        height: calc(90vh - 450px);
-    }
+    grid-row: 3;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    margin:0;
 }

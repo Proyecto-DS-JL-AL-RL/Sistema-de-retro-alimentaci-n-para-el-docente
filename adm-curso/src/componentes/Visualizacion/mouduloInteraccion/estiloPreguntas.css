@@ -8,17 +8,22 @@
     user-select: none; 
 }
 .ctnCont{
-    width: 70%;
+    width: 80%;
+    padding:30px;
+    padding-top: 30px;
     margin-left: auto;
     margin-right: auto;
     font-size:1.5em;
+    background-color: #1119;
+    box-shadow: 15px 15px #1115;
+    margin-top: var(--tamanoNav);
 }
 .ctnPrevius{
-    border:solid 2px black;
-    padding: 8px;
+    border:solid 2px white;
+    padding: 10px;
 }
 .lblform{
-    display: block;
+    width:100%;
     
 }
 .itmform{
@@ -92,4 +97,10 @@
     font-size: 1.5em;
     width:100%;
     text-align: justify;
+}
+.btnCrear{
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    font-size:1em;
 }

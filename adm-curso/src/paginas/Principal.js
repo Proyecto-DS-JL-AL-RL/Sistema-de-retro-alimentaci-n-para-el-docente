@@ -19,11 +19,17 @@ import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormula
 
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
-
+import Header from '../componentes/Header';
+import Cabecera from './Cabecera';
+import ModuloInteraccion from './Interaccion/ModuloInteraccion.js';
 export default function Principal() {
+    
     return (
-        <div>            
+        <div>
+            <Header/> 
+            
             <Router>
+                
                 <Link to="/CrearPregunta"> CrearPregunta</Link>
                 <Link to = "/CrearClase">Crear Clase</Link>
                 <Link to = "/ComentarioForm">ComentarioClase</Link>
@@ -35,6 +41,10 @@ export default function Principal() {
                 <Link to="/VerEstadisticas">VerEstadisticas</Link>
                 <Link id="link" to="/Inicio">Ver Cursos</Link>
                 <Link id="link" to="/VerPerfil"> mi perfil</Link>
+                <Switch>
+                    <Route exact path="/">
+                
+                <ModuloInteraccion/>
                 <Switch>
                     <Route exact path="/">
                     </Route>

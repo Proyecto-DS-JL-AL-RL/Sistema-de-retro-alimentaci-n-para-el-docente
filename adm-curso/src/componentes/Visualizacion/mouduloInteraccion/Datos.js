@@ -1,5 +1,5 @@
 const tipos = [
-    {id:1,descp:'Una Palabra'
+    {id:1,descp:'Con Palabras'
     },{
     id:2,descp:'Un Parrafo'},{
     id:3,descp:'Alternativas'

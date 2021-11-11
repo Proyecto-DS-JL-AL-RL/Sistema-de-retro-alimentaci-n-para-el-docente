@@ -27,8 +27,10 @@ const apellido= [
 const respuestaAlumno = respuesta.map((e,i)=>{
     return {
         id: i,
-        nombre : nombres[randomInt(nombres.length-1)]+" "+ apellido[randomInt(apellido.length-1)],
+        nombre : nombres[randomInt(nombres.length-1)]+" "+ apellido[randomInt(apellido.length-1)]+ " " + apellido[randomInt(apellido.length-1)],
         rpta : e
     }
 })
-export {respuestaAlumno};
+const num = [7,4,5,6,8];
+const Estados = ['Activo','Pasivo','Distraido','Ausente','Necesita Ayuda'];
+export {respuestaAlumno,num,Estados};
