@@ -10,11 +10,11 @@ import Principal from './paginas/Principal';
 
 
 
-// <Inicio Inicio={'Cursos'} Cursos = {test[1].nombre_curso} />
+//    <Principal/>   <Inicio Inicio={'Cursos'} Cursos = {test[1].nombre_curso} />
+ 
 function App() {
   return (
-
-    <Principal/> 
+    <VerPerfil/> 
 );
 }
 
