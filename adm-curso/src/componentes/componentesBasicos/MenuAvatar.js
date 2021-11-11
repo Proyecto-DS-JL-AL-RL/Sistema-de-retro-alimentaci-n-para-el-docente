@@ -25,13 +25,14 @@ export default function SelectedListAvatar(props) {
           selected={selectedIndex === 0}
           onClick={(event) => handleListItemClick(event, 0)}
         >
-          <ListItemText primary={<Link to="/VerPerfil">mi perfil</Link>}/>
+          <ListItemText primary={<Link id="link" to="/VerPerfil">mi perfil</Link>}/>
         </ListItemButton>
         <ListItemButton
           selected={selectedIndex === 1}
-          onClick={(event) => handleListItemClick(event, 1)}
+          onClick={(event) => handleListItemClick(event, 1),
+            console.log(props.curso_id)}
         >
-          <ListItemText primary="Ver Notas"/>
+          <ListItemText primary={<Link id="link" to={"/VerNotas/"+props.curso_id}> Ver Notas </Link>}/>
         </ListItemButton>
       </List>
     </Box>

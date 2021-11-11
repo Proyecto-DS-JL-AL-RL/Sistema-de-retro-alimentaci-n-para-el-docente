@@ -34,10 +34,28 @@
                         "puntuacion":12
                     },
                     {
+                        "id_curso":"CC421",
+                        "tipo_practica":"PC2",
+                        "puntuacion":10
+                    }
+                    ,
+                    {
+                        "id_curso":"CC421",
+                        "tipo_practica":"Tarea01",
+                        "puntuacion":10
+                    }
+                    ,
+                    {
                         "id":"CC3S2",
                         "tipo_pc":"Tarea06",
                         "puntuacion":10
+                    },
+                    {
+                        "id":"CC3S2",
+                        "tipo_pc":"PC1",
+                        "puntuacion":13
                     }
+
                 ]
             },
             {
@@ -74,6 +92,13 @@
                         "fecha_Final":[2021, 8, 20],
                         "id_profesor": "19801295J",
                         "codigo":"CC312"
+                    },
+                    {
+                        "nombre_curso":"Desarollo de Software",
+                        "fecha_Inicio": [2021, 3, 15],
+                        "fecha_Final":[2021, 8, 20],
+                        "id_profesor": "19801295J",
+                        "codigo":"CC3S2"
                     }
             ]
             }

@@ -8,7 +8,7 @@ import VerCurso from '../componentes/Curso'
 import VerPerfil from '../componentes/Perfil';
 import Inicio from '../componentes/Inicio'
 import test from '../componentes/clases/clases.js'
-
+import VerNotas  from  '../componentes/Notas'
 
 import CrearClase  from '../componentes/moduloRetroalimentacion/crearClase';
 import ComentarioForm from '../componentes/moduloRetroalimentacion/ComentarioForm';
@@ -25,7 +25,6 @@ export default function Principal() {
         <div>            
             <Router>
                 <Link to="/CrearPregunta"> CrearPregunta</Link>
-
                 <Link to = "/CrearClase">Crear Clase</Link>
                 <Link to = "/ComentarioForm">ComentarioClase</Link>
                 <Link to = "/formPregunta">formPregunta</Link>
@@ -34,11 +33,10 @@ export default function Principal() {
 
                 <Link to="/VerRespuesta">VerRespuesta</Link>
                 <Link to="/VerEstadisticas">VerEstadisticas</Link>
-                <Link to="/Inicio">Ver Cursos</Link>
-                <Link to="/VerPerfil">mi perfil</Link>
+                <Link id="link" to="/Inicio">Ver Cursos</Link>
+                <Link id="link" to="/VerPerfil"> mi perfil</Link>
                 <Switch>
                     <Route exact path="/">
-
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
@@ -71,10 +69,12 @@ export default function Principal() {
                     <Route path="/VerPerfil">
                         <VerPerfil/>
                     </Route>
-                    <Route path="/VerCurso">
+                    <Route path = '/VerCurso/:id' component = {VerCurso}>
                         <VerCurso/>
                     </Route>
-       
+                    <Route path='/VerNotas/:nota' component = {VerNotas}>
+                        <VerNotas/>
+                    </Route>
                 </Switch>
             </Router>
             

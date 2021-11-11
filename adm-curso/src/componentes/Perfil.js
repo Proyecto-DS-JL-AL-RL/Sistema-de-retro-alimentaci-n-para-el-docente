@@ -38,7 +38,7 @@ class VerPerfil extends  React.Component {
                         <input id="input" value={test['user'].getCorreo()} disabled/>
                 </div>
             </div>         
-                <BasicButtons onClick={<Link to="/Perfil">volver inicio</Link>} style={this.state.id_style} variant={this.state.variant_button} text="Volver a Inicio"/>
+                <BasicButtons style={this.state.id_style} variant={this.state.variant_button} text={<Link id="link" to="/Principal"> Volver Inicio </Link>}/>
         </div>
     )}
 }

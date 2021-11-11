@@ -43,11 +43,6 @@ const cards = Array.from(range(1, curso.length+1))
 export default function Album(props) {
   return (
     <div>
-      <Router>
-      <Route path="/VerCurso">
-            <VerCurso/>
-      </Route>
-      </Router> 
        <Header NameCurso={props.Inicio} componentes={<SelectedListIncio iperfil={<VerPerfil/>}/>}/>
       <div id="Cards">
         <Container sx={{ py: 8 }} maxWidth="md">
@@ -63,19 +58,19 @@ export default function Album(props) {
                       // 16:9
                       pt: '56.25%',
                     }}
-                    image="https://source.unsplash.com/random"
+                    image="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png"
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {curso[card-1].nombre_curso}
+                      {curso[card-1].nombre_curso} 
                     </Typography>
                     <Typography>
                             Cursos 
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small"><Link to="/VerCurso">ver</Link></Button>
+                    <Button  size="small"><Link to={"/VerCurso/"+card}>ver</Link></Button>
                     <Button size="small"><Link to="/">Editar</Link></Button>
                   </CardActions>
                 </Card>

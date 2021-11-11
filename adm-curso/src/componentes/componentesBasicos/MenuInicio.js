@@ -23,7 +23,7 @@ export default function SelectedListIncio(props) {
           selected={selectedIndex === 0}
           onClick={(event) => handleListItemClick(event, 0)}
         >
-          <ListItemText primary={<Link to="/VerPerfil">mi perfil</Link>}/>
+          <ListItemText primary={<Link id="link" to="/VerPerfil">mi perfil</Link>}/>
         </ListItemButton>
       </List>
     </Box>

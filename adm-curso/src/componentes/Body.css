@@ -5,16 +5,3 @@
     font-size:italic;
     background-color:rgba(77, 76, 76, 0.959);
 }
-
-#table{
-    position:absolute;
-    width:50%;
-    height:20%;
-    margin:-30% -15%;
-}
-
-
-#texto{
-    color:whitesmoke;
-    font-size:3vw;
-}
