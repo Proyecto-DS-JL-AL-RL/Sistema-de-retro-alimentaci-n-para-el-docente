@@ -1,9 +1,13 @@
 import React,{useRef,useEffect} from 'react';
-import {respuestaAlternativas,tamAlt} from './DatosRespuesta.js';
+
 import {dibujarBarra,dibujarRecta,text} from './Draw.js';
 
 const colores = ['red','blue','green','orange','skyblue','blueviolet'];
 const initRand = Math.floor(Math.random()*colores.length);
+const respuestaAlternativas = [
+    'Ausentes','NecesitaAyuda', 'Activo', 'Pasivo', 'Distraido'
+]
+const tamAlt = [2,3,9,5,9];
 export default function RespuestaAlternativas() {
     const contRef = useRef(null);
     const canvasRef= useRef(null);
@@ -55,18 +59,3 @@ export default function RespuestaAlternativas() {
         </div>
     )
 }
-/**
- * useEffect (()=>{
-        if(contRef!=null){
-            console.log("XD")
-            window.addEventListener("resize", draw);
-        }
-        
-    },[contRef])
-    useLayoutEffect(() => {
-        console.log("XD");
-    })
-    useEffect(()=>{
-        draw();
-    },[])
- */

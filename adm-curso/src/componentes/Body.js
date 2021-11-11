@@ -8,13 +8,13 @@ class Body extends  React.Component {
         super(props);
         this.state = {
             style:"table",
-            text:"texto"
+            text:"texto",
+            notas: false
         }
     }
     render() {
         return ( 
-        <div id="Cuadro">
-            <BasicTable text_style={this.state.text} style={this.state.style} Nota={test[2]}/>
+        <div id="bCuadro">
         </div>
         )}
 }

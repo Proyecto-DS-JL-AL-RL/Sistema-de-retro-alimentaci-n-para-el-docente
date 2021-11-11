@@ -6,7 +6,10 @@
 :root{
     --colorfondo: #222;
     --colortext: #eee;
+    --colorfondoContenido : #333;
+    --tamanoNav : 10vh;
 }
 body{
-    color:var(--colorfondo);
+    color:var(--colortext);
+    
 }

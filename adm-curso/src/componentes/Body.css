@@ -1,20 +1,7 @@
-#Cuadro{
-    margin:5%;
+#bCuadro{
+    margin:20%;
     padding:50% 20%;
     position:absolute center;
     font-size:italic;
     background-color:rgba(77, 76, 76, 0.959);
-}
-
-#table{
-    position:absolute;
-    width:50%;
-    height:30%;
-    margin:-20% -5%;
-}
-
-
-#texto{
-    color:whitesmoke;
-    font-size:3vw;
 }

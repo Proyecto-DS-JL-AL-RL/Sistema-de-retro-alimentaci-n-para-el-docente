@@ -4,7 +4,7 @@
     width:auto;
     height:73%;
     left:10%;
-    margin:3% 15%;
+    margin:10% 15%;
     background-color: rgb(44, 4, 82);
 }
 
@@ -38,6 +38,10 @@
     left:10%;
     color:whitesmoke;
     margin:15% 11%;
+}
+
+#link{
+    color:white;
 }
 
 #input{
