@@ -14,6 +14,10 @@ body{
     height: 40px;
 
 }
+.Prueba{
+    width: 100vh;
+    height: 100vh;
+}
 
 .PCbtnChange3{
     width: 34vw;
@@ -37,7 +41,25 @@ body{
     bottom: 0;
     overflow: auto;
 }
+.pagListaForms{
+    position: fixed;
+    width: 25vw;
+    height: 23vh;
+    right: 0;
+    bottom: 60vh;
+    overflow: auto;
+    background-color: red;
+}
 .statMblWindowContainer{
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    left:0vh;
+    top: 10vh;
+    margin-top: 40px;
+}
+
+.pagMblListaForms{
     position: fixed;
     width: 100vw;
     bottom: 0;

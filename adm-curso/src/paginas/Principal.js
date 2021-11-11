@@ -41,7 +41,7 @@ export default function Principal() {
                     <Route path="/CrearPregunta">
                         <CrearPregunta/>
                     </Route>
-
+                    
                     <Route path = "/CrearClase">
                         <CrearClase/>    
                     </Route>

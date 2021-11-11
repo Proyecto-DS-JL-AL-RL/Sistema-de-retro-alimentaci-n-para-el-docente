@@ -21,7 +21,7 @@ import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 import Comentario from '../componentes/moduloRetroalimentacion/Comentario';
 import './pagClase.css';
 
-export default function PagClase() {
+export default function PagCurso() {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
 
@@ -37,28 +37,17 @@ export default function PagClase() {
             </div>
         }else if (PCstate == 1){
             return <div className = 'pagMblListaAlumnos'><ListaComentario/></div>
-        }else if (PCstate == 2){
-            return <div className = 'pagMblListaForms'><ListaForms/></div>
         }
     }
     
     const buttonMbl = function(){
-        if (!PCvista){
-            return (
-                <div className ='PClaseBtnContainers'>
-                        <button className = 'PCbtnChange3' onClick = {()=>{setPCstate(0);console.log(PCstate)}}> Estadisticas </button>
-                        <button className = 'PCbtnChange3' onClick = {()=>{setPCstate(1);console.log(PCstate)}}> Comentarios </button>
-                        <button className = 'PCbtnChange3' onClick = {()=>{setPCstate(2);console.log(PCstate)}}> Formularios </button>
-                </div>
-            )
-        }else{
             return (
                 <div className ='PClaseBtnContainers'>
                         <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0);console.log(PCstate)}}> Estadisticas </button>
-                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(2);console.log(PCstate)}}> Formularios </button>
+                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(1);console.log(PCstate)}}> Comentarios </button>
                 </div>
             )
-        }
+        
     }
 
     

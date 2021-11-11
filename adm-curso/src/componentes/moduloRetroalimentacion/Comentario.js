@@ -15,6 +15,7 @@ class Comentario extends  React.Component {
     
     crearClase = function(){
         console.log('Xd');
+
     };
 
     render() {
