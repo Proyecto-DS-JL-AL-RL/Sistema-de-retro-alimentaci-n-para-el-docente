@@ -6,16 +6,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import '../Notas.css'
 function createData(id_curso, tipo_practica, puntuacion) {
   return {id_curso, tipo_practica, puntuacion};
 }
 
 
 export default function BasicTable(props) {
-const rows = [
-  createData(props.Nota.getID_curso(), props.Nota.getTipo_practica(), props.Nota.getPuntuacion()),
-];
+  const rows = []
+  for(let i = 0; i <props.Nota.length; i++) {
+     rows.push(createData(props.Nota[i].getID_curso(), props.Nota[i].getTipo_practica(), props.Nota[i].getPuntuacion()))
+  }
+
     return (
       <div id={props.style}>
           <h2 id={props.text_style}>Mis Notas</h2>  

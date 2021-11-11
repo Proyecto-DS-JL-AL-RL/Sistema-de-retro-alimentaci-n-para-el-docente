@@ -1,5 +1,6 @@
 #Header{
-    padding: 5% 50%;
+    padding: 0% 50%;
+    height:10vh;
     top:0%;
     position: absolute;
     left: 0%;
@@ -23,6 +24,7 @@
 #menu-avatar{
     position: absolute;
     right:1%;
+    top:100%;
     color:white;
 }
 
@@ -39,10 +41,10 @@
     height:90%;
 }
 
-#Titulo{
+#hTitulo{
     position: absolute;
     left:10%;
-    top:0%;
+    top:-21%;
 }
 
 

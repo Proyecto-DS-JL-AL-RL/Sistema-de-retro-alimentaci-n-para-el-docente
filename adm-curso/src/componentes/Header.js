@@ -4,6 +4,9 @@ import './Header.css'
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import SelectedListItem  from './componentesBasicos/MenuCurso';
 import Avatar from './componentesBasicos/Avatar'
+import Principal from '../paginas/Principal'
+import VerPerfil from '../componentes/Perfil';
+
 //import { style } from '@mui/system';
 
 class Header extends  React.Component {
@@ -31,17 +34,17 @@ class Header extends  React.Component {
                         <DehazeIcon fontSize={'small'}/>
                     </button>
                     <div>
-                        {this.state.menu?<SelectedListItem/>:false}
+                        {this.state.menu?<SelectedListItem Back={<Principal/>}/>:false}
                     </div>
             </div>
             <div id="List" onClick={this.imageClick}> 
                 <div id="Foto">
-                    <Avatar style={this.state.avatar_style} avatar={test[0].getImagen()}/> 
+                    <Avatar style={this.state.avatar_style} avatar={test['user'].getImagen()}/> 
                 </div>
                 <div id="menu-avatar">{this.state.avatar?this.props.componentes:false}</div>
             </div>
             <div id="NombreCurso">
-                    <h1 id="Titulo">{this.props.NameCurso}</h1>
+                    <h1 id="hTitulo">{this.props.NameCurso}</h1>
             </div>
            </div>
         )}
