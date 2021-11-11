@@ -5,9 +5,9 @@
     display: flex;
     
     align-items:center;
-    top:30vh;
-    
-    z-index: 100;
+    top:20vh;
+    margin-top:calc(20px+var(--tamanoNav));
+    z-index: 1200;
 }
 .actionModule{
     height:60px;

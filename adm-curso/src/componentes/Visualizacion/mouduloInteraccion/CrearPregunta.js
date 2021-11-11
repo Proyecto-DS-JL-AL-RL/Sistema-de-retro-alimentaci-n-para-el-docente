@@ -59,10 +59,12 @@ export default function CrearPregunta() {
                     <label className="check1lbl unselect" htmlFor="checkarchivo">
                         AgregarArchivo
                     </label>
+                    <button className="btnCrear" onClick={verRespuesta}>Crear</button>
                 </div>
                 
                 
-                <label className="itmform lblform">Previsualización:</label>
+                <fieldset className="itmform lblform">
+                    <legend>Previsualización:</legend>
                 <div className="ctnPrevius">
                     <ResponderPregunta 
                     pregunta={pregunta} 
@@ -71,7 +73,8 @@ export default function CrearPregunta() {
                     alternativas = {alternativas}
                     />
                 </div>
-                <button className="btnCrear" onClick={verRespuesta}>Crear</button>
+                </fieldset>
+                
             </form>
         </div>
     )

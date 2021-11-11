@@ -28,7 +28,7 @@ export default function ResponderPregunta(props) {
     return (
         <div>
             
-            <p>{mensaje(props.tipo)}</p>
+            <div>{mensaje(props.tipo)}</div>
             <div className="ctnPregunta">
                 <p>
                     {props.pregunta==''?'Aún no se ingresa una pregunta':props.pregunta}
@@ -36,7 +36,11 @@ export default function ResponderPregunta(props) {
                 
             </div>
             
-            {props.tipo==1 && <input className = "itmform" type="text"/>}
+            {props.tipo==1 && 
+            <> <input className = "itmform" type="text"/>
+            <input className = "itmform" type="text"/>
+            <input className = "itmform" type="text"/>
+            </>}
             {props.tipo==2 && <textarea className="itmform" type="text"></textarea>}
             
             {   
@@ -46,7 +50,16 @@ export default function ResponderPregunta(props) {
                     <label className='itmalt'>{ alt.letra + ") " +alt.cont}</label><br/></>
                 })
             }
+            {
+                props.tipo == 4 &&
+                
+                <>
+                <div>a) V</div>
+                <div>b) F</div>
+                </>
+            }
             {props.archivo && <button>Subir Archivo</button>}
+            <button className="enviarRpta">Enviar Respuesta</button>
         </div>
     )
 }

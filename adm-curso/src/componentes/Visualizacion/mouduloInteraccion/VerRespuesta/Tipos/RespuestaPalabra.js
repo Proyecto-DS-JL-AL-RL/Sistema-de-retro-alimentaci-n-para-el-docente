@@ -2,7 +2,8 @@ import React,{useRef,useEffect,useState} from 'react';
 import {palabras} from './DatosRespuesta.js';
 import {dibujarBarra,dibujarRecta,text} from './Draw.js';
 import {random} from 'canvas-sketch-util';
-
+const colores = ['red','blue','green','orange','skyblue','blueviolet'];
+const initRand = Math.floor(Math.random()*colores.length);
 export default function RespuestaPalabra() {
     const contentRef = useRef(null);
     const canvasRef = useRef(null);
@@ -52,7 +53,7 @@ export default function RespuestaPalabra() {
             context.translate(cellw*0.5,cellh*0.5);
             context.rotate(angle);
 
-            text(context,palabras[i%palabras.length],w*-0.5,0,size*1.8,"red","middle");
+            text(context,palabras[i%palabras.length],w*-0.5,0,size*1.8,colores[(initRand+i)%colores.length],"middle");
             context.beginPath();
             context.moveTo(w*-0.55,size*0.9);
             context.lineTo(w*0.55,size*0.9);

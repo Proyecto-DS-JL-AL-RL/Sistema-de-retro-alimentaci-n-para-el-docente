@@ -20,7 +20,7 @@ export default function Principal() {
     
     return (
         <div>
-            <Cabecera/> 
+            <Header/> 
             
             <Router>
                 

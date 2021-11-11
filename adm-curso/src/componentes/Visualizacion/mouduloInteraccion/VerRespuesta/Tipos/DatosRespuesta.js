@@ -1,6 +1,6 @@
 const respuestaAlternativas = [
-    'Pregunta1','Pregunta2','Pregunta3','Pregunta4',
-    'Pregunta5'
+    'Alternativa1','Alternativa2','Alternativa3','Alternativa4',
+    'Alternativa5'
 ]
 const tamAlt = [6,3,7,8,9];
 const vof = [4,5];
