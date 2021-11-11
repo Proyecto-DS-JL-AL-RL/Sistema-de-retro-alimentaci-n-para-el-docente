@@ -3,7 +3,7 @@ import Principal from './paginas/Principal';
 
 function App() {
   return (
-    <VerPerfil/> 
+    <Principal/> 
 );
 }
 

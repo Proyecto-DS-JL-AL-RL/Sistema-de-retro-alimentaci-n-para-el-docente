@@ -26,10 +26,7 @@ export default function Principal() {
     
     return (
         <div>
-            <Header/> 
-            
             <Router>
-                
                 <Link to="/CrearPregunta"> CrearPregunta</Link>
                 <Link to = "/CrearClase">Crear Clase</Link>
                 <Link to = "/ComentarioForm">ComentarioClase</Link>
@@ -41,9 +38,6 @@ export default function Principal() {
                 <Link to="/VerEstadisticas">VerEstadisticas</Link>
                 <Link id="link" to="/Inicio">Ver Cursos</Link>
                 <Link id="link" to="/VerPerfil"> mi perfil</Link>
-                <Switch>
-                    <Route exact path="/">
-                
                 <ModuloInteraccion/>
                 <Switch>
                     <Route exact path="/">
@@ -87,7 +81,6 @@ export default function Principal() {
                     </Route>
                 </Switch>
             </Router>
-            
         </div>
     )
 }
