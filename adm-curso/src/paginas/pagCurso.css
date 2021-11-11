@@ -1,0 +1,36 @@
+
+.PClaseBtnContainers{
+    display:flex;
+    position:fixed;
+    left: 0vh;
+    top: 10vh;  
+    width: 102vw;
+}
+.PCbtnChange2{
+    width: 51vw;
+    height: 40px;
+
+}
+
+.WindowbtnChange2{
+    width: 20vw;
+    height: 40px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+.WindowBtnContainers{
+    display:flex;
+    position:absolute;
+    left: 50vw;
+    top: 15vh;  
+    width: 70vw;
+    margin-left: -30vw;
+}
+.Prueba{
+    width: 100vh;
+    height: 100vh;
+}
+.mainWindowContainer{
+    margin-top: 20vh;
+}
+

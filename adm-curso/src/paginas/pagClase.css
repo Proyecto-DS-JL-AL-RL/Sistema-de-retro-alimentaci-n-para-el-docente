@@ -1,6 +1,3 @@
-body{
-    background-color: white;
-}
 
 .PClaseBtnContainers{
     display:flex;
@@ -13,6 +10,9 @@ body{
     width: 51vw;
     height: 40px;
 
+}
+.mainWindowContainer{
+    width: 96vw;
 }
 .Prueba{
     width: 100vh;
@@ -39,16 +39,17 @@ body{
     height: 60vh;
     right: 0;
     bottom: 0;
-    overflow: auto;
+    overflow-y: auto ;
+    overflow-x: hidden ;
 }
 .pagListaForms{
     position: fixed;
     width: 25vw;
-    height: 23vh;
+    height: 25vh;
     right: 0;
     bottom: 60vh;
-    overflow: auto;
-    background-color: red;
+    overflow-y: auto ;
+    overflow-x: hidden ;
 }
 .statMblWindowContainer{
     position: fixed;
@@ -73,5 +74,5 @@ body{
     width: 75vw;
     bottom: 0;
     position:fixed;
-    height: 90vh;
+    height: 85vh;
 }

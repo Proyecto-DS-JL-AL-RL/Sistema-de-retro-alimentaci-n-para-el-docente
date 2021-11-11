@@ -12,6 +12,23 @@
     top: 0;
     position: relative;
 }
+.crearClaseWindow{
+    height: 40vh;
+    width: 50vw;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    margin-top: -20vh;
+    margin-left: -25vw;
+    
+}
+.ClosPopUp{
+    height: 40px;
+    width: 40px;
+    position:absolute;
+    left: 80%;
+    top: 0;
+}
 
 .listaForms{
     position: relative;
@@ -26,24 +43,25 @@
 .FormElement{
     font-weight: 600;
     margin: 1px;
-    background-color: purple;
+    background-color: var(--opciones2Color);
     color: white;
     height: 50px;
     width: 100%;
 }
 .vistaWindow{
     position: fixed;
-    height: 84vh;
-    width: 100vw;
-    overflow: auto;
-    left: 0;
+    left: 15vw;
+    height: 85vh;
+    width: 70vw;
+    overflow-y: auto;
+    overflow-x: hidden;
     bottom: 0;
 }
 
 
 @media (max-width: 600px){
     .vistaWindow{
-        height: 84vh;
+        height: 85vh;
         width: 100vw;
         position: fixed;
         overflow: auto;
@@ -55,10 +73,11 @@
 
 .crearWindow{
     position: fixed;
-    left: 0;
-    height: 84vh;
-    width: 100vw;
-    overflow: auto;
+    left: 15vw;
+    height: 85vh;
+    width: 70vw;
+    overflow-y: auto;
+    overflow-x: hidden;
     bottom: 0;
 }
 
@@ -74,10 +93,3 @@
     }
 }
 
-.ClosPopUp{
-    height: 40px;
-    width: 40px;
-    position:absolute;
-    left: 95%;
-    top: 0;
-}

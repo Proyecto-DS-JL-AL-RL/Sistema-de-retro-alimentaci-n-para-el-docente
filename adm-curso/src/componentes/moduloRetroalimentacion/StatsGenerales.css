@@ -19,7 +19,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 10%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     justify-content: center;
     left: 50%;
     width: 70%;
@@ -28,17 +29,18 @@
 .AlumnoElement{
     font-weight: 600;
     margin: 2px;
-    background-color: purple;
+    background-color: var(--opciones1Color);
     color: white;
     height: 30px;
     width: 100%;
 }
 .StatsPopup{
-    position: absolute;
+    z-index: 50;
+    position: fixed;
     height: 60vh;
     width: 50vw;
     position: fixed;
-    left: 50vw;
+    left: 40vw;
     top: 50vh;
     margin-top: -30vh;
     margin-left: -25vw;
@@ -61,6 +63,6 @@
     height: 40px;
     width: 40px;
     position:absolute;
-    left: 95%;
+    left: 80%;
     top: 0;
 }

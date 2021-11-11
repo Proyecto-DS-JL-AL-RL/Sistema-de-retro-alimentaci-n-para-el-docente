@@ -1,10 +1,60 @@
 #Header{
     padding: 0% 50%;
-    height:10vh;
+    height:15vh;
     top:0%;
     position: absolute;
     left: 0%;
     background:rgba(0, 0, 0, 0.219);
+    
+}
+#hTitulo{
+    position: absolute;
+    left:10%;
+    top:-21%;
+    padding: 5vh;
+}
+
+
+#NombreCurso{
+    color:whitesmoke;
+    font-size: 2vh;
+}
+
+
+@media (max-width: 600px){
+    #Header{
+        padding: 0% 50%;
+        height:10vh;
+        top:0%;
+        position: fixed;
+        left: 0%;
+        background:rgba(0, 0, 0, 0.219);
+        
+    }
+    #hTitulo{
+        position: absolute;
+        left:10%;
+        top:-21%;
+        padding: 2vh;
+    }
+    
+}
+@media (max-height: 600px){
+    #Header{
+        padding: 0% 50%;
+        height:10vh;
+        top:0%;
+        position: fixed;
+        left: 0%;
+        background:rgba(0, 0, 0, 0.219);
+        
+    }
+    #hTitulo{
+        position: absolute;
+        left:10%;
+        top:-21%;
+        padding: 2vh;
+    }
     
 }
 
@@ -41,14 +91,3 @@
     height:90%;
 }
 
-#hTitulo{
-    position: absolute;
-    left:10%;
-    top:-21%;
-}
-
-
-#NombreCurso{
-    color:whitesmoke;
-    font-size: 2vw;
-}

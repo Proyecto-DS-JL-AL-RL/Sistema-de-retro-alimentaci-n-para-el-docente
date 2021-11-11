@@ -19,36 +19,48 @@ import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenE
 import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerales';
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 import Comentario from '../componentes/moduloRetroalimentacion/Comentario';
-import './pagClase.css';
+import Body from '../componentes/Body';
+import ListaClases from '../componentes/moduloRetroalimentacion/ListaClases';
+import { useParams } from 'react-router';
+import test  from '../componentes/clases/clases.js';
+import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
+import VerPerfil from '../componentes/Perfil';
+import './pagCurso.css';
 
 export default function PagCurso() {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
-
+    const [idCurso,setIdCurso] = React.useState(useParams().id);
+    const curso = test['cursos']
     const switchMobil = function(){
         if (PCstate == 0){
             return <div>
-                {!PCvista?
-                    <div className= 'statMblWindowContainer'><StatsGenerales/></div>
-                    :
-                    <div className = 'statMblWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
-                }
-
+                    <div className= 'statMblWindowContainer'><Body/></div>
             </div>
         }else if (PCstate == 1){
-            return <div className = 'pagMblListaAlumnos'><ListaComentario/></div>
+            return <div className = 'pagMblListaAlumnos'><ListaClases idCurso = {idCurso}/></div>
         }
     }
     
     const buttonMbl = function(){
             return (
                 <div className ='PClaseBtnContainers'>
-                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0);console.log(PCstate)}}> Estadisticas </button>
-                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(1);console.log(PCstate)}}> Comentarios </button>
+                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0)}}> General </button>
+                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(1)}}> Clases </button>
                 </div>
             )
         
     }
+
+    const buttonWindow = function(){
+        return (
+            <div className ='WindowBtnContainers'>
+                    <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(0)}}> General </button>
+                    <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(1)}}> Clases </button>
+            </div>
+        )
+    
+}
 
     
     return (        
@@ -61,18 +73,15 @@ export default function PagCurso() {
                 </div>
             :
                 <div>
-                    {!PCvista?
-                    <div className= 'statWindowContainer'><StatsGenerales/></div>
+                    {!PCstate?
+                    <div className= 'mainWindowContainer'><Body/></div>
                     :
-                    <div className = 'statWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
+                    <div className = 'mainWindowContainer'><ListaClases idCurso = {idCurso}/></div>
                     }
-                    <div className = 'pagListaAlumnos'>
-                        <ListaComentario/>
-                    </div>
-                    <div className = 'pagListaForms'><ListaForms/></div>
+                    {buttonWindow()}
                 </div>
             }            
-            <Header/>
+            <Header NameCurso={curso[idCurso-1].nombre_curso} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

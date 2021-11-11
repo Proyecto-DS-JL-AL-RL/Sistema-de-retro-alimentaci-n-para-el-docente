@@ -7,7 +7,7 @@ class CrearClase extends  React.Component {
         super(props);
         this.state = {
             cursos: ['xd1','xd2','xd3'],
-            cursoActual : 'CursoFixed', //Fixeado
+            cursoActual : this.props.curso, //Fixeado
             titulo: '',                 //Fecha
             descripcion: '',
             fecha: new Date()
@@ -27,12 +27,8 @@ class CrearClase extends  React.Component {
             
             <div id = "cClaseFecha">{"Fecha: "+this.state.fecha.getDate()+"/"+this.state.fecha.getMonth()+"/"+this.state.fecha.getFullYear()}</div>
             <div id = "cClaseCursos">
-            <div id = "cClblCurso">Curso: </div>
-            <select className = "baseSelection">
-            {this.state.cursos.map(function(curso){
-                return <option className = "baseSelOption">{curso}</option>
-            })}    
-            </select></div>
+            <div id = "cClblCurso">Curso: {this.state.cursoActual}</div>
+            </div>
             <div id = "frstInput">
             <input className = "defInput" type = "text" value = {this.state.titulo} onChange = {(e) => {this.setState({ titulo: e.target.value})}}/>
             </div>
@@ -44,7 +40,7 @@ class CrearClase extends  React.Component {
             <button onClick = {(e)=>{
 
                     console.log("Boton")
-            }} className = "confirmButton"> xD</button>
+            }} className = "confirmButton"> Crear</button>
             </div>
 
         </div>
