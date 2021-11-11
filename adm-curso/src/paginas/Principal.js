@@ -16,6 +16,7 @@ import FormVista from '../componentes/moduloRetroalimentacion/formularioVista';
 import PuntuarClase from '../componentes/moduloRetroalimentacion/PuntuarClase';
 import CrearFormP from '../componentes/moduloRetroalimentacion/CrearFormP';
 import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormulario';
+import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
@@ -36,9 +37,13 @@ export default function Principal() {
 
                 <Link to="/VerRespuesta">VerRespuesta</Link>
                 <Link to="/VerEstadisticas">VerEstadisticas</Link>
+                <Link to="/coment1">comm</Link>
+      
+
                 <Link id="link" to="/Inicio">Ver Cursos</Link>
                 <Link id="link" to="/VerPerfil"> mi perfil</Link>
                 <ModuloInteraccion/>
+     
                 <Switch>
                     <Route exact path="/">
                     </Route>
@@ -48,7 +53,7 @@ export default function Principal() {
                     <Route path="/CrearPregunta">
                         <CrearPregunta/>
                     </Route>
-
+                    
                     <Route path = "/CrearClase">
                         <CrearClase/>    
                     </Route>
@@ -66,6 +71,10 @@ export default function Principal() {
                     </Route>
                     <Route path="/VerEstadisticas">
                         <VerEstadisticas/>
+                    </Route>
+
+                    <Route path="/coment1">
+                        <ListaComentario/>
                     </Route>
                     <Route path="/Inicio">
                         <Inicio/>

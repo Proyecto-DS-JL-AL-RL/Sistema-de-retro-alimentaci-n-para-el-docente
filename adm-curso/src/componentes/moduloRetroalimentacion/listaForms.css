@@ -1,0 +1,83 @@
+
+.FLContainer{
+    height: 100%;
+    width: 100%;
+}
+
+.FLContent{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: 0;
+    position: relative;
+}
+
+.listaForms{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    justify-content: center;
+    left: 50%;
+    width: 100%;
+    margin-left: -50%;
+}
+.FormElement{
+    font-weight: 600;
+    margin: 1px;
+    background-color: purple;
+    color: white;
+    height: 50px;
+    width: 100%;
+}
+.vistaWindow{
+    position: fixed;
+    height: 84vh;
+    width: 100vw;
+    overflow: auto;
+    left: 0;
+    bottom: 0;
+}
+
+
+@media (max-width: 600px){
+    .vistaWindow{
+        height: 84vh;
+        width: 100vw;
+        position: fixed;
+        overflow: auto;
+        left: 0;
+        bottom: 0;
+
+    }
+}
+
+.crearWindow{
+    position: fixed;
+    left: 0;
+    height: 84vh;
+    width: 100vw;
+    overflow: auto;
+    bottom: 0;
+}
+
+
+@media (max-width: 600px){
+    .crearWindow{
+        height: 84vh;
+        width: 100vw;
+        position: fixed;
+        overflow: auto;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.ClosPopUp{
+    height: 40px;
+    width: 40px;
+    position:absolute;
+    left: 95%;
+    top: 0;
+}

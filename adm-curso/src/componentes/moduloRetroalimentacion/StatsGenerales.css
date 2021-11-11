@@ -1,0 +1,66 @@
+
+.PrfStatContainer{
+    height: 100%;
+    width: 100%;
+}
+.PSTContent{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10%;
+    left: 0;
+    top: 0;
+    position: relative;
+}
+
+.listaAlumnos{
+    position: relative;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    overflow: auto;
+    justify-content: center;
+    left: 50%;
+    width: 70%;
+    margin-left: -35%;
+}
+.AlumnoElement{
+    font-weight: 600;
+    margin: 2px;
+    background-color: purple;
+    color: white;
+    height: 30px;
+    width: 100%;
+}
+.StatsPopup{
+    position: absolute;
+    height: 60vh;
+    width: 50vw;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    margin-top: -30vh;
+    margin-left: -25vw;
+}
+
+
+@media (max-width: 600px){
+    .StatsPopup{
+        height: 60vh;
+        width: 90vw;
+        position: fixed;
+        left: 50vw;
+        top: 50vh;
+        margin-top: -30vh;
+        margin-left: -50vw;
+    }
+}
+
+.StatsClosPopUp{
+    height: 40px;
+    width: 40px;
+    position:absolute;
+    left: 95%;
+    top: 0;
+}

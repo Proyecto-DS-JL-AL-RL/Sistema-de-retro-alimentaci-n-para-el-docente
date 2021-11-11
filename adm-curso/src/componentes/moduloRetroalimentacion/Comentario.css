@@ -1,0 +1,31 @@
+.comContainer{
+    height: 100%;
+    width: 100%;
+    background-color: hotpink;
+}
+
+.comTitulo{
+    position: absolute;
+    left: 2%;
+    top: 20%;
+    font-size: larger;
+
+}
+.comAutor{
+    position: absolute;
+    left: 2%;
+    top: 60%;
+    font-size: larger;
+}
+
+.comHF{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position:absolute;
+    left: 80%;
+    top:50%;
+    margin-top: -25px;
+    text-align: center;
+    background-color: green;
+}
