@@ -23,61 +23,32 @@ import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRes
 import Header from '../componentes/Header';
 import Cabecera from './Cabecera';
 import ModuloInteraccion from './Interaccion/ModuloInteraccion.js';
+import PagClase from './pagClase';
 export default function Principal() {
     
     return (
         <div>
             <Router>
-                <Link to="/CrearPregunta"> CrearPregunta</Link>
-                <Link to = "/CrearClase">Crear Clase</Link>
-                <Link to = "/ComentarioForm">ComentarioClase</Link>
-                <Link to = "/formPregunta">formPregunta</Link>
-                <Link to ="/PuntuarClase">PuntuarClase </Link>
-                <Link to ="/CrearForm">CrearFormPREGUNTA </Link>
 
-                <Link to="/VerRespuesta">VerRespuesta</Link>
-                <Link to="/VerEstadisticas">VerEstadisticas</Link>
-                <Link to="/coment1">comm</Link>
-      
-
-                <Link id="link" to="/Inicio">Ver Cursos</Link>
-                <Link id="link" to="/VerPerfil"> mi perfil</Link>
                 <ModuloInteraccion/>
      
                 <Switch>
                     <Route exact path="/">
+                        <Inicio/>
+                        <Header NameCurso={'Cursos'}/>
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
+                        <Header NameCurso={'Respuesta'}/>
                     </Route>
                     <Route path="/CrearPregunta">
                         <CrearPregunta/>
-                    </Route>
-                    
-                    <Route path = "/CrearClase">
-                        <CrearClase/>    
-                    </Route>
-                    <Route path = "/ComentarioForm">
-                        <ComentarioForm/>    
-                    </Route>
-                    <Route path = "/formPregunta">
-                        <FormVista/>    
-                    </Route>
-                    <Route  path = "/PuntuarClase">
-                        <PuntuarClase/>
-                    </Route>
-                    <Route path = "/CrearForm">
-                        <CrearFormulario/>
-                    </Route>
+                        <Header NameCurso={'Crear Pregunta'}/>
+                    </Route>                    
+
                     <Route path="/VerEstadisticas">
                         <VerEstadisticas/>
-                    </Route>
-
-                    <Route path="/coment1">
-                        <ListaComentario/>
-                    </Route>
-                    <Route path="/Inicio">
-                        <Inicio/>
+                        <Header NameCurso={'Estadisticas'}/>
                     </Route>
                     <Route path="/VerPerfil">
                         <VerPerfil/>
@@ -88,6 +59,7 @@ export default function Principal() {
                     <Route path='/VerNotas/:nota' component = {VerNotas}>
                         <VerNotas/>
                     </Route>
+                    <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}/>
                 </Switch>
             </Router>
         </div>

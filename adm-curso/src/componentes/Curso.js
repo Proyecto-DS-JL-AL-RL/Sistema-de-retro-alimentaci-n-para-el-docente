@@ -5,6 +5,7 @@ import test  from './clases/clases.js'
 import SelectedListAvatar from './componentesBasicos/MenuAvatar.js';
 import VerPerfil from './Perfil';
 import {useParams} from "react-router-dom";
+import PagCurso from '../paginas/pagCurso';
 
 let curso = test['cursos']
 
@@ -15,12 +16,11 @@ function VerCurso(props) {
 
         return ( 
             <div>
+                
                 <div>
-                    <Header NameCurso={curso[id-1].nombre_curso} componentes={<SelectedListAvatar curso_id={id}   perfil={<VerPerfil/>}/>}/>
+                    <PagCurso id = {id}/>
                 </div>
-                <div>
-                    <Body/>
-                </div>
+
         </div>
     )
 }

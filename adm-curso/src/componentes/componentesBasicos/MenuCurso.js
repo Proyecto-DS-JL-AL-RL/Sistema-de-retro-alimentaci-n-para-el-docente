@@ -27,7 +27,7 @@ export default function SelectedListItem(props) {
               (event) => handleListItemClick(event, 0)
             }
           >
-            <ListItemText primary={<Link id="link" to="/Principal">volver al incio</Link>}/>
+            <ListItemText primary={<Link id="link" to="/">volver al incio</Link>}/>
           </ListItemButton>
         </List>
       </Box>

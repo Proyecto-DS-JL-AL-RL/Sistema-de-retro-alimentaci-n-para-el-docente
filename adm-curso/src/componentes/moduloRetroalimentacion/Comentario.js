@@ -24,7 +24,7 @@ class Comentario extends  React.Component {
             <div className = "elementContainer">
                 <div className = 'comTitulo'>{this.state.TituloComentario}</div>
                 <div className = 'comAutor'>{this.state.AutorComentario}</div>
-                {this.state.hasFile? <div className = 'comHF'>File</div> :<div></div> }
+                {this.state.hasFile? <div className = 'comHF'>&#128206;</div> :<div></div> }
             </div>
         </div>
     )}   

@@ -1,0 +1,37 @@
+#LCContainer{
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.containerFlex{ 
+    top: 120px;
+    width: 40vw;
+    left: 30vw;
+    position:absolute;
+    background-color: red;
+}
+.ClaseButton{
+    width: 40vw;
+    height: 90px;
+    text-align: center;
+    font-weight: 1000;
+    background-color: var(--opciones2Color);
+    color:white;
+}
+
+.clasesTitulo{
+    text-align: center;
+    padding-top: 20px;
+    font-size: xx-large;
+    font-weight: 700;
+}
+.CCClosPopUp{
+    height: 40px;
+    width: 40px;
+    position:absolute;
+    left: 70%;
+    top: 0;
+}

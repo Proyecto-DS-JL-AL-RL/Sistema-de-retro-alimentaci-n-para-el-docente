@@ -1,15 +1,15 @@
 
 
 .popUpContainer{
-    background-color: rgb(137, 173, 108);
-    border-radius: 30px;
-    border: rgb(223, 116, 116) solid 10px;
+    background-color: var(--colorfondoContenido);
+    border-radius: 20px;
+    border: rgb(114, 114, 114) solid 7px;
     height: 100%;
     width: 100%;
 }
 
 .frameContain{
-    background-color: rgb(233, 248, 166);
+    background-color: var(--colorfondoContenido);
     border-radius: 1px;
     border: black solid 1px;
     height: 100%;
@@ -17,7 +17,7 @@
 }
 
 .formularioBackground{
-    background-color: rgb(255, 93, 93);
+    background-color: #555;
     border-radius: 1px;
     border: black solid 1px;
     height: 100%;
@@ -32,7 +32,7 @@
 
 .genBoton{
     border-radius: 10px;
-    background-color: blueviolet;
+    background-color: rgb(52, 73, 105);
     height: 100%;
     width: 100%;
     border: black solid 2px;
@@ -46,7 +46,7 @@
     background-color: rgb(255, 239, 16);
     color: white;
     font-weight: 1000;
-    border-radius: 50%;    
+    border-radius: 8px;        
     border: solid rgb(141, 160, 33) 5px;
 }
 
@@ -54,22 +54,22 @@
     height: 100%;
     width: 100%;
     text-align: center;
-    background-color: rgb(255, 93, 93);
+    background-color: var(--button1Color);
     color: white;
     font-weight: 1000;
-    border-radius: 50%;    
-    border: solid red 5px;
+    border-radius: 8px;    
+    border: solid rgb(78, 71, 71) 2px;
 }
 
 .confirmButton{
     height: 100%;
     width: 100%;
     text-align: center;
-    background-color: rgb(79, 212, 245);
+    background-color: var(--button1Color);
     color: white;
     font-weight: 1000;
-    border-radius: 50%;    
-    border: solid rgb(0, 119, 255) 5px;
+    border-radius: 8px;        
+    border: solid rgb(67, 69, 71) 2px;
 }
 
 .baseSelection{
@@ -84,7 +84,7 @@
 .elementContainer{
     height: 100%;
     width: 100%;
-    background-color:aqua;
-    border: green solid 1px;
+    background-color: var(--opciones1Color);
+    border: rgb(23, 32, 23) solid 1px;
     font-weight: 400;
 }

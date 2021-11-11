@@ -7,9 +7,12 @@
     --colorfondo: #222;
     --colortext: #eee;
     --colorfondoContenido : #333;
-    --tamanoNav : 10vh;
+    --tamanoNav : 15vh;
+    --opciones1Color: rgb(47, 38, 82);
+    --opciones2Color: rgb(50, 54, 77);
+    --button1Color: #777;
 }
 body{
     color:var(--colortext);
-    
+    background-color: #222;    
 }

@@ -36,7 +36,7 @@ class Header extends  React.Component {
                     <div>
                         {this.state.menu?<SelectedListItem Back={<Principal/>}/>:false}
                     </div>
-            </div>
+            </div>  
             <div id="List" onClick={this.imageClick}> 
                 <div id="Foto">
                     <Avatar style={this.state.avatar_style} avatar={test['user'].getImagen()}/> 

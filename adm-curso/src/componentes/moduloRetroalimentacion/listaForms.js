@@ -53,7 +53,7 @@ class ListaForms extends  React.Component {
             :<div></div>}
             {this.state.showingCrear?
             <div className = 'crearWindow'><CrearFormulario />
-            <div className = 'ClosPopUp'><button className = 'closeButton' onClick = {()=>{this.setState({showingCrear:false})}}>X</button></div>
+                <div className = 'ClosPopUp'><button className = 'closeButton' onClick = {()=>{this.setState({showingCrear:false})}}>X</button></div>
             </div>                  
             :<div></div>}
         </div>
