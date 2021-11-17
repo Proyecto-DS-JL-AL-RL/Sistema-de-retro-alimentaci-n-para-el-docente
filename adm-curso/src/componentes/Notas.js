@@ -7,6 +7,7 @@ import test from './clases/clases'
 import './Notas.css'
 import BasicTable from './componentesBasicos/TablaNotas'
 import {useParams} from "react-router-dom";
+import SelectedListaNotas from './componentesBasicos/MenuNotas'
 
 let curso = test['cursos']
 let Nota = test['notas']
@@ -21,7 +22,7 @@ function VerNotas(props) {
             return(
             <div>
                 <div>
-                    <Header NameCurso={curso[nota-1].nombre_curso} componentes={<SelectedListIncio perfil={<VerPerfil/>}/>}/>
+                    <Header NameCurso={curso[nota-1].nombre_curso} componenteMenu={<SelectedListaNotas id={nota}/>} componentes={<SelectedListIncio perfil={<VerPerfil/>}/>}/>
                 </div>
                 <div id="NCuadro">
                     <BasicTable text_style={state.text} style={state.style} Nota={Nota}/>

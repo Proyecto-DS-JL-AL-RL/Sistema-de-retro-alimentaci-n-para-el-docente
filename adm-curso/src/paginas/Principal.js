@@ -7,10 +7,12 @@ import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
 
 import VerCurso from '../componentes/Curso'
 import VerPerfil from '../componentes/Perfil';
+import SubirNota from '../componentes/SubirNota'
 import Inicio from '../componentes/Inicio'
 import test from '../componentes/clases/clases.js'
 import VerNotas  from  '../componentes/Notas'
 import EditarCurso from '../componentes/EditarCurso'
+import NuevoCurso from '../componentes/NuevoCurso'
 import CrearClase  from '../componentes/moduloRetroalimentacion/crearClase';
 import ComentarioForm from '../componentes/moduloRetroalimentacion/ComentarioForm';
 import FormVista from '../componentes/moduloRetroalimentacion/formularioVista';
@@ -19,6 +21,7 @@ import CrearFormP from '../componentes/moduloRetroalimentacion/CrearFormP';
 import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormulario';
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio.js';
+import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import Header from '../componentes/Header';
@@ -36,7 +39,7 @@ export default function Principal() {
                 <Switch>
                     <Route exact path="/">
                         <Inicio/>
-                        <Header NameCurso={'Cursos'} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
+                        <Header NameCurso={'Cursos'} componenteMenu={<SelectedListaInicio/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
@@ -57,6 +60,9 @@ export default function Principal() {
                     <Route path = '/VerCurso/:id' component = {VerCurso}>
                         <VerCurso/>
                     </Route>
+                    <Route path = '/VerNotas/:id/subirNota' component = {SubirNota}>
+                        <SubirNota/>
+                    </Route>
                     <Route path = '/Editar/Curso/:idCurso' component = {EditarCurso}>
                         <EditarCurso/>
                     </Route>
@@ -64,6 +70,9 @@ export default function Principal() {
                         <VerNotas/>
                     </Route>
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}/>
+                    <Route path = '/NuevoCurso' >
+                        <NuevoCurso/>
+                    </Route>
                 </Switch>
             </Router>
         </div>
