@@ -21,6 +21,9 @@ import VerCurso from '../componentes/Curso';
 import VerPerfil from '../componentes/Perfil';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import Principal from '../paginas/Principal'
+import SelectedListItem  from './componentesBasicos/MenuCurso';
+
 import test from './clases/clases'
 
 let curso = test['cursos']
@@ -39,11 +42,11 @@ function range(start, stop) {
 
 const cards = Array.from(range(1, curso.length+1))
 
+//<Header NameCurso={props.Inicio} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
 
 export default function Album(props) {
   return (
     <div>
-       <Header NameCurso={props.Inicio} componentes={<SelectedListIncio iperfil={<VerPerfil/>}/>}/>
       <div id="Cards">
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
@@ -66,12 +69,12 @@ export default function Album(props) {
                       {curso[card-1].nombre_curso} 
                     </Typography>
                     <Typography>
-                            Cursos 
+                            {curso[card-1].getDescripcion()} 
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button  size="small"><Link to={"/VerCurso/"+card}>ver</Link></Button>
-                    <Button size="small"><Link to="/">Editar</Link></Button>
+                    <Button size="small"><Link to={"/Editar/Curso/"+card}>Editar</Link></Button>
                   </CardActions>
                 </Card>
               </Grid>

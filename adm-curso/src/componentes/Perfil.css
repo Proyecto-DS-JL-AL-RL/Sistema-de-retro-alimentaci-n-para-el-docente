@@ -16,6 +16,13 @@
     margin: 0% 2%;
 }
 
+.pbton{
+    margin-left: 15%;
+    color:black;
+    background-color:yellow;
+    font-size:2vw;
+}
+
 #Titulo{
     top:0%;
     position:absolute;

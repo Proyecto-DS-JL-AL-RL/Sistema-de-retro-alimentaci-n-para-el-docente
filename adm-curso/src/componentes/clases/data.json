@@ -84,6 +84,7 @@
                         "fecha_Inicio": [2021, 3, 15],
                         "fecha_Final":[2021, 8, 20],
                         "id_profesor": "19942196K",
+                        "profesor":"Roberto Dominguez",
                         "codigo":"CC421"
                     },
                     {
@@ -91,6 +92,7 @@
                         "fecha_Inicio": [2021, 3, 15],
                         "fecha_Final":[2021, 8, 20],
                         "id_profesor": "19801295J",
+                        "profrsor":"Ernesto Muller",
                         "codigo":"CC312"
                     },
                     {
@@ -98,6 +100,7 @@
                         "fecha_Inicio": [2021, 3, 15],
                         "fecha_Final":[2021, 8, 20],
                         "id_profesor": "19801295J",
+                        "profesor":"Carlos Martinez",
                         "codigo":"CC3S2"
                     }
             ]
