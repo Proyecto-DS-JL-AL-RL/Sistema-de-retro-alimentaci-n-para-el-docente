@@ -1,9 +1,20 @@
-var getClases = require('./Modulos/Retroalimentacion/getClases');
 
+
+var mongoose = require('./database');
 var express = require('express');
 var app = express();
 
-//Nada de esto funciona aun :V 
+
+//Zona De middleware:
+
+
+
+
+//
+
+var initRetroalimentacion = require('./Router/retroalimentacionRouter');
+initRetroalimentacion(app);
+
 
 //app.use('/gestion', require...);});
 //app.use('/retroalimentacion', require...);});
@@ -11,4 +22,4 @@ var app = express();
 
 
 //Asignando el puerto del server
-app.listen(8080);
+app.listen(5000);
