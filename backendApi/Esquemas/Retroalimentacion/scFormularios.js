@@ -3,9 +3,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Formulario = new Schema({
-    id: Schema.Types.ObjectId,
     titulo: String,  
-    preguntas: [{type: Schema.Types.ObjectId, ref: 'Preguntas'}]
+    preguntas: [{
+        titulo: String,  
+        descripcion: String,
+        alternativas: [ String]
+    }]
 });
 
 module.exports = mongoose.model('Formulario',Formulario);
