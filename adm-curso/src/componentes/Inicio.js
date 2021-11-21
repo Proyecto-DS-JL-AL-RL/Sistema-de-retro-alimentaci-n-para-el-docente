@@ -62,6 +62,7 @@ export default function Album(props) {
                       {curso[card-1].nombre_curso} 
                     </Typography>
                     <Typography> 
+                    {curso[card-1].getDescripcion()} 
                     </Typography>
                   </CardContent>
                   <CardActions> 

@@ -20,8 +20,8 @@ export default function SubirNota(props){
         <div className="eText">
             <h1>Subir Nota</h1>
                 <div id="Edit">
-                        <p id="datos">Alumno:</p>
-                        <input id="einput" value={alumnos[id2-1].getNombre()+" "+alumnos[id2-1].getApellido()}  disabled = {(disable)? "disabled" : ""}/>
+                        <p id="datos">Código Alumno:</p>
+                        <input id="einput" value={alumnos[id2-1].id}  disabled = {(disable)? "disabled" : ""}/>
                         <p id="datos">ID Curso:</p>
                         <input id="einput" value={course[id-1].codigo} onChange={(e)=>{
                             setIdrecurso(e.target.value)

@@ -30,14 +30,6 @@ export default function NuevoCurso(props){
                         <input id="einput" value={codigo} onChange={(e)=>{
                             setCodigo(e.target.value)
                         }} disabled = {(disable)? "disabled" : ""}/>
-                        <p id="datos">Fecha Inicio:</p>
-                        <input id="einput" value={fIncio} onChange={(e)=>{
-                            setfIncio(e.target.value)
-                        }} disabled = {(disable)? "disabled" : ""}/>
-                       <p id="datos">Fecha Final:</p>
-                        <input id="einput" value={fFinal} onChange={(e)=>{
-                            setfFinal(e.target.value)
-                        }} disabled = {(disable)? "disabled" : ""}/>
                         <p id="datos">ID Profesor:</p>
                         <input id="einput" value={idmentor} onChange={(e)=>{
                             setIDmentor(e.target.value)
