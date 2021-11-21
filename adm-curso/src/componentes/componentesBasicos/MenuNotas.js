@@ -5,7 +5,15 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import {Link,BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 
-
+/*
+<ListItemButton
+            selected={selectedIndex === 0}
+            onClick={(event) => handleListItemClick(event, 0)}
+          >
+            {props.isProfesor?<ListItemText primary={<Link id="link" to={"/VerNotas/"+props.id+"/SubirNota"}>Subir Notas</Link>}/>:false}
+          </ListItemButton>
+          
+*/
 export default function SelectedListaNotas(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const handleListItemClick = (event, index, url) => {
@@ -15,12 +23,6 @@ export default function SelectedListaNotas(props) {
       <div>  
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'rgba(77, 76, 76, 0.959);' }}>
         <List component="nav">
-          <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
-          >
-            <ListItemText primary={<Link id="link" to={"/VerNotas/"+props.id+"/SubirNota"}>Subir Notas</Link>}/>
-          </ListItemButton>
           <ListItemButton
             selected={selectedIndex === 1}
             onClick={(event) => handleListItemClick(event, 1)}

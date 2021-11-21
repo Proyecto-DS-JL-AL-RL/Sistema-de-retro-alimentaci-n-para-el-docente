@@ -33,13 +33,10 @@ export default function Principal() {
     return (
         <div>
             <Router>
-
-                <ModuloInteraccion/>
-     
+                <ModuloInteraccion/>     
                 <Switch>
                     <Route exact path="/">
                         <Inicio/>
-                        <Header NameCurso={'Cursos'} componenteMenu={<SelectedListaInicio/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
@@ -60,7 +57,7 @@ export default function Principal() {
                     <Route path = '/VerCurso/:id' component = {VerCurso}>
                         <VerCurso/>
                     </Route>
-                    <Route path = '/VerNotas/:id/subirNota' component = {SubirNota}>
+                    <Route path = '/VerNotas/:id/subirNota/:id2' component = {SubirNota}>
                         <SubirNota/>
                     </Route>
                     <Route path = '/Editar/Curso/:idCurso' component = {EditarCurso}>

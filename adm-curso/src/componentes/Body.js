@@ -14,7 +14,9 @@ class Body extends  React.Component {
     }
     render() {
         return ( 
-        <div id="bCuadro">
+        <div>
+            <button className="btn-curso">Subir Material</button>
+            
         </div>
         )}
 }

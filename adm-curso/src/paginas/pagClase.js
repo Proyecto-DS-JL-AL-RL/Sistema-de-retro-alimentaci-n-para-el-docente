@@ -21,6 +21,7 @@ import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerale
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 import Comentario from '../componentes/moduloRetroalimentacion/Comentario';
 import './pagClase.css';
+import test from '../componentes/clases/clases'
 
 export default function PagClase() {
     const [PCstate,setPCstate] = React.useState(0);

@@ -1,23 +1,26 @@
 import * as React from 'react';
 import Header from './Header';
 import SelectedListIncio from './componentesBasicos/MenuInicio.js';
+import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Inicio.css'
-import VerPerfil from '../componentes/Perfil';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import Principal from '../paginas/Principal'
 import { useState } from 'react';
-import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
 import test from './clases/clases'
 
-let curso = test['cursos']
-let user = test['user']
+
+let  alumno = test['alumno']
 function range(start, stop) {
   if (stop === undefined) {
     stop = start;
@@ -30,16 +33,14 @@ function range(start, stop) {
   return new Array(stop - start).fill(start).map((el, i) => el + i);
 }
 
-const cards = Array.from(range(1, curso.length+1))
+const cards = Array.from(range(1, alumno.length+1))
 
 //<Header NameCurso={props.Inicio} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
 
-export default function Album(props) {
-  const [esProfesor, setEsProfesor]=useState(user.getCondicion());
+export default function VerNotaAlumnos(props) {
+//  const [esProfesor, setEsProfesor]=useState(profesor.getCondicion());
   return (
     <div>
-      {console.log(esProfesor)}
-        <Header NameCurso={'Cursos'} userID={user} componenteMenu={esProfesor?<SelectedListaInicio/>:null} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
       <div id="Cards">
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
@@ -54,19 +55,18 @@ export default function Album(props) {
                       // 16:9
                       pt: '56.25%',
                     }}
-                    image="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png"
+                    image={alumno[card-1].getImagen()}
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {curso[card-1].nombre_curso} 
+                      {alumno[card-1].getNombre()+" "+alumno[card-1].getApellido()} 
                     </Typography>
                     <Typography> 
                     </Typography>
                   </CardContent>
                   <CardActions> 
-                    <Button  size="small"><Link to={"/VerCurso/"+card}>ver</Link></Button>
-                    {esProfesor?<Button size="small"><Link to={"/Editar/Curso/"+card}>Editar</Link></Button>:null}
+                    <Button  size="small"><Link to={"/VerNotas/"+props.curso+"/SubirNota/"+card}>Subir Notas</Link></Button>
                   </CardActions>
                 </Card>
               </Grid>

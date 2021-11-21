@@ -8,9 +8,9 @@ import {Link,BrowserRouter as Router,
 import { useState } from 'react';
 
 let course = test['cursos']
-
+let alumnos = test['alumno']
 export default function SubirNota(props){
-    const {idCurso} = useParams()
+    const {idCurso, id, id2} = useParams()
     const [disable, setDiseable] = useState(true)
     const [idcurso, setIdrecurso] = useState('')
     const [tipoPractica, setTipoPractica]= useState('')
@@ -20,8 +20,10 @@ export default function SubirNota(props){
         <div className="eText">
             <h1>Subir Nota</h1>
                 <div id="Edit">
+                        <p id="datos">Alumno:</p>
+                        <input id="einput" value={alumnos[id2-1].getNombre()+" "+alumnos[id2-1].getApellido()}  disabled = {(disable)? "disabled" : ""}/>
                         <p id="datos">ID Curso:</p>
-                        <input id="einput" value={idcurso} onChange={(e)=>{
+                        <input id="einput" value={course[id-1].codigo} onChange={(e)=>{
                             setIdrecurso(e.target.value)
                         }} disabled = {(disable)? "disabled" : ""}/>
                         <p id="datos">Tipo prática:</p>
@@ -42,7 +44,7 @@ export default function SubirNota(props){
                             setIdrecurso('')
                             setTipoPractica('')
                             setPuntuacion('')
-                            }} text={<Link id="link" to="/"> Volver Inicio </Link>}/>
+                            }} text={<Link id="link" to="/VerNotas/"> Volver Inicio </Link>}/>
         </div>
     )
 

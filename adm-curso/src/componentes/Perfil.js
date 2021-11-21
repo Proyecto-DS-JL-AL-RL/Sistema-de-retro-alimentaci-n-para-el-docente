@@ -11,7 +11,7 @@ class VerPerfil extends  React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          avatar_style:"img" ,
+          avatar_style:"pimg" ,
           variant_button:"contained",
           id_style:"pbutton",
           disabled: true,
