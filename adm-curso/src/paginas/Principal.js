@@ -61,6 +61,7 @@ export default function Principal() {
                     </Route>
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}/>
                 </Switch>
+                
             </Router>
         </div>
     )

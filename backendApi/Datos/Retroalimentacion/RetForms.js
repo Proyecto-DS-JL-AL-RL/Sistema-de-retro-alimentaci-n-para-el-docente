@@ -1,5 +1,5 @@
-var prueba = require('../../Esquemas/Retroalimentacion/scFormularios');
-var prueba = require('../../Esquemas/Retroalimentacion/scRespuestaForm');
+var form = require('../../Esquemas/Retroalimentacion/scFormularios');
+var resForm = require('../../Esquemas/Retroalimentacion/scRespuestaForm');
 
 
 var createForm = async function (formu){
@@ -12,16 +12,19 @@ var answerForm = async function(form,answers){
     return("xd");
 }
 
-var getFormView = async function(form){
+var getFormView = async function(idForm){
     //Vista de Formulario (Respuestas)
-    return("xd");
+    var response = await Comentary.findById(idForm).catch(err=> console.log(err));;
+    console.log(response);
+    return response;
 }
 
-var getFormList = async function(form){
+var getFormList = async function(idClase){
     //Lista de forms
-    return("xd");
+    var response = await form.find({clase :idClase}).catch(err=> console.log(err));;
+    console.log(response);
+    return response;
 }
-
 module.exports.createForm = createForm;
 module.exports.answerForm = answerForm;
 module.exports.getFormView = getFormView;

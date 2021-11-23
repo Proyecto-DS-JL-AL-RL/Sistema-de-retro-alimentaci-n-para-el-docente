@@ -1,10 +1,11 @@
-var prueba = require('../../Esquemas/Retroalimentacion/prueba');
+var clase = require('../../Esquemas/Retroalimentacion/scClasses');
 
 
-var getClass = async function (titulo){
+var getClass = async function (idClass){
+    console.log(idClass);
     //Informacion de una clase
-    var response = await prueba.find({}).exec();
-    console.log(response);
+    var response = await clase.findById(idClass).catch(err=> console.log(err));;
+    //console.log(response);
     return response;
 }
 
@@ -18,9 +19,11 @@ var deleteClass = async function(clase){
     return("xd");
 }
 
-var getListClass = async function(curso){
+var getListClass = async function(idCurso){
     //Lista de clases
-    return("xd");
+    var response = await clase.find({curso :idCurso}).catch(err=> console.log(err));;
+    //console.log(response);
+    return response;
 }
 
 module.exports.getClass = getClass;
