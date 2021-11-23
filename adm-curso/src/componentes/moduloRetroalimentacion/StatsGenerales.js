@@ -1,7 +1,6 @@
 import React from 'react';
 import "./generales/general.css";
 import "./StatsGenerales.css";
-import FormPregunta from './formPregunta';
 import ResumenEstadisticas from './ResumenEstadisticas';
 
 class EstadisticasGenerales extends  React.Component {

@@ -1,7 +1,6 @@
 import React from 'react';
 import "./generales/general.css";
 import "./ResumenEstadisticas.css";
-import FormPregunta from './formPregunta';
 
 class ResumenEstadisticas extends  React.Component {
     constructor(props) {

@@ -1,11 +1,9 @@
 import React from 'react';
-import {Link,BrowserRouter as Router,
-    Route,Switch} from 'react-router-dom';
 import "./login.css";
 import Header from '../componentes/Header';
 import "../componentes/moduloRetroalimentacion/generales/general.css";
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 
 export default function Login() {
     const [username,setUsername] = React.useState("");

@@ -1,7 +1,6 @@
 import './Body.css';
 import React from 'react';
-import BasicTable from './componentesBasicos/TablaNotas'
-import test  from './clases/clases.js'
+
 
 class Body extends  React.Component {
     constructor(props) {

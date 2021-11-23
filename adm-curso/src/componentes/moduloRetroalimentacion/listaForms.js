@@ -1,7 +1,6 @@
 import React from 'react';
 import "./generales/general.css";
 import "./listaForms.css";
-import FormPregunta from './formPregunta';
 import FormVista from './formularioVista';
 import CrearFormulario from './CrearFormulario';
 
