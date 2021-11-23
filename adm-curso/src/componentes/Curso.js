@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 import PagCurso from '../paginas/pagCurso';
 
 let curso = test['cursos']
-
+let user = test['user']
 
 
 function VerCurso(props) {

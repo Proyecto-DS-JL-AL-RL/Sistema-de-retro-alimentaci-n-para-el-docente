@@ -38,7 +38,6 @@ export default function Album(props) {
   const [esProfesor, setEsProfesor]=useState(user.getCondicion());
   return (
     <div>
-      {console.log(esProfesor)}
         <Header NameCurso={'Cursos'} userID={user} componenteMenu={esProfesor?<SelectedListaInicio/>:null} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
       <div id="Cards">
         <Container sx={{ py: 8 }} maxWidth="md">

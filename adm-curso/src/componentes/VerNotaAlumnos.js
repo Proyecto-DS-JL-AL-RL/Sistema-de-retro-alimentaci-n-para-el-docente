@@ -18,7 +18,7 @@ import {Link} from 'react-router-dom';
 import Principal from '../paginas/Principal'
 import { useState } from 'react';
 import test from './clases/clases'
-
+import SubirNota from './SubirNota'
 
 let  alumno = test['alumno']
 function range(start, stop) {
@@ -39,6 +39,9 @@ const cards = Array.from(range(1, alumno.length+1))
 
 export default function VerNotaAlumnos(props) {
 //  const [esProfesor, setEsProfesor]=useState(profesor.getCondicion());
+    const [subirNota, setSubirNota] = useState(false)
+    const [idCurso, setIdCurso] = useState('')
+    const [idAlumno, setIdAlumno] = useState('')
   return (
     <div>
       <div id="Cards">
@@ -66,12 +69,18 @@ export default function VerNotaAlumnos(props) {
                     </Typography>
                   </CardContent>
                   <CardActions> 
-                    <Button  size="small"><Link to={"/VerNotas/"+props.curso+"/SubirNota/"+card}>Subir Notas</Link></Button>
+                    <Button onClick={()=>{
+                      setSubirNota(true)
+                      setIdCurso(props.curso)
+                      setIdAlumno(card)
+                    }
+                  } size="small">Subir Notas</Button>
                   </CardActions>
                 </Card>
               </Grid>
             ))}
           </Grid>
+          {subirNota?<SubirNota id={idCurso} id2={idAlumno}/>:null}
         </Container>
       </div>
     </div>

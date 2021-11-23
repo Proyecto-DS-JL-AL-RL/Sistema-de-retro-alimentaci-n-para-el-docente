@@ -180,6 +180,43 @@ class Curso{
     }
 }   
 
+class Material{
+    constructor(titulo, descripcion){
+        this.titulo = titulo
+        this.descripcion = descripcion
+        this.id_material = ''
+        this.fecha = new Date()
+        this.file = null
+    }
+    getTitulo(){
+        return this.titulo
+    }
+
+    getDescripcion(){
+        return this.descripcion
+    }
+
+    getID_Material(){
+        return this.id_material
+    }
+
+    setDescripcion(text){
+        this.descripcion = text
+    }
+
+    setTitulo(text){
+        this.titulo = text
+    }
+
+    setID_Material(text){
+        this.id_material = text
+    }
+
+    getFecha(){
+        return this.fecha.getDay()+"/"+this.fecha.getMonth()+ "/" + this.fecha.getFullYear()
+    }
+}
+
 let test_alumno = data['Datos'][0]['Alumnos'][0]; 
 let test_alumno1 = data['Datos'][0]['Alumnos'][1];
 let test_alumno2 = data['Datos'][0]['Alumnos'][2]; 

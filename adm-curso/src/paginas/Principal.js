@@ -57,8 +57,7 @@ export default function Principal() {
                     <Route path = '/VerCurso/:id' component = {VerCurso}>
                         <VerCurso/>
                     </Route>
-                    <Route path = '/VerNotas/:id/subirNota/:id2' component = {SubirNota}>
-                        <SubirNota/>
+                    <Route path = '/VerNotas/:id/subirNota/:id2'>
                     </Route>
                     <Route path = '/Editar/Curso/:idCurso' component = {EditarCurso}>
                         <EditarCurso/>
