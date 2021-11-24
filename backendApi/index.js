@@ -22,6 +22,7 @@ var initRetroalimentacion = require('./Router/retroalimentacionRouter');
 initRetroalimentacion(app);
 app.use('/',require('./Router/interaccionRouter'));
 app.use('/',require('./Router/gestionRouter'));
+
 //app.use('/gestion', require...);});
 //app.use('/retroalimentacion', require...);});
 //app.use('/interaccion', require...);});
