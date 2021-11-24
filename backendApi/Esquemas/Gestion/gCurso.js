@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 var curso = new Schema({
     nombre: String,
     codigo: String,
-    IDProfe: String,
-    nombreProfe:String
+    IDProfe: {type: String},
+    alumnos: []
 })
 
 module.exports = mongoose.model('curso',curso);
