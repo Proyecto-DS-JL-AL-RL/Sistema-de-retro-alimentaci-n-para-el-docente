@@ -1,4 +1,4 @@
-var prueba = require('../../Esquemas/Retroalimentacion/scComentario');
+var Comentary = require('../../Esquemas/Retroalimentacion/scComentario');
 
 
 var rankClass = async function (clase){
@@ -11,14 +11,18 @@ var createCommentary = async function(comentario){
     return("xd");
 }
 
-var getCommentaryView = async function(comentario){
-    //Mostrar Comentario
-    return("xd");
+var getCommentaryView = async function(idComentario){
+    //Vista del comentario
+    var response = await Comentary.findById(idComentario).populate("alumno").populate('clase').catch(err=> console.log(err));;
+    console.log(response);
+    return response;
 }
 
-var getCommentaryList = async function(clase){
+var getCommentaryList = async function(idClase){
     //MostrarListaComentarios
-    return("xd");
+    var response = await Comentary.find({clase :idClase}).catch(err=> console.log(err));;
+    console.log(response);
+    return response;
 }
 
 module.exports.rankClass = rankClass;

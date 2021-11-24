@@ -9,5 +9,5 @@ var Clase = new Schema({
     curso: {type: Schema.Types.ObjectId, ref: 'Curso'}
 });
 
-module.exports = mongoose.model('Clase',Clase);
+module.exports = mongoose.model('Class',Clase);
 

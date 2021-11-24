@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
@@ -9,29 +9,44 @@ import VerCurso from '../componentes/Curso'
 import VerPerfil from '../componentes/Perfil';
 import SubirNota from '../componentes/SubirNota'
 import Inicio from '../componentes/Inicio'
-import test from '../componentes/clases/clases.js'
 import VerNotas  from  '../componentes/Notas'
-import EditarCurso from '../componentes/EditarCurso'
-import NuevoCurso from '../componentes/NuevoCurso'
-import CrearClase  from '../componentes/moduloRetroalimentacion/crearClase';
-import ComentarioForm from '../componentes/moduloRetroalimentacion/ComentarioForm';
-import FormVista from '../componentes/moduloRetroalimentacion/formularioVista';
-import PuntuarClase from '../componentes/moduloRetroalimentacion/PuntuarClase';
-import CrearFormP from '../componentes/moduloRetroalimentacion/CrearFormP';
-import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormulario';
-import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
-import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio.js';
-import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
+
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import Header from '../componentes/Header';
-import Cabecera from './Cabecera';
 import ModuloInteraccion from './Interaccion/ModuloInteraccion.js';
 import PagClase from './pagClase';
+import { useState } from 'react';
+import Login from './Login';
+import axios from 'axios';
+
 export default function Principal() {
-    
+    const [logged,setLogged] = useState(false);
+    const [session,setSession] = useState({logged:false});
+
+    const initSession = function(){
+        axios.get('/login/getSession').then(function(response){
+            console.log(response.data);
+            setSession(response.data);
+            if(response.data.logged != null) setLogged(response.data.logged);
+        });   
+    };
+    const handleLogout = function (){
+        axios.get('/login/endSession').then(()=>{
+            initSession();
+            //console.log(logged);
+        });        
+    };
+
+    useEffect(()=>{
+        initSession();
+    },[]);
+
     return (
         <div>
+            {!logged? 
+            <Login initSession = {initSession}/>
+            :
             <Router>
                 <ModuloInteraccion/>     
                 <Switch>
@@ -54,8 +69,8 @@ export default function Principal() {
                     <Route path="/VerPerfil">
                         <VerPerfil/>
                     </Route>
-                    <Route path = '/VerCurso/:id' component = {VerCurso}>
-                        <VerCurso/>
+                    <Route path = '/VerCurso/:id' component = {VerCurso} >
+                        <VerCurso session = {session}/>
                     </Route>
                     <Route path = '/VerNotas/:id/subirNota/:id2'>
                     </Route>
@@ -65,12 +80,15 @@ export default function Principal() {
                     <Route path='/VerNotas/:nota' component = {VerNotas}>
                         <VerNotas/>
                     </Route>
-                    <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}/>
-                    <Route path = '/NuevoCurso' >
-                        <NuevoCurso/>
+
+                    <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}>
+                        <PagClase session = {session}/>
                     </Route>
-                </Switch>
-            </Router>
+                </Switch>          
+                <div>{session.type} {session.user}</div>     
+                <button onClick = {handleLogout}>LOOGOUT</button>
+            </Router>            
+            }
         </div>
     )
 }

@@ -1,9 +1,5 @@
 import React from 'react';
-import Body from './Body'
-import Header from './Header'
 import test  from './clases/clases.js'
-import SelectedListAvatar from './componentesBasicos/MenuAvatar.js';
-import VerPerfil from './Perfil';
 import {useParams} from "react-router-dom";
 import PagCurso from '../paginas/pagCurso';
 
@@ -18,7 +14,7 @@ function VerCurso(props) {
             <div>
                 
                 <div>
-                    <PagCurso id = {id}/>
+                    <PagCurso id = {id} session = {props.session}/>
                 </div>
 
         </div>

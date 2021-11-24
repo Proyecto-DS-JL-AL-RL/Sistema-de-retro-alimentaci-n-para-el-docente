@@ -1,10 +1,12 @@
 import './Body.css';
 import React from 'react';
+
 import BasicTable from './componentesBasicos/TablaNotas'
 import test  from './clases/clases.js'
 import SubirMaterial from './SubirMaterial'
 
 let user = test['user']
+
 
 
 class Body extends  React.Component {

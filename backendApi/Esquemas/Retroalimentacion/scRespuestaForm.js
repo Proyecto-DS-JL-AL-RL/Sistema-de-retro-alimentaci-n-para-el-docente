@@ -3,13 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var RespuestaForm = new Schema({
-    titulo: String,  
-    cuerpo: String,
-    alumno: {type: Schema.Types.ObjectId, ref: 'Alumnos'},
-    clase: {type: Schema.Types.ObjectId, ref: 'Clases'},
-    hasFile: Boolean,
-    fileRef: String
+    Alumno: {type: Schema.Types.ObjectId, ref: 'User'},
+    formOrigen: {type: Schema.Types.ObjectId, ref: 'Formu'},  
+    respuestas: [Number]
 });
 
-module.exports = mongoose.model('RespuestaForm',RespuestaForm);
+module.exports = mongoose.model('AnswerForm',RespuestaForm);
 

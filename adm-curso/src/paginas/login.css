@@ -1,0 +1,131 @@
+#loginTittle{
+    position:absolute;
+    width: 100%;
+    font-size: xx-large;
+    font-weight: 700;
+    text-align: center;
+    top: 25vh;
+}
+
+#messageLogin{
+    position:absolute;
+    width: 100%;
+    font-size: large;
+    font-weight: 600;
+    text-align: center;
+    top: 32vh;
+    color:rgb(255, 75, 75);
+}
+
+#LoginContainer{
+    left:50vw;
+    position:absolute;
+    margin-top: 15vh;
+    top: 18vh;
+    width: 70vw;
+    height: 50vh;
+    margin-left: -35vw;
+
+    align-content:center;
+}
+
+.cont1{
+    font-weight: 1000;
+    font-size: x-large;
+    position:absolute;
+    left:50%;
+    top: 5%;
+
+    margin: 1%;
+    margin-left: -150px;
+    width: 300px;
+}
+
+.cont2{
+    font-weight: 1000;
+    font-size: x-large;
+    position:absolute;
+    left:50%;
+    top: 25%;
+    margin: 1%;
+    margin-left: -150px;
+    width: 300px;
+}
+
+.loginInput{
+    position:absolute;
+    border-radius: 10px;
+    font-weight: 400;
+    width: 250px;
+    height: 20px;
+    left:20%;
+    font-size: large;
+}
+
+#FormsendButton{
+    font-weight: 1000;
+    font-size: x-large;
+    top: 50%;
+    position:absolute;
+    width: 70px;
+    height: 35px;
+    left: 50%;
+    margin-left:-35px;
+}
+
+@media (max-height: 600px){
+    #loginTittle{
+        position:absolute;
+        width: 100%;
+        font-size: xx-large;
+        font-weight: 700;
+        text-align: center;
+        top: 20vh;
+    }
+    #messageLogin{
+            position:absolute;
+            width: 100%;
+            font-size: large;
+            font-weight: 600;
+            text-align: center;
+            top: 32vh;
+            color:rgb(255, 75, 75);
+        }
+        
+    .cont1{
+        font-weight: 1000;
+        font-size: x-large;
+        position:absolute;
+        left:50%;
+        top: 5%;
+        margin: 1%;
+        margin-left: -150px;
+        width: 300px;
+    }
+
+    .cont2{
+        font-weight: 1000;
+        font-size: x-large;
+        position:absolute;
+        left:50%;
+        top: 32%;
+        margin: 1%;
+        margin-left: -150px;
+        width: 300px;
+    }
+
+    #FormsendButton{
+        font-weight: 1000;
+        font-size: x-large;
+        top: 70%;
+        position:absolute;
+        width: 70px;
+        height: 35px;
+        left: 50%;
+        margin-left:-35px;
+    }
+
+
+
+
+}

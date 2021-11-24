@@ -1,7 +1,6 @@
 import React from 'react';
 import "./generales/general.css";
 import "./puntuarClase.css";
-import FormPregunta from './formPregunta';
 
 class PuntuarClase extends  React.Component {
     constructor(props) {

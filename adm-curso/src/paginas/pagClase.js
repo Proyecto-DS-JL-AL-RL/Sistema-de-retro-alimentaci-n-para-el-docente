@@ -1,34 +1,33 @@
 import React from 'react'
-import {Link,BrowserRouter as Router,
-    Route,Switch} from 'react-router-dom';
-import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
-import Principal from '../paginas/Principal'
-import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio.js';
-import CrearClase  from '../componentes/moduloRetroalimentacion/crearClase';
-import ComentarioForm from '../componentes/moduloRetroalimentacion/ComentarioForm';
-import FormVista from '../componentes/moduloRetroalimentacion/formularioVista';
-import PuntuarClase from '../componentes/moduloRetroalimentacion/PuntuarClase';
-import CrearFormP from '../componentes/moduloRetroalimentacion/CrearFormP';
-import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormulario';
+
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import Header from '../componentes/Header';
-import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
-import VerPerfil from '../componentes/Perfil';
-import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
-import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
+
+import { useEffect } from 'react';
+
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
 import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerales';
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
-import Comentario from '../componentes/moduloRetroalimentacion/Comentario';
+
 import './pagClase.css';
 import test from '../componentes/clases/clases'
 
-export default function PagClase() {
+export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
 
+    useEffect(()=>{
+        console.log(props.session);
+        if (props.session){
+            if(props.session.type== "Profesor"){
+                setVista(0);
+            }else if (props.session.type == "Alumno"){
+                setVista(1);
+            }
+        }
+    },[])
     const switchMobil = function(){
-        if (PCstate == 0){
+        if (PCstate === 0){
             return <div>
                 {!PCvista?
                     <div className= 'statMblWindowContainer'><StatsGenerales/></div>
@@ -37,9 +36,9 @@ export default function PagClase() {
                 }
 
             </div>
-        }else if (PCstate == 1){
+        }else if (PCstate === 1){
             return <div className = 'pagMblListaAlumnos'><ListaComentario/></div>
-        }else if (PCstate == 2){
+        }else if (PCstate === 2){
             return <div className = 'pagMblListaForms'><ListaForms/></div>
         }
     }
