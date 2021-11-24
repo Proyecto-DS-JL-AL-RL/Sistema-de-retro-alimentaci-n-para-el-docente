@@ -1,12 +1,7 @@
 var Nota = require('../../Esquemas/Gestion/sNota');
 
-var crearNota = async function(codigoAlumn, codigCurso, TipoPractica, Puntuacion){
-    const newnota = new Nota({
-                    codigoAlumn:codigoAlumn,
-                    codigCurso: codigCurso,
-                    TipoPractica: TipoPractica,
-                    Puntuacion: Puntuacion})//.catch(err=> console.log(err))
-
+var crearNota = async function(nota){
+    const newnota = new Nota(nota)//.catch(err=> console.log(err))
     await newnota.save()
 }
 
@@ -18,6 +13,7 @@ var findNota = async function(codigo){
 var updateNota = async function(codigo, update){
     const nota = await Nota.findOneAndUpdate(codigo, update)
     nota.save()
+    return nota
 }
 
 var deleteNota = async function(codigo){

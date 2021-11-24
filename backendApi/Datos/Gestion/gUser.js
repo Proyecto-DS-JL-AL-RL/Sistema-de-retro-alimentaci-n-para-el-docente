@@ -1,13 +1,8 @@
 var User = require('../../Esquemas/Gestion/gUser');
 //require('../../database');
 
-var createUser = async function(idcodigo, nombre, apellido, correo, condicion, edad){
-    const newusr = new User({codigo:idcodigo,
-                    nombre: nombre,
-                    apellido: apellido,
-                    correo: correo,
-                    condicion: condicion,
-                    edad: edad})//.catch(err=> console.log(err))
+var createUser = async function(user){
+    const newusr = new User(user)//.catch(err=> console.log(err))
 
     await newusr.save()
 }

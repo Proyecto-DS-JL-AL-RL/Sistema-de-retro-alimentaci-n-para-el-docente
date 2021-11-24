@@ -1,10 +1,7 @@
 var Curso = require('../../Esquemas/Gestion/gCurso');
 
-var createCurso = async function(idcodigo, nombre, idprofe, nameprofesor){
-    const newcurso = new Curso({codigo:idcodigo,
-                    nombre: nombre,
-                    IDProfe: idprofe,
-                    nombreProfe: nameprofesor})//.catch(err=> console.log(err))
+var createCurso = async function(curso){
+    const newcurso = new Curso(curso)//.catch(err=> console.log(err))
     await newcurso.save()
 }
 
@@ -14,12 +11,12 @@ var fidnCurso = async function(codigo){
 }
 
 var updateCurso = async function(codigo, update){
-    const curso = await Curso.findOneAndUpdate({codigo:codigo}, update)
+    const curso = await Curso.findOneAndUpdate(codigo, update)
     curso.save()
 }
 
 var deleteCurso = async function(codigo){
-    await Curso.findOneAndDelete({codigo:codigo})
+    await Curso.findByIdAndDelete(codigo)
 }
 //createCurso("CC421", "Inteligencia Artificial", "19942196K", [])
 //createCurso("CC312", "Administracion de Redes", "19801295J", [])
