@@ -2,17 +2,27 @@ import React from 'react'
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import Header from '../componentes/Header';
 
-
+import { useEffect } from 'react';
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
 import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerales';
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 
 import './pagClase.css';
 
-export default function PagClase() {
+export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
 
+    useEffect(()=>{
+        console.log(props.session);
+        if (props.session){
+            if(props.session.type== "Profesor"){
+                setVista(0);
+            }else if (props.session.type == "Alumno"){
+                setVista(1);
+            }
+        }
+    },[])
     const switchMobil = function(){
         if (PCstate === 0){
             return <div>

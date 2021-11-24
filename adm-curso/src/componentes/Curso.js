@@ -14,7 +14,7 @@ function VerCurso(props) {
             <div>
                 
                 <div>
-                    <PagCurso id = {id}/>
+                    <PagCurso id = {id} session = {props.session}/>
                 </div>
 
         </div>

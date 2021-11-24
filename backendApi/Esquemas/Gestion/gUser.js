@@ -10,6 +10,7 @@ const user = new Schema({
     correo: String,
     contransena: String,
     condicion: String,
+    tipo: String,
     edad: Number,
 })
 

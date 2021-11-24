@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <Login/> 
+    <Principal/> 
 );
 }
 

@@ -29,12 +29,7 @@ app.use(session({
 
 //
 
-app.use('/',function(req,res,next){
-    req.session.xD = {a:'2'};
-    console.log(req.cookies);
-    console.log(req.session);
-    next();
-});
+app.use('/',require('./Router/interaccionRouter'));
 app.use('/retAl',require('./Router/retroalimentacionRouter'));
 app.use('/login',require('./Router/sessionL'));
 

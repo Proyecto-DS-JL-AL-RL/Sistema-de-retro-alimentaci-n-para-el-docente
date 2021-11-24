@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../componentes/Header';
-
+import { useEffect } from 'react';
+import axios from 'axios';
 
 import Body from '../componentes/Body';
 import ListaClases from '../componentes/moduloRetroalimentacion/ListaClases';
@@ -10,9 +11,10 @@ import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js'
 import VerPerfil from '../componentes/Perfil';
 import './pagCurso.css';
 
-export default function PagCurso() {
+export default function PagCurso(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
+    const [user,setUser] = React.useState({});
     const [idCurso,setIdCurso] = React.useState(useParams().id);
     const curso = test['cursos']
     const switchMobil = function(){
@@ -21,7 +23,7 @@ export default function PagCurso() {
                     <div className= 'statMblWindowContainer'><Body/></div>
             </div>
         }else if (PCstate === 1){
-            return <div className = 'pagMblListaAlumnos'><ListaClases idCurso = {idCurso}/></div>
+            return <div className = 'pagMblListaAlumnos'><ListaClases idCurso = {idCurso} session = {props.session}/></div>
         }
     }
     
@@ -44,7 +46,6 @@ export default function PagCurso() {
         )
     
 }
-
     
     return (        
         <div>           
@@ -59,7 +60,7 @@ export default function PagCurso() {
                     {!PCstate?
                     <div className= 'mainWindowContainer'><Body/></div>
                     :
-                    <div className = 'mainWindowContainer'><ListaClases idCurso = {idCurso}/></div>
+                    <div className = 'mainWindowContainer'><ListaClases idCurso = {idCurso} session = {props.session}/></div>
                     }
                     {buttonWindow()}
                 </div>

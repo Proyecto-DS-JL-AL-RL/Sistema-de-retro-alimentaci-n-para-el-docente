@@ -6,7 +6,7 @@ const userSession = require('../Datos/userSession');
 
 
 router.post('/checkLogin',async function(req,res){
-        res.send(await userSession.checkUser(req.body.username,req.body.password));
+        res.send(await userSession.checkUser(req.body.username,req.body.password,req));
 });
 
 router.get('/register/:codigo/:password',async function(req,res){
@@ -14,9 +14,14 @@ router.get('/register/:codigo/:password',async function(req,res){
         res.send('Response');
 });
 
-router.get('/register/:codigo/:password'),async function(req,res){
-        res.send("notImplenetedYet");
-}
+
+router.get('/endSession',async function(req,res){
+        res.send(await userSession.endSession(req));
+});
+
+router.get('/getSession',async function(req,res){
+        res.send(await userSession.getSession(req));
+});
 
 
 

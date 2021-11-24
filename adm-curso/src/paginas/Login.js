@@ -5,11 +5,12 @@ import "../componentes/moduloRetroalimentacion/generales/general.css";
 import axios from 'axios';
 
 
-export default function Login() {
+export default function Login(props) {
     const [username,setUsername] = React.useState("");
     const [password,setPassword] = React.useState("");
     const [showMessage,setShowMessage] = React.useState(false);
     const [message,setMessage] = React.useState("")
+    const initSession = props.initSession;
 
     const checkInput = function(){
         if (username === "" || password === ""){
@@ -29,9 +30,12 @@ export default function Login() {
                 const body = response.data;
                 if(body.accepted){
                     console.log(body);
-                }else{
                     setShowMessage(true);
                     setMessage(body.message);
+                    initSession();
+                }else{
+                    setShowMessage(true);
+                    setMessage(body.message);                    
                 }
             });
         }        
