@@ -6,6 +6,7 @@ var curso = new Schema({
     nombre: String,
     codigo: String,
     IDProfe: {type: String},
+    descripcion: String,
     alumnos: []
 })
 
