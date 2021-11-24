@@ -2,8 +2,8 @@ import React from 'react'
 import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
-
-
+import Principal from '../paginas/Principal'
+import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio.js';
 import CrearClase  from '../componentes/moduloRetroalimentacion/crearClase';
 import ComentarioForm from '../componentes/moduloRetroalimentacion/ComentarioForm';
 import FormVista from '../componentes/moduloRetroalimentacion/formularioVista';
@@ -12,7 +12,8 @@ import CrearFormP from '../componentes/moduloRetroalimentacion/CrearFormP';
 import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormulario';
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import Header from '../componentes/Header';
-
+import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
+import VerPerfil from '../componentes/Perfil';
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
@@ -20,6 +21,7 @@ import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerale
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 import Comentario from '../componentes/moduloRetroalimentacion/Comentario';
 import './pagClase.css';
+import test from '../componentes/clases/clases'
 
 export default function PagClase() {
     const [PCstate,setPCstate] = React.useState(0);
@@ -83,7 +85,7 @@ export default function PagClase() {
                     <div className = 'pagListaForms'><ListaForms/></div>
                 </div>
             }            
-            <Header/>
+            <Header componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

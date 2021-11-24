@@ -12,7 +12,8 @@ import CrearFormP from '../componentes/moduloRetroalimentacion/CrearFormP';
 import CrearFormulario from '../componentes/moduloRetroalimentacion/CrearFormulario';
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import Header from '../componentes/Header';
-
+import Principal from '../paginas/Principal'
+import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
@@ -81,7 +82,7 @@ export default function PagCurso() {
                     {buttonWindow()}
                 </div>
             }            
-            <Header NameCurso={curso[idCurso-1].nombre_curso} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
+            <Header NameCurso={curso[idCurso-1].nombre_curso} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

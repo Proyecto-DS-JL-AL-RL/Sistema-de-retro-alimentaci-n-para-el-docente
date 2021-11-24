@@ -2,20 +2,17 @@ import React from 'react';
 import test  from './clases/clases.js'
 import './Header.css'
 import DehazeIcon from '@mui/icons-material/Dehaze';
-import SelectedListItem  from './componentesBasicos/MenuCurso';
 import Avatar from './componentesBasicos/Avatar'
-import Principal from '../paginas/Principal'
-import VerPerfil from '../componentes/Perfil';
 
 //import { style } from '@mui/system';
 
-class Header extends  React.Component {
+class Header extends  React.Component { 
     constructor(props) {
         super(props);
         this.state = {
           menu: false,
           avatar:false,
-          avatar_style:"FotoPerfil" 
+          avatar_style:"FotoPerfil",
         };
     }   
     handClick = (e) => {
@@ -26,6 +23,7 @@ class Header extends  React.Component {
             e.preventDefault()
             this.setState({ avatar: !this.state.avatar})}     
     
+
     render() {
         return ( 
         <div id="Header">
@@ -34,7 +32,7 @@ class Header extends  React.Component {
                         <DehazeIcon fontSize={'small'}/>
                     </button>
                     <div>
-                        {this.state.menu?<SelectedListItem Back={<Principal/>}/>:false}
+                        {this.state.menu?this.props.componenteMenu:false}
                     </div>
             </div>  
             <div id="List" onClick={this.imageClick}> 

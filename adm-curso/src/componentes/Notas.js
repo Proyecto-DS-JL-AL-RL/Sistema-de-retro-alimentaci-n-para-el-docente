@@ -7,10 +7,13 @@ import test from './clases/clases'
 import './Notas.css'
 import BasicTable from './componentesBasicos/TablaNotas'
 import {useParams} from "react-router-dom";
+import SelectedListaNotas from './componentesBasicos/MenuNotas'
+import VerNotaAlumnos from './VerNotaAlumnos'
 
 let curso = test['cursos']
 let Nota = test['notas']
-
+let profesor = test['user']
+//id="NCuadro"
 function VerNotas(props) {
         const {nota} = useParams()
         const state = {
@@ -21,10 +24,10 @@ function VerNotas(props) {
             return(
             <div>
                 <div>
-                    <Header NameCurso={curso[nota-1].nombre_curso} componentes={<SelectedListIncio perfil={<VerPerfil/>}/>}/>
+                    <Header NameCurso={curso[nota-1].nombre_curso} componenteMenu={<SelectedListaNotas isProfesor={profesor.getCondicion()} id={nota}/>} componentes={<SelectedListIncio perfil={<VerPerfil/>}/>}/>
                 </div>
-                <div id="NCuadro">
-                    <BasicTable text_style={state.text} style={state.style} Nota={Nota}/>
+                <div>
+                    {profesor.getCondicion()?<VerNotaAlumnos curso={nota}/>:<BasicTable text_style={state.text} style={state.style} Nota={Nota}/>}
                 </div>
             </div>
             )

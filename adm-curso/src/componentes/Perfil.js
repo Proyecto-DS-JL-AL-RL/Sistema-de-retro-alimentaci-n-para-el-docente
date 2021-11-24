@@ -11,11 +11,17 @@ class VerPerfil extends  React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          avatar_style:"img" ,
+          avatar_style:"pimg" ,
           variant_button:"contained",
-          id_style:"pbutton"
+          id_style:"pbutton",
+          disabled: true,
+          nombre:test['user'].getNombre(),
+          apellido:test['user'].getApellido(),
+          edad:test['user'].getEdad(),
+          correo:test['user'].getCorreo()
         };
     }   
+
     render() {
         return ( 
         <div>
@@ -25,13 +31,24 @@ class VerPerfil extends  React.Component {
                     <div id="Perfil">
             <h1 id="Titulo">Mi Perfil</h1>
                         <h2>Nombre:</h2>
-                        <input id="input" value={test['user'].getNombre()} disabled/>
+                        <input id="input" value={this.state.nombre} onChange={(e)=>{
+                            this.setState({nombre:e.target.value})
+                            test['user'].setNombre(e.target.value)
+                        }}  disabled = {(this.state.disabled)? "disabled" : ""}/>
                         <h2>Apellido:</h2>
-                        <input id="input" value={test['user'].getApellido()} disabled/>
+                        <input id="input" value={this.state.apellido} onChange={(e)=>{
+                            this.setState({apellido: e.target.value})
+                            test['user'].setApellido(e.target.value)
+                    }} disabled = {(this.state.disabled)? "disabled" : ""}/>
                         <h2>Edad:</h2>
-                        <input id="input" value={test['user'].getEdad()} disabled/>
+                        <input id="input" value={this.state.edad} onChange={(e)=>{
+                            this.setState({edad:e.target.value})
+                            test['user'].setEdad(e.target.value)
+                    }} disabled = {(this.state.disabled)? "disabled" : ""}/>
                         <h2>Correo:</h2>
-                        <input id="input" value={test['user'].getCorreo()} disabled/>
+                        <input id="input" value={this.state.correo} onChange={(e)=>{this.setState({edad:e.target.correo})}} disabled = {(this.state.disabled)? "disabled" : ""}/>
+                        <button className="pbton" onClick={()=>{this.setState( {disabled: false} )}}>Editar</button>
+                        <button className="pbton" onClick={()=>{this.setState( {disabled: true} )}}>Guardar</button>    
                 </div>
             </div>         
                 <BasicButtons style={this.state.id_style} variant={this.state.variant_button} text={<Link id="link" to="/"> Volver Inicio </Link>}/>
