@@ -1,0 +1,27 @@
+#Edit{
+    margin:4%;
+    padding:1% 1%;
+    position:absolute center;
+    font-size:italic;
+    background-color:rgba(163, 163, 5, 0.959);
+}
+.ebton{
+    font-size: 2vw;
+    padding:1%;
+    color:black;
+    background-color:gold;
+}
+
+.eText{
+    font-size:2vw;
+    margin:4% 5%;
+}
+
+#datos{
+    margin:2% 10%;
+}
+
+#einput{
+    margin:0% 10%;
+    font-size: 3vw;
+}

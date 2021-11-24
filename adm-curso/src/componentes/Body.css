@@ -1,7 +1,13 @@
 #bCuadro{
     margin:20%;
-    padding:50% 20%;
+    padding:50% 10%;
     position:absolute center;
     font-size:italic;
     background-color:rgba(77, 76, 76, 0.959);
+}
+
+.btn-curso{
+    margin:5% 5%;
+    font-size:1.5vw;
+    background-color:gold;
 }

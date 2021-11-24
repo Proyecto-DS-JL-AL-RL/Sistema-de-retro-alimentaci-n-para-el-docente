@@ -30,8 +30,12 @@ app.use(session({
 //
 
 app.use('/',require('./Router/interaccionRouter'));
+
 app.use('/retAl',require('./Router/retroalimentacionRouter'));
 app.use('/login',require('./Router/sessionL'));
+
+app.use('/',require('./Router/gestionRouter'));
+
 
 //app.use('/gestion', require...);});
 //app.use('/retroalimentacion', require...);});

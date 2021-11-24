@@ -1,13 +1,16 @@
 import React from 'react'
+
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import Header from '../componentes/Header';
 
 import { useEffect } from 'react';
+
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
 import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerales';
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 
 import './pagClase.css';
+import test from '../componentes/clases/clases'
 
 export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
@@ -81,7 +84,7 @@ export default function PagClase(props) {
                     <div className = 'pagListaForms'><ListaForms/></div>
                 </div>
             }            
-            <Header/>
+            <Header componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

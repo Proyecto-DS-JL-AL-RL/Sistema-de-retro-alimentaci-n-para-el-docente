@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../componentes/Header';
+
 import { useEffect } from 'react';
 import axios from 'axios';
-
 import Body from '../componentes/Body';
 import ListaClases from '../componentes/moduloRetroalimentacion/ListaClases';
 import { useParams } from 'react-router';
@@ -65,7 +65,7 @@ export default function PagCurso(props) {
                     {buttonWindow()}
                 </div>
             }            
-            <Header NameCurso={curso[idCurso-1].nombre_curso} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
+            <Header NameCurso={curso[idCurso-1].nombre_curso} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

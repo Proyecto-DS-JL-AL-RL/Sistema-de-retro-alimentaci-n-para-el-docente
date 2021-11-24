@@ -1,6 +1,6 @@
 #pCuadro{
     position:absolute center;
-    padding:2%;
+    padding:1.4%;
     width:auto;
     height:73%;
     left:10%;
@@ -16,6 +16,14 @@
     margin: 0% 2%;
 }
 
+.pbton{
+    margin:10% 10%;
+    margin-left: 10%;
+    color:black;
+    background-color:yellow;
+    font-size:2vw;
+}
+
 #Titulo{
     top:0%;
     position:absolute;
@@ -24,12 +32,12 @@
     color:whitesmoke;
 }
 
-#img{
+#pimg{
     border-radius: 50%;
     position:absolute center;
-    margin:0% 30%;
-    width:40%;
-    height:40%;
+    margin: 0% 10%;
+    width:50vw;
+    height:50vw;
 }
 
 #Perfil{
@@ -45,5 +53,5 @@
 }
 
 #input{
-    font-size: 1.5vw;
+    font-size: 3vw;
 }
