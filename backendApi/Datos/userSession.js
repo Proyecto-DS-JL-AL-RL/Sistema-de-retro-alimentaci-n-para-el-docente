@@ -30,7 +30,7 @@ var checkUser = async function (username,password,request){
     const hashedPassword =  await hash(salt,password);
     
     if(hashedPassword == correctHashedPass){
-        request.session.userInfo = {user: username, type: saveUserId.tipo ,logged : true};
+        request.session.userInfo = {user: username, type: saveUserId.condicion ,logged : true};
         return {user: username,pass : password , accepted: true, message: "Login exitoso"};
     }else{
         return {user: username,pass : password , accepted: false, message: "Usuario o contraseña incorrectos"};

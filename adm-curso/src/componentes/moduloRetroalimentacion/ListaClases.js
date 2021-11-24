@@ -17,7 +17,7 @@ export default function ListaClases(props) {
 
 
     useEffect(()=>{
-        console.log(props);
+        console.log(props.session);
         if(props.session.type == "Profesor"){
             setShowCrearButton(true);
         }

@@ -10,6 +10,8 @@ import test  from '../componentes/clases/clases.js';
 import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
 import VerPerfil from '../componentes/Perfil';
 import './pagCurso.css';
+import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import Principal from './Principal';
 
 export default function PagCurso(props) {
     const [PCstate,setPCstate] = React.useState(0);

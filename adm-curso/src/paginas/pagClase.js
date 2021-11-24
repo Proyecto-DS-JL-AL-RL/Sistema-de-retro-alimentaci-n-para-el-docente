@@ -2,7 +2,10 @@ import React from 'react'
 
 import ListaComentario from '../componentes/moduloRetroalimentacion/ListaComentarios';
 import Header from '../componentes/Header';
-
+import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import Principal from './Principal';
+import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio';
+import VerPerfil from '../componentes/Perfil';
 import { useEffect } from 'react';
 
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';

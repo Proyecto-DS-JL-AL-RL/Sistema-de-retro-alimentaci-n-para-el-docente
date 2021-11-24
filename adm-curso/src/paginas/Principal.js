@@ -5,6 +5,7 @@ import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/Crear
 
 import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
 
+import EditarCurso from '../componentes/EditarCurso';
 import VerCurso from '../componentes/Curso'
 import VerPerfil from '../componentes/Perfil';
 import SubirNota from '../componentes/SubirNota'
