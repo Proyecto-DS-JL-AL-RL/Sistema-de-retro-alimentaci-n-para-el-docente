@@ -7,10 +7,12 @@ import Principal from './Principal';
 import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio';
 import VerPerfil from '../componentes/Perfil';
 import { useEffect } from 'react';
+import { useParams } from 'react-router';
 
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
 import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerales';
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
+import axios from 'axios';
 
 import './pagClase.css';
 import test from '../componentes/clases/clases'
@@ -18,9 +20,11 @@ import test from '../componentes/clases/clases'
 export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
+    const [idClase,setIdClase] = React.useState(useParams().idClase);
+    const [clase,setClase] = React.useState({titulo : ''});
 
     useEffect(()=>{
-        console.log(props.session);
+        //console.log(props.session);
         if (props.session){
             if(props.session.type== "Profesor"){
                 setVista(0);
@@ -28,6 +32,10 @@ export default function PagClase(props) {
                 setVista(1);
             }
         }
+        axios.get('/retAl/getClass/'+String(idClase)).then(function(response){
+            //console.log(response.data);
+            setClase(response.data);
+        });
     },[])
     const switchMobil = function(){
         if (PCstate === 0){
@@ -40,7 +48,7 @@ export default function PagClase(props) {
 
             </div>
         }else if (PCstate === 1){
-            return <div className = 'pagMblListaAlumnos'><ListaComentario/></div>
+            return <div className = 'pagMblListaAlumnos'><ListaComentario clase = {idClase} session = {props.session}/></div>
         }else if (PCstate === 2){
             return <div className = 'pagMblListaForms'><ListaForms/></div>
         }
@@ -70,21 +78,24 @@ export default function PagClase(props) {
         <div>           
 
             {Math.min(window.innerHeight,window.innerWidth)<600?
-                <div>                    
+                <div>                   
                     {switchMobil()}
                     {buttonMbl()}
+                    <div className = 'titleMobile'>{clase.titulo}</div>
                 </div>
             :
                 <div>
+                    <div className = 'titleEsc'>{clase.titulo}</div>
                     {!PCvista?
                     <div className= 'statWindowContainer'><StatsGenerales/></div>
                     :
                     <div className = 'statWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
                     }
                     <div className = 'pagListaAlumnos'>
-                        <ListaComentario/>
+                        <ListaComentario clase = {idClase} session = {props.session}/>
                     </div>
                     <div className = 'pagListaForms'><ListaForms/></div>
+                    <div className = 'titleEsc'>{clase.titulo}</div>
                 </div>
             }            
             <Header componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>

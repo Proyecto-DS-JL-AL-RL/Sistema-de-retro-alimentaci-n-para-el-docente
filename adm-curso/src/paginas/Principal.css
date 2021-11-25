@@ -1,3 +1,15 @@
 .ctn{
     margin:var(--tamanoNav);
 }
+
+.LoginState{
+    position: absolute;
+    top: 5vh;
+    left: 80vw;
+}
+.LoggoutButton{
+    background-color: rgb(82, 82, 82);
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+}

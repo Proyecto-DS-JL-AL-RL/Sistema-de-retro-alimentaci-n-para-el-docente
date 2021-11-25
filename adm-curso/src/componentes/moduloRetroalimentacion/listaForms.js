@@ -3,6 +3,7 @@ import "./generales/general.css";
 import "./listaForms.css";
 import FormVista from './formularioVista';
 import CrearFormulario from './CrearFormulario';
+import ComentarioForm from './ComentarioForm';
 
 class ListaForms extends  React.Component {
     constructor(props) {

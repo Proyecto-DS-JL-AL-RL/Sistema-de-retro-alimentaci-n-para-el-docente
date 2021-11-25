@@ -20,16 +20,27 @@ import PagClase from './pagClase';
 import { useState } from 'react';
 import Login from './Login';
 import axios from 'axios';
+import './Principal.css'
 
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
+
+    /*
+        Session = {
+            user: 20192164A 
+            type: 'Profesor'/'Alumno'
+        }
+
+    */
+
 
     const initSession = function(){
         axios.get('/login/getSession').then(function(response){
             console.log(response.data);
             setSession(response.data);
             if(response.data.logged != null) setLogged(response.data.logged);
+            //Dispatch
         });   
     };
     const handleLogout = function (){
@@ -67,6 +78,7 @@ export default function Principal() {
                         <VerEstadisticas/>
                         <Header NameCurso={'Estadisticas'}/>
                     </Route>
+                    
                     <Route path="/VerPerfil">
                         <VerPerfil/>
                     </Route>
@@ -86,10 +98,13 @@ export default function Principal() {
                         <PagClase session = {session}/>
                     </Route>
                 </Switch>          
-                <div>{session.type} {session.user}</div>     
-                <button onClick = {handleLogout}>LOOGOUT</button>
+                <div className = 'LoginState'>  
+                <button className = 'LoggoutButton' onClick = {handleLogout}>CerrarSession</button>
+                </div>
             </Router>            
             }
+
         </div>
     )
 }
+
