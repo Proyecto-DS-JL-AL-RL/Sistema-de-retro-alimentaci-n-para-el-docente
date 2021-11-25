@@ -1,0 +1,10 @@
+#contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  #contenedor > div {
+    width: 10%;
+    margin:10% 20%
+  }

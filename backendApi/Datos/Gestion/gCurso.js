@@ -5,7 +5,7 @@ var createCurso = async function(curso){
     await newcurso.save()
 }
 
-var fidnCurso = async function(codigo){
+var findCurso = async function(codigo){
     const findcurso = await Curso.find(codigo).catch(err=> console.log(err))
     return findcurso
 }
@@ -27,6 +27,6 @@ var deleteCurso = async function(codigo){
 
 
 module.exports.createCurso = createCurso;
-module.exports.fidnCurso = fidnCurso;
+module.exports.findCurso = findCurso;
 module.exports.updateCurso = updateCurso;
 module.exports.deleteCurso = deleteCurso;

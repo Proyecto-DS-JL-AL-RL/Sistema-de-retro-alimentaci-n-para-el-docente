@@ -17,8 +17,6 @@ import test from './clases/clases'
 import axios from 'axios';
 import { borderRadius } from '@mui/system';
 
-let curso = test['cursos']
-let user = test['user']
 function range(start, stop) {
   if (stop === undefined) {
     stop = start;
@@ -35,47 +33,24 @@ function range(start, stop) {
 
 //<Header NameCurso={props.Inicio} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
 
-export default class Inicio  extends React.Component{
+export default class AlignItemsList  extends React.Component{
   constructor(props){
-      super(props);
-      this.state = {
-        cursos:[],
-        esProfesor:user.getCondicion(), 
-        cards:[]
-      };
-      //this.listofcurses()
-      //this.cards = Array.from(range(1, this.state.cursos.length+1))
-  
-      axios.post('/user/search', {codigo:this.props.iduser}).then((response) => {
-                let body = response.data;
-                if(body[0].condicion ==='Profesor'){
-                  this.setState({esProfesor:true})
-                }else{
-                  this.setState({esProfesor:false})
-                };
-        })
-      
-            
+    super(props)
+    //this.listofcurses()
+    this.state = {
+        cards : Array.from(range(1, 3))
+        }  
+        console.log(this.props.alumno)
     }
-  
-    componentDidMount(){
-      axios.post('/curso/search', {IDProfe:this.props.iduser}).then((response) => {
-        let body = response.data;
-        this.setState({cursos:body})
-        this.setState({cards:Array.from(range(1, this.state.cursos.length+1))})
-    })
-
-  }
-
+    
   render(){
     return (
       <div>
-          <Header NameCurso={'Cursos'} userID={user} componenteMenu={this.state.esProfesor?<SelectedListaInicio/>:null} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
-        <div id="Cards">
-          <Container sx={{ py: 8 }} maxWidth="md">
+         <div id="Cards">
+          <Container sx={{ py: 10 }} maxWidth="md">
             <Grid container spacing={4}>
               {this.state.cards.map((card) => (
-                <Grid item key={card} xs={12} sm={6} md={4}>
+                <Grid item key={card} xs={12} sm={8} md={10}>
                   <Card
                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                   >
@@ -85,20 +60,20 @@ export default class Inicio  extends React.Component{
                         // 16:9
                         pt: '56.25%',
                       }}
-                      image="https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png"
+                      image="https://tresubresdobles.com/wp-content/uploads/2019/08/skft-912381dcd5b2c45c4a9ce8acf32cfd8c-768x961.jpg"
                       alt="random"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        {this.state.cursos[card-1].nombre} 
+                        {} 
                       </Typography>
                       <Typography> 
-                      {this.state.cursos[card-1].descripcion} 
+                      {/*this.state.cursos[card-1].descripcion*/} 
                       </Typography>
                     </CardContent>
                     <CardActions> 
-                      <Button  size="small"><Link to={"/VerCurso/"+this.state.cursos[card-1].codigo}>ver</Link></Button>
-                      {this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"+this.state.cursos[card-1].codigo}>Editar</Link></Button>:null}
+                      {/*<Button  size="small"><Link to={"/VerCurso/"+this.state.cursos[card-1].codigo}>ver</Link></Button>*/}
+                      {/*this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"+this.state.cursos[card-1].codigo}>Editar</Link></Button>:null*/}
                     </CardActions>
                   </Card>
                 </Grid>

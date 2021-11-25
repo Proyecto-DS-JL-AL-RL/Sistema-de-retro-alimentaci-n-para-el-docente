@@ -9,7 +9,7 @@ var {crearNota, findNota, updateNota, deleteNota} = require('../Datos/Gestion/gN
 
 router.post('/user/search', async (req,res)=>{
     const usr = await findUser(req.body);
-    res.json(usr);
+    return res.json(usr);
 });
 
 router.post('/user/:id/update', async (req,res)=>{
