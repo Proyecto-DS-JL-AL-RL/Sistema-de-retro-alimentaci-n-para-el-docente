@@ -4,7 +4,7 @@ const router = express.Router();
 const userSession = require('../Datos/userSession');
 
 
-
+/////   /login/checklogin
 router.post('/checkLogin',async function(req,res){
         res.send(await userSession.checkUser(req.body.username,req.body.password,req));
 });

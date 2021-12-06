@@ -24,8 +24,6 @@ export default function Login(props) {
     
     const sendUserPass = function(){
         if(checkInput()){
-            console.log('cookie',document.cookie);
-            console.log('Enviando ',username,password);
             axios.post('/login/checkLogin',{username : username, password:password}).then(function(response){
                 const body = response.data;
                 if(body.accepted){

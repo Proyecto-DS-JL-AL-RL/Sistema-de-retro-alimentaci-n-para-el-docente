@@ -15,7 +15,8 @@ import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
 import axios from 'axios';
 
 import './pagClase.css';
-import test from '../componentes/clases/clases'
+import test from '../componentes/clases/clases';
+import {useStore} from 'react-redux';
 
 export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
@@ -23,12 +24,18 @@ export default function PagClase(props) {
     const [idClase,setIdClase] = React.useState(useParams().idClase);
     const [clase,setClase] = React.useState({titulo : ''});
 
+    const store = useStore();
+    const session = useStore().getState().session;
+    //store = useStore()
+
     useEffect(()=>{
-        //console.log(props.session);
-        if (props.session){
-            if(props.session.type== "Profesor"){
+        //store.getState().session; 
+        console.log(store.getState());
+
+        if (session){
+            if(session.type== "Profesor"){
                 setVista(0);
-            }else if (props.session.type == "Alumno"){
+            }else if (session.type == "Alumno"){
                 setVista(1);
             }
         }

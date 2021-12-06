@@ -31,11 +31,14 @@ var checkUser = async function (username,password,request){
     
     if(hashedPassword == correctHashedPass){
         //Pack
+
+        //////////////////////////
+        ///////////////////////////
         request.session.userInfo = {
             user: username, 
             type: saveUserId.condicion ,
             logged : true,
-            flag: 'xd'
+            tittle: ''
         };
 
         return {user: username,pass : password , accepted: true, message: "Login exitoso"};

@@ -19,29 +19,29 @@ import ModuloInteraccion from './Interaccion/ModuloInteraccion.js';
 import PagClase from './pagClase';
 import { useState } from 'react';
 import Login from './Login';
+import Registro from './registro';
 import axios from 'axios';
+import { useStore } from 'react-redux';
+import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
 
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
 
-    /*
-        Session = {
-            user: 20192164A 
-            type: 'Profesor'/'Alumno'
-        }
 
-    */
+    
+    const store = useStore();
 
 
     const initSession = function(){
         axios.get('/login/getSession').then(function(response){
-            console.log(response.data);
             setSession(response.data);
-            if(response.data.logged != null) setLogged(response.data.logged);
-            //Dispatch
+            store.dispatch(startSession(response.data));
+            if(response.data.logged != null) setLogged(response.data.logged);            
         });   
+        
+
     };
     const handleLogout = function (){
         axios.get('/login/endSession').then(()=>{
@@ -57,7 +57,16 @@ export default function Principal() {
     return (
         <div>
             {!logged? 
-            <Login initSession = {initSession}/>
+            <Router>
+            <Switch>
+                <Route exact path = "/" >
+                    <Login initSession = {initSession}/>
+                </Route>
+                <Route exact path = "/register" >
+                    <Registro initSession = {initSession}/>
+                </Route>
+            </Switch>
+            </Router>
             :
             <Router>
                 <ModuloInteraccion/>     
