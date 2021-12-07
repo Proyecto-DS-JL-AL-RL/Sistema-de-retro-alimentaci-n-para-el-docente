@@ -24,7 +24,9 @@ export default function PagClase(props) {
     const [idClase,setIdClase] = React.useState(useParams().idClase);
     const [clase,setClase] = React.useState({titulo : ''});
 
+    
     const store = useStore();
+    //session = asdparams.session
     const session = useStore().getState().session;
     //store = useStore()
 

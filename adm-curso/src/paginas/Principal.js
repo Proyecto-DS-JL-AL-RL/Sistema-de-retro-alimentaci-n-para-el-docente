@@ -30,7 +30,7 @@ export default function Principal() {
     const [session,setSession] = useState({logged:false});
 
 
-    
+
     const store = useStore();
 
 
@@ -59,11 +59,11 @@ export default function Principal() {
             {!logged? 
             <Router>
             <Switch>
-                <Route exact path = "/" >
-                    <Login initSession = {initSession}/>
-                </Route>
                 <Route exact path = "/register" >
                     <Registro initSession = {initSession}/>
+                </Route>
+                <Route>
+                    <Login initSession = {initSession}/>
                 </Route>
             </Switch>
             </Router>

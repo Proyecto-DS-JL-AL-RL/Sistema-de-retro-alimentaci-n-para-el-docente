@@ -3,7 +3,7 @@ import "./registro.css";
 import Header from '../componentes/Header';
 import "../componentes/moduloRetroalimentacion/generales/general.css";
 import axios from 'axios';
-
+import { useHistory } from 'react-router';
 
 export default function Registro(props) {
     const [username,setUsername] = React.useState("");
@@ -15,7 +15,7 @@ export default function Registro(props) {
     const [showMessage,setShowMessage] = React.useState(false);
     const [message,setMessage] = React.useState("")
     const initSession = props.initSession;
-
+    let history = useHistory();
 
 
     const checkInput = function(){
@@ -38,7 +38,27 @@ export default function Registro(props) {
     
     const sendUserPass = function(){
         if(checkInput()){
-            setMessage('Enviado correctamente');
+            axios.post('/login/register',
+            {user : {
+                codigo: username,
+                nombre: nombre,
+                apellido:apellido,
+                correo:correo,
+                condicion: 'Profesor'
+            },
+            password:password            
+            }).then(function(response){
+                const body = response.data;
+                if(body.accepted){
+                    //console.log(body);
+                    setShowMessage(true);
+                    setMessage(body.message);
+                    history.push('/');
+                }else{
+                    setShowMessage(true);
+                    setMessage(body.message);                    
+                }
+            });
             console.log('Enviando ',username,password,nombre,apellido,correo,password2);
         }        
     };
@@ -88,8 +108,13 @@ export default function Registro(props) {
                     onChange = {(e)=>{setPassword2(e.target.value)}}/>
                 </div>
 
-                <div id = "RegsendButton">
-                    <button className = "confirmButton" onClick = {sendUserPass}>Login</button>
+                <div className = "ButtonsReg">
+                <div className = "RegsendButton">
+                    <button className = "confirmButton" onClick = {sendUserPass}>Enviar</button>
+                </div>
+                <div className = "RegsendButton">
+                    <button className = "confirmButton" onClick = {()=>{history.push('/');}}>Atras</button>
+                </div>
                 </div>
             </div>         
             <Header/>

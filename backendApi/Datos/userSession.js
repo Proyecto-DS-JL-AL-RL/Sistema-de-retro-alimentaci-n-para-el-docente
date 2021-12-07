@@ -57,6 +57,33 @@ var savePassword = async function (userIdent,password){
     security.create({idUser: saveUserId._id.toString() , hashedPassword :saltHash});
 }
 
+
+var registerUser = async function(userParam,password){
+    //console.log(userParam);
+    const saveUser = await user.findOne({codigo: userParam.codigo}).exec().catch(err=>console.log(err));
+    if(saveUser){
+        return {
+            accepted: false,
+            message: "Este codigo ya esta en uso"
+        }
+    }
+
+    user.create({
+        codigo: userParam.codigo ,
+        nombre: userParam.nombre,
+        apellido:userParam.apellido,
+        correo:userParam.correo,
+        condicion: userParam.condicion,
+        edad: 20
+    }).then(function(){
+        savePassword(userParam.codigo,password);
+    });
+    return {
+        accepted: true,
+        message: "Registro realizado con exito"
+    };
+}
+
 var getSession = async function(request){
     if (request.session.userInfo){
         const userInfo = request.session.userInfo;
@@ -79,3 +106,4 @@ module.exports.checkUser = checkUser;
 module.exports.savePassword = savePassword;
 module.exports.getSession = getSession;
 module.exports.endSession = endSession;
+module.exports.registerUser = registerUser;
