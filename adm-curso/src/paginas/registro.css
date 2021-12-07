@@ -1,0 +1,93 @@
+#loginTittle{
+    position:absolute;
+    width: 100%;
+    font-size: xx-large;
+    font-weight: 700;
+    text-align: center;
+    top: 25vh;
+}
+
+#messageReg{
+    position:absolute;
+    width: 100%;
+    font-size: large;
+    font-weight: 600;
+    text-align: center;
+    top: 30vh;
+    color:rgb(255, 75, 75);
+}
+
+#LoginContainer{
+    display: flex;
+    flex-direction: column;
+    left:50vw;
+    position:absolute;
+    margin-top: 15vh;
+    top: 18vh;
+    width: 100vw;
+    height: 50vh;
+    margin-left: -50vw;
+    align-content:center;
+    align-items: center;
+}
+
+.cont{
+    display:flex;
+    width: 100vw;
+    flex-direction: row;
+    font-weight: 1000;
+    font-size: x-large;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.labelP{
+    position:relative;
+    width: 180px;
+    height:20px;
+}
+
+.RInput{
+    border-radius: 10px;
+    font-weight: 400;
+    width: 250px;
+    height: 20px;
+    bottom: 0;
+    font-size: large;
+}
+.ButtonsReg{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.RegsendButton{
+    font-weight: 1000;
+    font-size: x-large;
+    margin-top: 30px;
+    width: 70px;
+    height: 35px;
+}
+
+@media (max-height: 600px){
+    #loginTittle{
+        position:absolute;
+        width: 100%;
+        font-size: xx-large;
+        font-weight: 700;
+        text-align: center;
+        top: 20vh;
+    }
+    #messageReg{
+            position:absolute;
+            width: 100%;
+            font-size: large;
+            font-weight: 600;
+            text-align: center;
+            top: 28vh;
+            color:rgb(255, 75, 75);
+        }
+
+
+}

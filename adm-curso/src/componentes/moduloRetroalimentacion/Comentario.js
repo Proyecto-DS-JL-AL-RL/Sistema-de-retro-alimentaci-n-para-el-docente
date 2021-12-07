@@ -13,10 +13,9 @@ class Comentario extends  React.Component {
         };        
       };
     
-    crearClase = function(){
-        console.log('Xd');
-
-    };
+      componentDidMount(){
+        //console.log('Comentario',this.props.comentario);
+    }
 
     render() {
         return ( 

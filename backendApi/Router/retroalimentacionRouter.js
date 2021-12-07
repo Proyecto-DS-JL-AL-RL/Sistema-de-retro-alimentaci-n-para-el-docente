@@ -4,7 +4,7 @@ var retComentario = require('../Datos/Retroalimentacion/RetComentarios');
 var RetForm = require("../Datos/Retroalimentacion/RetForms");
 const express = require("express")
 const router = express.Router();
-var {Alumno,Curso} = require('../Esquemas/Retroalimentacion/prueba');
+
 
 
 router.get('/getClass/:idClass',async function(req,res){
@@ -16,25 +16,30 @@ router.get('/getListClass/:idCourse',async function(req,res){
     let resp = await retClasses.getListClass(req.params.idCourse);
     res.send(resp);
 });
+
+router.post('/createClass/:idCourse',async function(req,res){
+    let resp = await retClasses.createClass(req.params.idCourse,req);
+    res.send(resp);
+});
 /*
 router.get('/getClass/:idClass',async function(req,res){
     let resp = await retClasses.getClass();
     res.send(resp);
 });
 
-router.get('/getClass/:idClass',async function(req,res){
-    let resp = await retClasses.getClass();
+*/
+router.post('/createCommentary',async function(req,res){
+    let resp = await retComentario.createCommentary(req.body);
     res.send(resp);
 });
 
-*/
 
 router.get('/getComentaryView/:idComentary',async function(req,res){
     let resp = await retComentario.getCommentaryView(req.params.idComentary);
     res.send(resp);
 });
-router.get('/getComentaryList/:idClass',async function(req,res){
-    let resp = await retComentario.getCommentaryList(req.params.idClass);
+router.get('/getComentaryList/:idClass/:param',async function(req,res){
+    let resp = await retComentario.getCommentaryList(req.params.idClass,req.params.param);
     res.send(resp);
 });
 

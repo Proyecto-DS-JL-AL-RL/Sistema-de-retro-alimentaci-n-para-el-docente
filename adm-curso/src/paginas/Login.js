@@ -3,7 +3,7 @@ import "./login.css";
 import Header from '../componentes/Header';
 import "../componentes/moduloRetroalimentacion/generales/general.css";
 import axios from 'axios';
-
+import { useHistory } from 'react-router';
 
 export default function Login(props) {
     const [username,setUsername] = React.useState("");
@@ -11,6 +11,7 @@ export default function Login(props) {
     const [showMessage,setShowMessage] = React.useState(false);
     const [message,setMessage] = React.useState("")
     const initSession = props.initSession;
+    const history = useHistory();
 
     const checkInput = function(){
         if (username === "" || password === ""){
@@ -24,8 +25,6 @@ export default function Login(props) {
     
     const sendUserPass = function(){
         if(checkInput()){
-            console.log('cookie',document.cookie);
-            console.log('Enviando ',username,password);
             axios.post('/login/checkLogin',{username : username, password:password}).then(function(response){
                 const body = response.data;
                 if(body.accepted){
@@ -61,6 +60,9 @@ export default function Login(props) {
                 </div>
                 <div id = "FormsendButton">
                     <button className = "confirmButton" onClick = {sendUserPass}>Login</button>
+                </div>
+                <div id = "FormRegisterButton">
+                    <button className = "confirmButton" onClick = {()=>{history.push('/register');}}>Registrar</button>
                 </div>
             </div>         
             <Header/>

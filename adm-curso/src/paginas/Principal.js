@@ -19,18 +19,29 @@ import ModuloInteraccion from './Interaccion/ModuloInteraccion.js';
 import PagClase from './pagClase';
 import { useState } from 'react';
 import Login from './Login';
+import Registro from './registro';
 import axios from 'axios';
+import { useStore } from 'react-redux';
+import { startSession } from '../feature/sessionSlice';
+import './Principal.css'
 
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
 
+
+
+    const store = useStore();
+
+
     const initSession = function(){
         axios.get('/login/getSession').then(function(response){
-            console.log(response.data);
             setSession(response.data);
-            if(response.data.logged != null) setLogged(response.data.logged);
+            store.dispatch(startSession(response.data));
+            if(response.data.logged != null) setLogged(response.data.logged);            
         });   
+        
+
     };
     const handleLogout = function (){
         axios.get('/login/endSession').then(()=>{
@@ -46,7 +57,16 @@ export default function Principal() {
     return (
         <div>
             {!logged? 
-            <Login initSession = {initSession}/>
+            <Router>
+            <Switch>
+                <Route exact path = "/register" >
+                    <Registro initSession = {initSession}/>
+                </Route>
+                <Route>
+                    <Login initSession = {initSession}/>
+                </Route>
+            </Switch>
+            </Router>
             :
             <Router>
                 <ModuloInteraccion/>     
@@ -67,6 +87,7 @@ export default function Principal() {
                         <VerEstadisticas/>
                         <Header NameCurso={'Estadisticas'}/>
                     </Route>
+                    
                     <Route path="/VerPerfil">
                         <VerPerfil/>
                     </Route>
@@ -86,10 +107,13 @@ export default function Principal() {
                         <PagClase session = {session}/>
                     </Route>
                 </Switch>          
-                <div>{session.type} {session.user}</div>     
-                <button onClick = {handleLogout}>LOOGOUT</button>
+                <div className = 'LoginState'>  
+                <button className = 'LoggoutButton' onClick = {handleLogout}>CerrarSession</button>
+                </div>
             </Router>            
             }
+
         </div>
     )
 }
+
