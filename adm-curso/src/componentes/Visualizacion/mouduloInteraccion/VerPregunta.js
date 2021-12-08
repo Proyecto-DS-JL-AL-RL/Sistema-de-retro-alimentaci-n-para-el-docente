@@ -3,6 +3,7 @@ import { useHistory,useParams } from 'react-router-dom';
 import './VerPregunta.css';
 import VerTipo1 from './VerRespuesta/VerTipo/VerTipo1';
 import { SocketContext } from '../../../context/SocketContext';
+import { useStore } from 'react-redux';
 function mensaje(tipo){
     if(tipo==1){
         return 'Describa con una palabra';
@@ -33,15 +34,16 @@ export default function VerPregunta() {
     const [pregunta,setPregunta] = useState({});
     const [content,setContent] = useState('');
     const {socket} = useContext(SocketContext);
+    const store = useStore();
     useEffect(async () => {
         const res = await fetch('/question/'+params.idPregunta);
         const question = await res.json();
-        console.log(question);
+        
         setPregunta(question);
     }, [params])
     
     const enviarRespuesta = async ()=>{
-        const res = await fetch('/answer/'+ params.idPregunta,{
+        /*const res = await fetch('/answer/'+ params.idPregunta,{
             method:'POST',
             body: JSON.stringify({
                 content
@@ -51,9 +53,12 @@ export default function VerPregunta() {
                 'Content-Type': 'application/json'
             }
         });
-        const answer = await res.json();
-
-        socket.emit('newAnswer',answer);
+        const answer = await res.json();*/
+        const answer = {
+            user: store.getState().session.user,
+            content
+        }
+        socket.emit('newAnswer',answer,params.idPregunta);
         history.push('/VerRespuesta/'+params.idPregunta);
     }
     const handletipo2 = (e) =>{

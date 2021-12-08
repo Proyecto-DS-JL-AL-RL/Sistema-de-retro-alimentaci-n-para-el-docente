@@ -29,6 +29,7 @@ export default function VerRespuesta() {
     const params = useParams();
     const [pregunta,setPregunta] = useState({});
     const [respuestas,setRespuestas] = useState([]);
+    const [dato,setDato] = useState({});
     useEffect(async () => {
         const res = await fetch('/QA/'+params.idPregunta);
         const question = await res.json();
@@ -39,10 +40,12 @@ export default function VerRespuesta() {
     
     useEffect(()=>{
         socket.on('newAnswer',newAnswer =>{
-            //console.log(newAnswer,"XD")
-            setRespuestas([...respuestas,newAnswer]);
+            setDato(newAnswer);
         })
-    })
+    },[socket])
+    useEffect(()=>{
+        setRespuestas([...respuestas,dato]);
+    },[dato])
     return (
         <div className="ctnVerRespuesta" >
             <div className="ctnPregunta">

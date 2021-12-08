@@ -31,7 +31,7 @@ export default function ListQuestion() {
         }
     },[socket]);
     useEffect(()=>{
-        setQuestions([dato,...questions]);
+        setQuestions([dato._id,...questions]);
     },[dato])
     return (
         <>

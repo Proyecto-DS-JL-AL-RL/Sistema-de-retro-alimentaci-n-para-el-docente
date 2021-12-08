@@ -1,4 +1,4 @@
-const {PreguntasSesion,newQuestion} = require('../Controllers/sockets');
+const {PreguntasSesion,newQuestion,newAnswer} = require('../Controllers/sockets');
 class Sockets{
     constructor(io){
         this.io = io;
@@ -14,6 +14,12 @@ class Sockets{
                 socket.emit('allQuestion', question);
                 socket.broadcast.emit('allQuestion', question);
             })
+            socket.on('newAnswer',async (data,idQuestion)=>{
+                const answer = await newAnswer(data,idQuestion);
+                socket.emit('newAnswer',answer);
+                socket.broadcast.emit('newAnswer',answer);
+            });
+            
         })
     }
 }
