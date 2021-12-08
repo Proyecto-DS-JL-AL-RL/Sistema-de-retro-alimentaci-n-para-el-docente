@@ -34,7 +34,7 @@ router.get('/question/:id_question', async (req,res)=>{
     const idQuestion = req.params.id_question;
     const question = await Question.findById(idQuestion);
     res.json(question);
-})
+}) 
 router.post('/question/:id_sesion',async (req,res)=>{
     const idSesion = req.params.id_sesion;
     const {content,type,options} = req.body;
@@ -65,7 +65,9 @@ router.get('/answer',async (req, res)=>{
 });
 router.get('/QA/:id_question',async (req, res) =>{
     const idQuestion = req.params.id_question;
-    const question =  await Question.findById(idQuestion).populate('answers');
-    res.json(question);
+    const question =  await Question.findById(idQuestion);
+    const answers = await Answer.find({question:idQuestion}).populate('user',['codigo','nombre','apellido']);
+    console.log(answers[answers.length-1]);
+    res.json({question,answers});
 });
 module.exports = router;

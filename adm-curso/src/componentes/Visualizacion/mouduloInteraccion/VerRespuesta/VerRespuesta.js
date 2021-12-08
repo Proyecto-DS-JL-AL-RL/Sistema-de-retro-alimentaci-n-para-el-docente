@@ -32,9 +32,9 @@ export default function VerRespuesta() {
     const [dato,setDato] = useState({});
     useEffect(async () => {
         const res = await fetch('/QA/'+params.idPregunta);
-        const question = await res.json();
-        console.log(question);
-        setRespuestas(question.answers || []);
+        const {question,answers} = await res.json();
+        //console.log(question);
+        setRespuestas(answers || []);
         setPregunta(question);
     }, [params]);
     

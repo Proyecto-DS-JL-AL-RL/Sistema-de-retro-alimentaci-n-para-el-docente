@@ -38,7 +38,6 @@ export default function VerPregunta() {
     useEffect(async () => {
         const res = await fetch('/question/'+params.idPregunta);
         const question = await res.json();
-        
         setPregunta(question);
     }, [params])
     

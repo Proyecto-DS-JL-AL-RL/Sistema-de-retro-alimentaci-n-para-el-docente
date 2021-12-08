@@ -22,15 +22,19 @@ const newAnswer = async (data,idQuestion) =>{
     
     try{
         const user = await User.find({codigo:data.user}).exec(); 
+        const idUser = user._id;
+        console.log(user._id);
         const answer = new Answer({
             question: idQuestion,
-            user:user._id,
+            user:user[0],
             content : data.content
         });
         const question = await Question.findByIdAndUpdate(idQuestion,{$push : {answers:answer}});
         await answer.save();
         await question.save();
-        return answer;
+        const ans = await answer.populate('user',['codigo','nombre','apellido']);
+        console.log(ans);
+        return ans;
     }
     catch (error){
         console.log('error',error)

@@ -24,10 +24,11 @@ export default function RespuestaPorAlumno(props) {
                 </tr>
             </thead>
             <tbody className="tcuerpo">
+                {console.log(props.answers)}
                 {props.answers.map((e,i)=>{
                     return <tr className="contItem" key={e._id}>
                         <td>{i+1}</td>
-                        <td>{e._id}</td>
+                        <td>{e.user?e.user.nombre +' ' +e.user.apellido:'Desconocido'}</td>
                         <td>{e.content}</td>
                     </tr>
                 })}
