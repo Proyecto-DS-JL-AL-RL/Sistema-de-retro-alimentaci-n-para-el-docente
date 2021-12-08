@@ -1,16 +1,19 @@
-import React from 'react'
-import {useState} from 'react';
+import React,{useContext,useState} from 'react'
 import './estiloPreguntas.css'
 import {tipos,alterIni} from './Datos.js';
 import ResponderPregunta from './ResponderPregunta';
 import CrearAlternativas from './CrearAlternativas';
 import { useHistory } from 'react-router-dom';
+import { SocketContext } from '../../../context/SocketContext';
 export default function CrearPregunta() {
     const history = useHistory();
     const [pregunta,setPregunta] = useState('');
     const [archivo,setArchivo] = useState(false);
     const [tipo,setTipo] = useState(3);
     const [alternativas,setAlternativas] = useState(alterIni);
+    const {socket} = useContext(SocketContext);
+    
+    
     const changeAlternativas= (alt) =>{
         setAlternativas(alt);
     }
@@ -23,7 +26,15 @@ export default function CrearPregunta() {
     const changeTipo = (e) =>{
         setTipo(e.target.id);
     }
-    function verRespuesta(){
+    const crearPregunta = async () =>{
+        const dataQuestion = {
+            content: pregunta,
+            tipo:tipo,
+            options : tipo ===3? alternativas:[],
+            file:archivo,
+            acertada:0
+        }
+        socket.emit('newQuestion',dataQuestion);
         history.push("/VerRespuesta")
     }
     return (
@@ -59,7 +70,7 @@ export default function CrearPregunta() {
                     <label className="check1lbl unselect" htmlFor="checkarchivo">
                         AgregarArchivo
                     </label>
-                    <button className="btnCrear" onClick={verRespuesta}>Crear</button>
+                    <button className="btnCrear" onClick={crearPregunta}>Crear</button>
                 </div>
                 
                 

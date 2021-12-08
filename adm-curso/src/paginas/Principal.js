@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useContext } from 'react'
 import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
@@ -24,11 +24,12 @@ import axios from 'axios';
 import { useStore } from 'react-redux';
 import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
+import { SocketContext } from '../context/SocketContext';
 
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
-
+    const {online} = useContext(SocketContext);
 
 
     const store = useStore();
@@ -55,7 +56,10 @@ export default function Principal() {
     },[]);
 
     return (
+        
         <div>
+            <h1>hola {online?'online':'offline'}</h1>
+            
             {!logged? 
             <Router>
             <Switch>

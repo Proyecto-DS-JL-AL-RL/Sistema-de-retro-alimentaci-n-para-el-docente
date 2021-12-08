@@ -17,6 +17,11 @@ router.get('/question',async (req,res)=>{
     const question = await Question.find();
     res.json(question);
 })
+router.get('/questions/:id_sesion', async (req,res) =>{
+    const idSesion = req.params.id_sesion;
+    const sesion = await Sesion.findById(idSesion);
+    res.json(sesion.questions);
+})
 router.post('/question/:id_sesion',async (req,res)=>{
     const idSesion = req.params.id_sesion;
     const {content,type,options} = req.body;
