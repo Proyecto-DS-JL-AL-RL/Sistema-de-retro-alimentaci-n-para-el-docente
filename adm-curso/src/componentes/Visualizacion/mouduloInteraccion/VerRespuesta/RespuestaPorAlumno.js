@@ -1,11 +1,15 @@
 import React,{useState,useEffect} from 'react'
+/*
 import { respuestaAlumno } from '../VerEstadisticas/DatosRA';
 import { palabras } from './Tipos/DatosRespuesta';
-import { frases } from './Tipos/DatosRespuesta';
+import { frases } from './Tipos/DatosRespuesta';*/
 export default function RespuestaPorAlumno(props) {
-    const [tipo,setTipo] = useState(props.tipo);
     
-   
+    //const [respuestas,setPregunta] = useState(() => {return props.question.answers || []});
+    
+    useEffect(()=>{
+        console.log(props.answers);
+    },[])
         {console.log("XD",props.tipo)}
         
    
@@ -20,8 +24,22 @@ export default function RespuestaPorAlumno(props) {
                 </tr>
             </thead>
             <tbody className="tcuerpo">
+                {props.answers.map((e,i)=>{
+                    return <tr className="contItem" key={e._id}>
+                        <td>{i+1}</td>
+                        <td>{e._id}</td>
+                        <td>{e.content}</td>
+                    </tr>
+                })}
                 
-                {respuestaAlumno.map((e,i)=>{
+            </tbody>
+            
+
+        </table>
+    )
+}
+/*
+{respuestaAlumno.map((e,i)=>{
                 const rndInt = Math.floor(Math.random()*6);
                 const rndErr = Math.floor(Math.random()*(Math.min(rndInt,4)));
                 const vfa = Math.floor(Math.random()*2)===1?"V":"F";
@@ -37,9 +55,4 @@ export default function RespuestaPorAlumno(props) {
                         }</td>
                     </tr>
                 })}
-            </tbody>
-            
-
-        </table>
-    )
-}
+*/

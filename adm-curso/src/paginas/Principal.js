@@ -25,6 +25,7 @@ import { useStore } from 'react-redux';
 import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
 import { SocketContext } from '../context/SocketContext';
+import VerPregunta from '../componentes/Visualizacion/mouduloInteraccion/VerPregunta';
 
 export default function Principal() {
     const [logged,setLogged] = useState(false);
@@ -78,7 +79,7 @@ export default function Principal() {
                     <Route exact path="/">
                         <Inicio/>
                     </Route>
-                    <Route path="/VerRespuesta">
+                    <Route path="/VerRespuesta/:idPregunta">
                         <VerRespuesta/>
                         <Header NameCurso={'Respuesta'}/>
                     </Route>
@@ -91,7 +92,9 @@ export default function Principal() {
                         <VerEstadisticas/>
                         <Header NameCurso={'Estadisticas'}/>
                     </Route>
-                    
+                    <Route path="/VerPregunta/:idPregunta">
+                        <VerPregunta/>
+                    </Route>
                     <Route path="/VerPerfil">
                         <VerPerfil/>
                     </Route>

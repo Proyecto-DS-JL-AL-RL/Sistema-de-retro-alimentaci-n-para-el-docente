@@ -22,6 +22,19 @@ router.get('/questions/:id_sesion', async (req,res) =>{
     const sesion = await Sesion.findById(idSesion);
     res.json(sesion.questions);
 })
+router.get('/lastquestion/:id_sesion', async (req,res)=>{
+    const idSesion = req.params.id_sesion;
+    const sesion = await Sesion.findById(idSesion).populate('questions');
+    const questions = sesion.questions;
+
+    res.json(questions[questions.length-1]);
+
+})
+router.get('/question/:id_question', async (req,res)=>{
+    const idQuestion = req.params.id_question;
+    const question = await Question.findById(idQuestion);
+    res.json(question);
+})
 router.post('/question/:id_sesion',async (req,res)=>{
     const idSesion = req.params.id_sesion;
     const {content,type,options} = req.body;
@@ -49,5 +62,10 @@ router.get('/answer',async (req, res)=>{
     const answers = await Answer.find();
     
     res.json(answers);
+});
+router.get('/QA/:id_question',async (req, res) =>{
+    const idQuestion = req.params.id_question;
+    const question =  await Question.findById(idQuestion).populate('answers');
+    res.json(question);
 });
 module.exports = router;

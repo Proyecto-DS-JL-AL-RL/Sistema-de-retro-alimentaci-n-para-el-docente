@@ -5,6 +5,7 @@ import ResponderPregunta from './ResponderPregunta';
 import CrearAlternativas from './CrearAlternativas';
 import { useHistory } from 'react-router-dom';
 import { SocketContext } from '../../../context/SocketContext';
+import { useLocationStorage } from '../../../hook/useLocationStorage';
 export default function CrearPregunta() {
     const history = useHistory();
     const [pregunta,setPregunta] = useState('');
@@ -12,7 +13,7 @@ export default function CrearPregunta() {
     const [tipo,setTipo] = useState(3);
     const [alternativas,setAlternativas] = useState(alterIni);
     const {socket} = useContext(SocketContext);
-    
+    const [sesion,setSesion] = useLocationStorage('sesion',[]);
     
     const changeAlternativas= (alt) =>{
         setAlternativas(alt);
@@ -26,7 +27,8 @@ export default function CrearPregunta() {
     const changeTipo = (e) =>{
         setTipo(e.target.id);
     }
-    const crearPregunta = async () =>{
+    const crearPregunta = async (e) =>{
+        e.preventDefault();
         const dataQuestion = {
             content: pregunta,
             tipo:tipo,
@@ -35,7 +37,10 @@ export default function CrearPregunta() {
             acertada:0
         }
         socket.emit('newQuestion',dataQuestion);
-        history.push("/VerRespuesta")
+        const data  = await fetch('/lastquestion/'+sesion.id);
+        const res = await  data.json();
+        console.log(res);
+        history.push("/VerRespuesta/"+res._id);
     }
     return (
         <div className="ctnCont">
@@ -70,7 +75,7 @@ export default function CrearPregunta() {
                     <label className="check1lbl unselect" htmlFor="checkarchivo">
                         AgregarArchivo
                     </label>
-                    <button className="btnCrear" onClick={crearPregunta}>Crear</button>
+                    <button className="btnCrear" onClick={(e)=>crearPregunta(e)}>Crear</button>
                 </div>
                 
                 

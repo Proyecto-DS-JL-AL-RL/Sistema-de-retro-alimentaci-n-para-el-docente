@@ -1,0 +1,14 @@
+.container{
+    margin-top: var(--tamanoNav);
+    width: 80vw;
+    height:80vh;
+    background-color: var(--colorfondo);
+    color:var(--colortext);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 30px;
+}
+.ctnPreguntaAlumno{
+    text-align: left;
+}
