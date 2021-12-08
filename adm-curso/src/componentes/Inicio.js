@@ -13,12 +13,12 @@ import './Inicio.css'
 import VerPerfil from '../componentes/Perfil';
 import {Link} from 'react-router-dom';
 import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
-import test from './clases/clases'
+//import test from './clases/clases'
 import axios from 'axios';
-import { borderRadius } from '@mui/system';
+//import { borderRadius } from '@mui/system';
 
-let curso = test['cursos']
-let user = test['user']
+//let curso = test['cursos']
+//let user = test['user']
 function range(start, stop) {
   if (stop === undefined) {
     stop = start;
@@ -40,7 +40,7 @@ export default class Inicio  extends React.Component{
       super(props);
       this.state = {
         cursos:[],
-        esProfesor:user.getCondicion(), 
+        esProfesor:true,//user.getCondicion(), 
         cards:[]
       };
       //this.listofcurses()
@@ -48,29 +48,33 @@ export default class Inicio  extends React.Component{
   
       axios.post('/user/search', {codigo:this.props.iduser}).then((response) => {
                 let body = response.data;
-                if(body[0].condicion ==='Profesor'){
+                if(body[0].condicion === "Profesor"){
                   this.setState({esProfesor:true})
-                }else{
+                }
+                if(body[0].condicion === "Alumno"){
                   this.setState({esProfesor:false})
                 };
-        })
-      
-            
-    }
+                console.log(this.state.esProfesor)
+                if(this.state.esProfesor){
+                  axios.post('/curso/search', {IDProfe:this.props.iduser}).then((response) => {
+                    let body = response.data;
+                    this.setState({cursos:body})
+                    this.setState({cards:Array.from(range(1, this.state.cursos.length+1))})
+                  })
+                }else{
+                  axios.post('/curso/search', {alumnos:this.props.iduser}).then((response) => {
+                    let body = response.data;
+                    this.setState({cursos:body})
+                    this.setState({cards:Array.from(range(1, this.state.cursos.length+1))})
+                })      
+              }    
+        }) 
   
-    componentDidMount(){
-      axios.post('/curso/search', {IDProfe:this.props.iduser}).then((response) => {
-        let body = response.data;
-        this.setState({cursos:body})
-        this.setState({cards:Array.from(range(1, this.state.cursos.length+1))})
-    })
-
-  }
-
+}//?:null
   render(){
     return (
       <div>
-          <Header NameCurso={'Cursos'} userID={user} componenteMenu={this.state.esProfesor?<SelectedListaInicio/>:null} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
+          <Header NameCurso={'Cursos'} componenteMenu={<SelectedListaInicio condicion={this.state.esProfesor}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
         <div id="Cards">
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={4}>

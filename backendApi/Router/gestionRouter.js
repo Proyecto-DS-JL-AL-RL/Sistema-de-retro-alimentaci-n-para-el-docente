@@ -6,6 +6,7 @@ const router = express.Router();
 var {createCurso, findCurso, updateCurso, deleteCurso } = require('../Datos/Gestion/gCurso')
 var {createUser, findUser, updateUser, deleteUser} = require('../Datos/Gestion/gUser')
 var {crearNota, findNota, updateNota, deleteNota} = require('../Datos/Gestion/gNota');
+var {Registrar, BuscarToken} = require('../Datos/Gestion/gRegistro');
 
 router.post('/user/search', async (req,res)=>{
     const usr = await findUser(req.body);
@@ -58,7 +59,7 @@ router.post('/nota/:id/update', async (req,res)=>{
     res.json(nota);
 });
 
-router.delete('/curso/:idcurso/delete', async (req,res)=>{
+router.delete('/nota/:idcurso/delete', async (req,res)=>{
     await deleteNota(req.params.idcurso.toString());
     res.send('Se eliminó una nota')
 });
@@ -66,6 +67,15 @@ router.delete('/curso/:idcurso/delete', async (req,res)=>{
 router.post('/nota/create', async (req,res)=>{
     await crearNota(req.body);
     res.send('Se creo una nueva nota')
+})
+
+router.post('/registro/register', async (req,res)=>{
+    await Registrar(req.body);
+    res.send('Se creo un nuevo token')
+})
+router.post('/registro/buscar', async (req,res)=>{
+    const token = await BuscarToken(req.body);
+    return res.json(token);
 })
 
 
