@@ -15,6 +15,7 @@ import {Link} from 'react-router-dom';
 import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
 //import test from './clases/clases'
 import axios from 'axios';
+import { withRouter } from "react-router";  
 //import { borderRadius } from '@mui/system';
 
 //let curso = test['cursos']
@@ -35,46 +36,27 @@ function range(start, stop) {
 
 //<Header NameCurso={props.Inicio} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
 
-export default class Inicio  extends React.Component{
+class MaterialCurso  extends React.Component{
   constructor(props){
       super(props);
+      const id = this.props.match.params.id;
       this.state = {
-        cursos:[],
+        material:[],
         esProfesor:true,//user.getCondicion(), 
         cards:[]
       };
       //this.listofcurses()
       //this.cards = Array.from(range(1, this.state.cursos.length+1))
-  
-      axios.post('/user/search', {codigo:this.props.iduser}).then((response) => {
-                let body = response.data;
-                if(body[0].condicion === "Profesor"){
-                  this.setState({esProfesor:true})
-                }
-                if(body[0].condicion === "Alumno"){
-                  this.setState({esProfesor:false})
-                };
-                console.log(this.state.esProfesor)
-                if(this.state.esProfesor){
-                  axios.post('/curso/search', {IDProfe:this.props.iduser}).then((response) => {
+    axios.post('/material/search', {curso:id}).then((response) => {
                     let body = response.data;
-                    this.setState({cursos:body})
-                    this.setState({cards:Array.from(range(1, this.state.cursos.length+1))})
-                  })
-                }else{
-                  axios.post('/curso/search', {alumnos:this.props.iduser}).then((response) => {
-                    let body = response.data;
-                    this.setState({cursos:body})
-                    this.setState({cards:Array.from(range(1, this.state.cursos.length+1))})
-                })      
-              }    
+                    this.setState({material:body})
+                    this.setState({cards:Array.from(range(1, this.state.material.length+1))})
         }) 
   
 }//?:null
   render(){
     return (
       <div>
-          <Header NameCurso={'Cursos'} componenteMenu={<SelectedListaInicio condicion={this.state.esProfesor}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
         <div id="Cards">
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={4}>
@@ -94,15 +76,15 @@ export default class Inicio  extends React.Component{
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        {this.state.cursos[card-1].nombre} 
+                        {this.state.material[card-1].titulo} 
                       </Typography>
                       <Typography> 
-                      {this.state.cursos[card-1].descripcion} 
+                      {this.state.material[card-1].description} 
                       </Typography>
                     </CardContent>
                     <CardActions> 
-                      <Button  size="small"><Link to={"/VerCurso/"+this.state.cursos[card-1].codigo}>ver</Link></Button>
-                      {this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"+this.state.cursos[card-1].codigo}>Editar</Link></Button>:null}
+                      <Button  size="small"><Link to={"/VerCurso/"}>ver</Link></Button>
+                      {this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"}>Editar</Link></Button>:null}
                     </CardActions>
                   </Card>
                 </Grid>
@@ -115,3 +97,4 @@ export default class Inicio  extends React.Component{
   }
 }
 
+export default withRouter(MaterialCurso)

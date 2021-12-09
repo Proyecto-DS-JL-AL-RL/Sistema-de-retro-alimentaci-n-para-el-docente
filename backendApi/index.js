@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
@@ -11,6 +12,27 @@ const app = express();
 app.set('port', process.env.PORT || 4000);
 
 //Zona De middleware:
+const storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, './archivos')
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, file.originalname)
+    }
+})
+
+const upload = multer({storage});
+
+app.post('/uploadFile',  upload.single('archivo'), (req, res, next) => {
+    const file = req.file;
+    console.log(file);
+    if (!file) {
+      const error = new Error('No File')
+      error.httpStatusCode = 400
+      return next(error)
+    }
+      res.send(file.filename);
+})
 
 
 app.use(cors());

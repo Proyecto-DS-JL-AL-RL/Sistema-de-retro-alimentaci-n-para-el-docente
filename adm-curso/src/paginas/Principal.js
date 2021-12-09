@@ -3,15 +3,16 @@ import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
 
-import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
+//import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
 
 import EditarCurso from '../componentes/EditarCurso';
 import VerCurso from '../componentes/Curso'
 import VerPerfil from '../componentes/Perfil';
-import SubirNota from '../componentes/SubirNota'
+//import SubirNota from '../componentes/SubirNota'
 import Inicio from '../componentes/Inicio'
 import VerNotas  from  '../componentes/Notas'
-
+import NuevoCurso from '../componentes/NuevoCurso'
+import Registro from '../componentes/ResgistrarCurso'
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import Header from '../componentes/Header';
@@ -52,7 +53,7 @@ export default function Principal() {
                 <ModuloInteraccion/>     
                 <Switch>
                     <Route exact path="/">
-                        <Inicio/>
+                        <Inicio iduser={session.user}/>
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
@@ -68,7 +69,7 @@ export default function Principal() {
                         <Header NameCurso={'Estadisticas'}/>
                     </Route>
                     <Route path="/VerPerfil">
-                        <VerPerfil/>
+                        <VerPerfil idprofesor={session.user}/>
                     </Route>
                     <Route path = '/VerCurso/:id' component = {VerCurso} >
                         <VerCurso session = {session}/>
@@ -79,11 +80,17 @@ export default function Principal() {
                         <EditarCurso/>
                     </Route>
                     <Route path='/VerNotas/:nota' component = {VerNotas}>
-                        <VerNotas/>
+                        <VerNotas />
                     </Route>
 
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}>
                         <PagClase session = {session}/>
+                    </Route>
+                    <Route path='/NuevoCurso'>
+                        <NuevoCurso idprofesor={session.user}/>
+                    </Route>
+                    <Route path='/registrarse'>
+                        <Registro iduser = {session.user}/>
                     </Route>
                 </Switch>          
                 <div>{session.type} {session.user}</div>     

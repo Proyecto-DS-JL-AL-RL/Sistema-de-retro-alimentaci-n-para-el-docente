@@ -1,30 +1,23 @@
 import './Body.css';
 import React from 'react';
 
-import BasicTable from './componentesBasicos/TablaNotas'
+//import BasicTable from './componentesBasicos/TablaNotas'
 import test  from './clases/clases.js'
 import SubirMaterial from './SubirMaterial'
+import MaterialCurso from './Material'
 
 let user = test['user']
 
 
 
-class Body extends  React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            style:"table",
-            text:"texto",
-            show:false
-        }
-    }
-    render() {
-        return ( 
+export default function Body(props){
+    const [estado, setEstado ]= React.useState(false)
+    return ( 
         <div>
-            {user.getCondicion()?<button className="btn-curso" onClick={()=>{this.setState({show:!this.state.show})}} > Subir Material</button>:false}
-                {this.state.show?<SubirMaterial/>:false}
+            {console.log(props.tipo)}
+            {user.getCondicion()?<button className="btn-curso" onClick={()=>{setEstado(!estado)}} > Subir Material</button>:false}
+                {estado?<SubirMaterial/>:<MaterialCurso />}
         </div>
-        )}
+    )
 }
 
-export default Body
