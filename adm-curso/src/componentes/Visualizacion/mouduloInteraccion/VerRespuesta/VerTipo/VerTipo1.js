@@ -58,7 +58,7 @@ export default function VerTipo1(props) {
             {
                 alternativas.map(e=>{
                     return <div className='itmAlt'>
-                    <input className="txtAlt" type="text" value={e.cont} 
+                    <input className="txtAlt completeText" type="text" value={e.cont} 
                     onChange={(event)=>changeAlternativas(event,e.id)} id={e.id}/>
                     <button className="btnAlt" onClick={addAlternativa} id={e.id}>+</button>
                     <button className="btnAlt" onClick={(event)=>popAlternativa(event,e.id)} id={e.id}>-</button>

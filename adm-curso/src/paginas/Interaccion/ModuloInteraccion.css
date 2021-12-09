@@ -102,3 +102,7 @@
     overflow-y: auto;  
 
 }
+.pendientesCtn{
+    grid-row:2/5;
+    overflow-y: auto;
+}

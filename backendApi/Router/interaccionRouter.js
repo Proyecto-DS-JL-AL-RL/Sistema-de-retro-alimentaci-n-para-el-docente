@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router();
 const {Answer,Question,Sesion} = require("../Esquemas/Interaccion/interaction");
-
+const { verEstadisticas } = require("../Controllers/estadisticas");
 router.get('/sesion', async (req,res)=>{
     
     const sesions = await Sesion.find();
@@ -70,4 +70,10 @@ router.get('/QA/:id_question',async (req, res) =>{
     console.log(answers[answers.length-1]);
     res.json({question,answers});
 });
+router.get('/estadisticas/:idSesion',async (req,res) =>{
+    const idSesion = req.params.idSesion;
+    const estadisticas = await verEstadisticas(idSesion);
+    console.log(estadisticas);
+    res.json(estadisticas);
+})
 module.exports = router;

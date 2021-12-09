@@ -10,7 +10,7 @@ const QuestionSchema = new Schema({
     content: String,
     tipo: Number,
     options: [],
-    
+    correct: String,
     answers : [{type: Schema.Types.ObjectId, ref : 'Answer'}],
     sesion:{type:Schema.Types.ObjectId, ref: 'Sesion'}
 })

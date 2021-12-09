@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
-import { useHistory,useLocation } from "react-router-dom";
+import { useHistory,useLocation, useParams } from "react-router-dom";
 import {useLocationStorage} from "../../hook/useLocationStorage";
 import MostrarPreguntas from "./MostrarPreguntas";
 import ConfSesion from "./ConfSesion";
@@ -83,7 +83,7 @@ export default function Interaccion() {
 
     }
     function verEstadisticas(){
-        history.push("/VerEstadisticas");
+        history.push("/VerEstadisticas/"+sesion.id);
     }
 
     const verRespuesta = async()=>{
@@ -139,13 +139,15 @@ export default function Interaccion() {
                 </div>
                 <div className="containerAcesos">
                     <button onClick={otraPregunta}>Crear Pregunta</button>
-                    <button onClick={verEstadisticas}>VerEstadisticas</button>
+                    <button onClick={(e) => {e.preventDefault(); verEstadisticas()}}>VerEstadisticas</button>
                     <button onClick={(e)=>{e.preventDefault(); verRespuesta()}}>VerRespuesta</button>
                 </div>
             </div>}
             {tipoUser == usuarioTipo[1] && visible && <div className="contenido">
                 <div className="subctn">Preguntas Pendientes</div>
+                <div className="pendientesCtn">
                 <ListQuestion/>
+                </div>
             </div>}
             
         </div>

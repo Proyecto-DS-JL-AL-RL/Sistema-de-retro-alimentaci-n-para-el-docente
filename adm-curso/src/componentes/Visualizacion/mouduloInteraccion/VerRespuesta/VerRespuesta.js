@@ -13,6 +13,7 @@ import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import { useContext } from 'react';
 import { SocketContext } from '../../../../context/SocketContext';
+import { useStore } from 'react-redux';
 
 const pregunta = "¿Cuanto es 1 +1 ?";
 function answersToArray(respuestas){
@@ -30,6 +31,7 @@ export default function VerRespuesta() {
     const [pregunta,setPregunta] = useState({});
     const [respuestas,setRespuestas] = useState([]);
     const [dato,setDato] = useState({});
+    const store = useStore();
     useEffect(async () => {
         const res = await fetch('/QA/'+params.idPregunta);
         const {question,answers} = await res.json();
@@ -44,7 +46,9 @@ export default function VerRespuesta() {
         })
     },[socket])
     useEffect(()=>{
+        
         setRespuestas([...respuestas,dato]);
+        
     },[dato])
     return (
         <div className="ctnVerRespuesta" >
@@ -59,7 +63,8 @@ export default function VerRespuesta() {
                 {pregunta.tipo==4 && <RespuestaVF question = {pregunta} answers={respuestas}/>}
             </div>
             {
-                pregunta.tipo!=2 &&  <div className="rptaAlumno">
+                
+                store.getState().session.type==='Profesor' &&pregunta.tipo!==2 &&  <div className="rptaAlumno">
                     <RespuestaPorAlumno tipo={pregunta.tipo} answers={respuestas}/>
                 </div>
             }

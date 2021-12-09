@@ -55,11 +55,11 @@ export default function Principal() {
     useEffect(()=>{
         initSession();
     },[]);
-
+    //<h1>hola {online?'online':'offline'}</h1>
     return (
         
         <div>
-            <h1>hola {online?'online':'offline'}</h1>
+            
             
             {!logged? 
             <Router>
@@ -88,12 +88,13 @@ export default function Principal() {
                         <Header NameCurso={'Crear Pregunta'}/>
                     </Route>                    
 
-                    <Route path="/VerEstadisticas">
+                    <Route path="/VerEstadisticas/:idSesion">
                         <VerEstadisticas/>
                         <Header NameCurso={'Estadisticas'}/>
                     </Route>
                     <Route path="/VerPregunta/:idPregunta">
                         <VerPregunta/>
+                        <Header NameCurso={'VerPregunta'}/>
                     </Route>
                     <Route path="/VerPerfil">
                         <VerPerfil/>

@@ -11,13 +11,15 @@ class Sockets{
             //socket.emit("question-default",await PreguntasSesion(this.sesion));
             socket.on('newQuestion',  async (data)=>{
                 const question = await  newQuestion(data,this.sesion);
-                socket.emit('allQuestion', question);
-                socket.broadcast.emit('allQuestion', question);
+                //socket.emit('allQuestion', question);
+                //socket.broadcast.emit('allQuestion', question);
+                this.io.emit('allQuestion', question);
             })
             socket.on('newAnswer',async (data,idQuestion)=>{
                 const answer = await newAnswer(data,idQuestion);
-                socket.emit('newAnswer',answer);
-                socket.broadcast.emit('newAnswer',answer);
+                this.io.emit('newAnswer',answer);
+                
+                //socket.broadcast.emit('newAnswer',answer);
             });
             
         })

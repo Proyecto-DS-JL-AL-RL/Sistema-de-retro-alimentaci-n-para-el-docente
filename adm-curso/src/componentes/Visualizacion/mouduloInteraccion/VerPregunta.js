@@ -3,6 +3,7 @@ import { useHistory,useParams } from 'react-router-dom';
 import './VerPregunta.css';
 import VerTipo1 from './VerRespuesta/VerTipo/VerTipo1';
 import { SocketContext } from '../../../context/SocketContext';
+
 import { useStore } from 'react-redux';
 function mensaje(tipo){
     if(tipo==1){
@@ -83,13 +84,13 @@ export default function VerPregunta() {
             {pregunta.tipo==1 && 
             <VerTipo1 handlePregunta={handlePregunta}/>}
             {pregunta.tipo==2 && 
-            <textarea className="itmform" type="text" placeholder="Ingresa tu Argumento" 
+            <textarea className="itmform completeText" type="text" placeholder="Ingresa tu Argumento" 
             value={content} onChange={(e)=>handletipo2(e)}></textarea>}
             {   
                 pregunta.tipo == 3 &&
                 aleatorio(pregunta.options).map((alt,i) =>{
                     return <>
-                    <div className='itmalt' onClick={()=>handleTipo3(i)} key = {i} value={i}>
+                    <div className={'itmalt '}  onClick={()=>handleTipo3(i)} key = {i} value={i}>
                         { alt.letra + ") " +alt.cont}</div></>
                 })
             }

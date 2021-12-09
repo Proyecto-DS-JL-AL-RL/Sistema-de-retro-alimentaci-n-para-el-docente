@@ -7,6 +7,8 @@ const PreguntasSesion = async (idSesion)=>{
 }
 const newQuestion = async (data,idSesion) =>{
     //const {content,tipo,options,file,acertada} = data;
+    
+    
     const question = new Question({
        content: data.content,
        tipo : data.tipo,
