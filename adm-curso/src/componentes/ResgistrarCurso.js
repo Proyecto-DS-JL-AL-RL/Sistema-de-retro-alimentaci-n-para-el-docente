@@ -14,7 +14,7 @@ axios.post('/curso/'+body[0].codigoCurso+'/update', [{codigo:body[0].codigoCurso
                                             alumnos:curso[0].alumnos.push(props.iduser)
                                         }])
 */
-export default function Registro(props){
+export default function RegistroCurso(props){
     const [disable, setDiseable] = useState(false)
     const [tokCurso, setTokCurso] = useState('')
     return (

@@ -25,8 +25,7 @@ const upload = multer({storage});
 
 app.post('/uploadFile',  upload.single('archivo'), (req, res, next) => {
     const file = req.file;
-    console.log(file);
-    if (!file) {
+        if (!file) {
       const error = new Error('No File')
       error.httpStatusCode = 400
       return next(error)
@@ -34,6 +33,10 @@ app.post('/uploadFile',  upload.single('archivo'), (req, res, next) => {
       res.send(file.filename);
 })
 
+app.get('/getFile/:id', function(req, res) {
+    res.send(__dirname)
+    res.sendFile(req.params.id, {root:path.join(__dirname+'/archivos')});
+});
 
 app.use(cors());
 app.use(morgan('dev'));

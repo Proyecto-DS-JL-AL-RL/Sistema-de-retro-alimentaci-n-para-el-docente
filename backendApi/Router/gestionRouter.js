@@ -7,7 +7,7 @@ var {createCurso, findCurso, updateCurso, deleteCurso } = require('../Datos/Gest
 var {createUser, findUser, updateUser, deleteUser} = require('../Datos/Gestion/gUser')
 var {crearNota, findNota, updateNota, deleteNota} = require('../Datos/Gestion/gNota');
 var {Registrar, BuscarToken} = require('../Datos/Gestion/gRegistro');
-var {createMaterial, findmaterial} = require('../Datos/Gestion/gMaterial');
+var {createMaterial, findmaterial, updateMaterial, deleteMaterial} = require('../Datos/Gestion/gMaterial');
 
 router.post('/user/search', async (req,res)=>{
     const usr = await findUser(req.body);
@@ -88,6 +88,17 @@ router.post('/material/search', async (req,res)=>{
     const mat = await findmaterial(req.body);
     return res.json(mat);
 });
+
+router.post('/material/update', async (req,res)=>{
+    const mat = await updateMaterial(req.body[0], req.body[1]);
+    res.json(mat);
+});
+
+router.delete('/material/:idcurso/delete', async (req,res)=>{
+    await deleteMaterial(req.params.idcurso.toString());
+    res.send('Se eliminó un material')
+});
+
 
 /*
 [

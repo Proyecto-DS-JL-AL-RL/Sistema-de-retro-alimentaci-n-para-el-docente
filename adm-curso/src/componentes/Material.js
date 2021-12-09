@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Header from './Header';
-import SelectedListIncio from './componentesBasicos/MenuInicio.js';
+//import SelectedListIncio from './componentesBasicos/MenuInicio.js';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,9 +10,9 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import './Inicio.css'
-import VerPerfil from '../componentes/Perfil';
+//import VerPerfil from '../componentes/Perfil';
 import {Link} from 'react-router-dom';
-import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
+//import SelectedListaInicio from '../componentes/componentesBasicos/ListaIncio';
 //import test from './clases/clases'
 import axios from 'axios';
 import { withRouter } from "react-router";  
@@ -52,7 +52,6 @@ class MaterialCurso  extends React.Component{
                     this.setState({material:body})
                     this.setState({cards:Array.from(range(1, this.state.material.length+1))})
         }) 
-  
 }//?:null
   render(){
     return (
@@ -83,8 +82,9 @@ class MaterialCurso  extends React.Component{
                       </Typography>
                     </CardContent>
                     <CardActions> 
-                      <Button  size="small"><Link to={"/VerCurso/"}>ver</Link></Button>
-                      {this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"}>Editar</Link></Button>:null}
+                      <Button  size="small"><Link to={"/verMaterial/"+this.props.match.params.id}>ver</Link></Button>
+                      {this.props.type?<Button size="small"><Link to={"/EditarMaterial/"+this.state.material[card-1].file}>Editar</Link></Button>:null}
+                      {this.props.type?<Button onClick={()=>{axios.delete('/material/'+this.state.material[card-1]._id+'/delete')}} size="small">Eliminar</Button>:null}
                     </CardActions>
                   </Card>
                 </Grid>

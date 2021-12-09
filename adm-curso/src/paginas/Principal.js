@@ -12,7 +12,7 @@ import VerPerfil from '../componentes/Perfil';
 import Inicio from '../componentes/Inicio'
 import VerNotas  from  '../componentes/Notas'
 import NuevoCurso from '../componentes/NuevoCurso'
-import Registro from '../componentes/ResgistrarCurso'
+import RegistroCurso from '../componentes/ResgistrarCurso'
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import Header from '../componentes/Header';
@@ -21,8 +21,10 @@ import PagClase from './pagClase';
 import { useState } from 'react';
 import Login from './Login';
 import Registro from './registro';
+import EditarMaterial from '../componentes/EditarMaterial'
 import axios from 'axios';
 import { useStore } from 'react-redux';
+import VerMaterial from '../componentes/verMaterial';
 import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
 
@@ -103,7 +105,6 @@ export default function Principal() {
                     <Route path='/VerNotas/:nota' component = {VerNotas}>
                         <VerNotas />
                     </Route>
-
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}>
                         <PagClase session = {session}/>
                     </Route>
@@ -111,7 +112,13 @@ export default function Principal() {
                         <NuevoCurso idprofesor={session.user}/>
                     </Route>
                     <Route path='/registrarse'>
-                        <Registro iduser = {session.user}/>
+                        <RegistroCurso iduser = {session.user}/>
+                    </Route>
+                    <Route path='/verMaterial/:id' component={VerMaterial}>
+                        <VerMaterial/>
+                    </Route>
+                    <Route path='/EditarMaterial/:idFile' component={EditarMaterial}>
+                        <EditarMaterial/>
                     </Route>
                 </Switch>          
                 <div className = 'LoginState'>  

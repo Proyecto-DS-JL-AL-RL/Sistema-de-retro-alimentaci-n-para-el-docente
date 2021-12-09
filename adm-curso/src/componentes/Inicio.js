@@ -39,6 +39,7 @@ export default class Inicio  extends React.Component{
   constructor(props){
       super(props);
       this.state = {
+        id:'',
         cursos:[],
         esProfesor:true,//user.getCondicion(), 
         cards:[]
@@ -103,6 +104,7 @@ export default class Inicio  extends React.Component{
                     <CardActions> 
                       <Button  size="small"><Link to={"/VerCurso/"+this.state.cursos[card-1].codigo}>ver</Link></Button>
                       {this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"+this.state.cursos[card-1].codigo}>Editar</Link></Button>:null}
+                      {this.state.esProfesor?<Button onClick={()=>{axios.delete('/curso/'+this.state.cursos[card-1]._id+'/delete')}} size="small">Eliminar</Button>:null}
                     </CardActions>
                   </Card>
                 </Grid>
