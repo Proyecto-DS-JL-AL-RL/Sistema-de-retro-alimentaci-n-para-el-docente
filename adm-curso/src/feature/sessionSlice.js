@@ -13,11 +13,11 @@ export const sessionSlicer = createSlice({
     reducers:{
         startSession: (state,action) =>{
             state.session = action.payload;
-            console.log('from redus', state.session);
+            //console.log('from redus', state.session);
         },
         setCourse: (state,action)=>{
             state.curso = action.payload;
-            console.log('from redux course',state.session.course)
+            //console.log('from redux course',state.session.course)
         },
     },
 });

@@ -8,35 +8,38 @@ class CrearFormP extends  React.Component {
         this.state = {
             titulo: '',
             descripcion : '',
-            opciones : ['']
-        };        
+            alternativas : [{descripcion : '',percent: 0}]
+        };     
+        this.update = function(){
+            this.props.update(this.state);
+        };   
         this.replaceOpt = function(index,elem){
-            let arr = this.state.opciones;
-            console.log(elem);
-            arr[index] = elem;
-            console.log(arr);
-            this.setState({opciones:arr});
+            let arr = this.state.alternativas;
+            //console.log(elem);
+            arr[index].descripcion = elem;
+            //console.log(arr);
+            this.setState({alternativas:arr},this.update);
         };
         this.addOpt = function(){
-            let arr = this.state.opciones;
-            arr.push('');
-            this.setState({opciones: arr});
-            console.log(this.state.opciones);
+            let arr = this.state.alternativas;
+            arr.push({descripcion : '',percent: 0});
+            this.setState({alternativas: arr},this.update);
+            //console.log(this.state.alternativas);
         };
         this.delElem = function(index){
-            let arr = this.state.opciones;
+            let arr = this.state.alternativas;
             arr.splice(index,1)
-            this.setState({opciones: arr});
+            this.setState({alternativas: arr},this.update);
         };
         this.sendOpt = function(){
             let arr=[];
-            for (let i = 0;i<this.state.opciones.length;i++){
-                if (this.state.opciones[i]!==''){
-                    arr.push(this.state.opciones[i]);
-                    console.log(arr);
+            for (let i = 0;i<this.state.alternativas.length;i++){
+                if (this.state.alternativas[i].descripcion!==''){
+                    arr.push(this.state.alternativas[i]);
+                    //console.log(arr);
                 }
             }
-            this.setState({opciones:arr});
+            this.setState({alternativas:arr},this.update);
         };
     };
     
@@ -46,19 +49,19 @@ class CrearFormP extends  React.Component {
         <div id = "CFPContainer">
             <div className = "frameContain">
             <div id = "CFPregTitulo">
-                Titulo : <input className = "defInput" value = {this.state.titulo} onChange = {(e)=>{this.setState({titulo:e.target.value})}}/>
+                Titulo : <input className = "defInput" value = {this.state.titulo} onChange = {(e)=>{this.setState({titulo:e.target.value},this.update)}}/>
             </div>
             <div id = "CFPreglDesc">
-                Descripcion: <textarea className = "defInput" value = {this.state.descripcion} onChange = {(e)=>{this.setState({descripcion:e.target.value})}}/>
+                Descripcion: <textarea className = "defInput" value = {this.state.descripcion} onChange = {(e)=>{this.setState({descripcion:e.target.value},this.update)}}/>
             </div>
 
             <div id = "CFPopciones">
                 <fieldset>
                 <legend>Alternativas</legend>
-                    {   this.state.opciones.map(function(opcion,index){
+                    {   this.state.alternativas.map(function(opcion,index){
                         return <div key = { index } className = 'CFPInputOpt'>
                                     <div className = 'CFPInput'>
-                                        <input className = "defInput" value = {this.state.opciones[index]} onChange = {(e)=>{this.replaceOpt(index,e.target.value)}}/>
+                                        <input className = "defInput" value = {this.state.alternativas[index].descripcion} onChange = {(e)=>{this.replaceOpt(index,e.target.value)}}/>
                                     </div>                                    
                                     <div className = 'CFPDelButton'><button onClick ={()=>{this.delElem(index)}} className = 'closeButton'>X</button></div>
                                 </div>
@@ -69,7 +72,7 @@ class CrearFormP extends  React.Component {
                     <button onClick = {()=>{this.addOpt()}} className = 'confirmButton'>+</button>
                 </div>
                 <div id = 'CFPConfirm'>
-                    <button onClick = {()=>{this.sendOpt()}} className = 'confirmButton'>Confirmar</button>
+                    <button onClick = {()=>{this.sendOpt()}} className = 'confirmButton'>Purgar</button>
                 </div>
             </div>
 

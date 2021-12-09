@@ -28,6 +28,19 @@ router.get('/getClass/:idClass',async function(req,res){
 });
 
 */
+router.get('/getFormList/:idClase',async function(req,res){
+    let resp = await RetForm.getFormList(req.params.idClase);
+    res.send(resp);
+});
+router.get('/getFormView/:idForm',async function(req,res){
+    let resp = await RetForm.getFormView(req.params.idForm);
+    res.send(resp);
+})
+router.post('/createForm/:idClase',async function(req,res){
+    let resp = await RetForm.createForm(req.body,req.params.idClase);
+    res.send(resp);
+});
+
 router.post('/createCommentary',async function(req,res){
     let resp = await retComentario.createCommentary(req.body);
     res.send(resp);

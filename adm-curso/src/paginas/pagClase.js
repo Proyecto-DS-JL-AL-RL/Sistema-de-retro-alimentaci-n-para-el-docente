@@ -59,7 +59,7 @@ export default function PagClase(props) {
         }else if (PCstate === 1){
             return <div className = 'pagMblListaAlumnos'><ListaComentario clase = {idClase} session = {props.session}/></div>
         }else if (PCstate === 2){
-            return <div className = 'pagMblListaForms'><ListaForms/></div>
+            return <div className = 'pagMblListaForms'><ListaForms clase = {idClase} session = {props.session}/></div>
         }
     }
     
@@ -103,7 +103,7 @@ export default function PagClase(props) {
                     <div className = 'pagListaAlumnos'>
                         <ListaComentario clase = {idClase} session = {props.session}/>
                     </div>
-                    <div className = 'pagListaForms'><ListaForms/></div>
+                    <div className = 'pagListaForms'><ListaForms clase = {idClase} session = {props.session}/></div>
                     <div className = 'titleEsc'>{clase.titulo}</div>
                 </div>
             }            
