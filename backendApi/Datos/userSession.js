@@ -30,7 +30,17 @@ var checkUser = async function (username,password,request){
     const hashedPassword =  await hash(salt,password);
     
     if(hashedPassword == correctHashedPass){
-        request.session.userInfo = {user: username, type: saveUserId.condicion ,logged : true};
+        //Pack
+
+        //////////////////////////
+        ///////////////////////////
+        request.session.userInfo = {
+            user: username, 
+            type: saveUserId.condicion ,
+            logged : true,
+            tittle: ''
+        };
+
         return {user: username,pass : password , accepted: true, message: "Login exitoso"};
     }else{
         return {user: username,pass : password , accepted: false, message: "Usuario o contraseña incorrectos"};
@@ -45,6 +55,33 @@ var savePassword = async function (userIdent,password){
     const hashedPassword = await hash(salt,password);
     const saltHash = salt+":xA:"+hashedPassword;
     security.create({idUser: saveUserId._id.toString() , hashedPassword :saltHash});
+}
+
+
+var registerUser = async function(userParam,password){
+    //console.log(userParam);
+    const saveUser = await user.findOne({codigo: userParam.codigo}).exec().catch(err=>console.log(err));
+    if(saveUser){
+        return {
+            accepted: false,
+            message: "Este codigo ya esta en uso"
+        }
+    }
+
+    user.create({
+        codigo: userParam.codigo ,
+        nombre: userParam.nombre,
+        apellido:userParam.apellido,
+        correo:userParam.correo,
+        condicion: userParam.condicion,
+        edad: 20
+    }).then(function(){
+        savePassword(userParam.codigo,password);
+    });
+    return {
+        accepted: true,
+        message: "Registro realizado con exito"
+    };
 }
 
 var getSession = async function(request){
@@ -69,3 +106,4 @@ module.exports.checkUser = checkUser;
 module.exports.savePassword = savePassword;
 module.exports.getSession = getSession;
 module.exports.endSession = endSession;
+module.exports.registerUser = registerUser;

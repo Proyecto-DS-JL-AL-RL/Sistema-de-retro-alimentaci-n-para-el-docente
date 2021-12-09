@@ -44,7 +44,7 @@ export default function PagCurso(props) {
             )
         
     }
-
+    
     const buttonWindow = function(){
         return (
             <div className ='WindowBtnContainers'>

@@ -4,24 +4,30 @@ import "./ListaClases.css";
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import CrearClase from './crearClase';
+import axios from 'axios';
 
 export default function ListaClases(props) {
-    const [clases,setClases   ] = React.useState([
-        {titulo : ' Clase1' , description : 'descripcion1' ,idClase :1},
-        {titulo : ' Clase2' , description : 'descripcion2' ,idClase : 2},
-        {titulo : ' Clase3' , description : 'descripcion3' , idClase: 3 },
-    ]);
+    const [clases,setClases   ] = React.useState([]);
     const [curso,setCurso] = React.useState({titulo: 'CursoPrueba',idCurso:props.idCurso});
     const [showCrearButton,setShowCrearButton] = React.useState(false);
     const [showingCrear,setShowingCrear] = React.useState(false);
 
 
-    useEffect(()=>{
-        console.log(props.session);
+    const actualizar = function(){
         if(props.session.type == "Profesor"){
             setShowCrearButton(true);
         }
+        //axios.get('/retAl/getListClass/'+String(curso.idCurso)).then(function(response){
+        axios.get('/retAl/getListClass/CC312').then(function(response){
+            setClases(response.data);
+        });
+    }
+    useEffect(()=>{
+        //console.log(curso);
+        actualizar();
     },[]);
+
+    
 
     return ( 
         <div id = "LCContainer"> 
@@ -29,9 +35,9 @@ export default function ListaClases(props) {
                 <div className = 'clasesTitulo'>Lista de Clases</div>
                 <div className = 'containerFlex'> 
                     {clases.map(function(clase){
-                        return <Link to = {'/Clase/'+String(curso.idCurso)+'/'+String(clase.idClase)}><button className = 'ClaseButton' >
+                        return <Link to = {'/Clase/'+String(curso.idCurso)+'/'+String(clase._id)}><button className = 'ClaseButton' >
                             <div >{clase.titulo}</div>
-                            <div>{clase.description}</div>
+                            <div>{clase.descripcion}</div>
                         </button></Link>
                     })}
                     {showCrearButton?
@@ -40,7 +46,7 @@ export default function ListaClases(props) {
                 </div>
             </div>
             {showingCrear?
-            <div className = 'crearClaseWindow'><CrearClase curso ={String(curso.titulo)}  />
+            <div className = 'crearClaseWindow'><CrearClase curso ={String(curso.idCurso)} close =  {()=>{setShowingCrear(false);actualizar();}} />
                 <div className = 'CCClosPopUp'><button className = 'closeButton' onClick = {()=>{setShowingCrear(false)}}>X</button></div>
             </div>                  
             :<div></div>}
