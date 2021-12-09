@@ -25,11 +25,10 @@ export default function PagCurso(props) {
         setNameCurso(body[0].nombre)
         }) 
     },[])
-
     const switchMobil = function(){
         if (PCstate === 0){
             return <div>
-                    <div className= 'statMblWindowContainer'><Body/></div>
+                    <div className= 'statMblWindowContainer'><Body tipo={props.session.type}/></div>
             </div>
         }else if (PCstate === 1){
             return <div className = 'pagMblListaAlumnos'><ListaClases idCurso = {idCurso} session = {props.session}/></div>

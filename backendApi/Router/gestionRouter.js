@@ -7,6 +7,7 @@ var {createCurso, findCurso, updateCurso, deleteCurso } = require('../Datos/Gest
 var {createUser, findUser, updateUser, deleteUser} = require('../Datos/Gestion/gUser')
 var {crearNota, findNota, updateNota, deleteNota} = require('../Datos/Gestion/gNota');
 var {Registrar, BuscarToken} = require('../Datos/Gestion/gRegistro');
+var {createMaterial, findmaterial} = require('../Datos/Gestion/gMaterial');
 
 router.post('/user/search', async (req,res)=>{
     const usr = await findUser(req.body);
@@ -78,5 +79,22 @@ router.post('/registro/buscar', async (req,res)=>{
     return res.json(token);
 })
 
+router.post('/material/create', async (req,res)=>{
+    await createMaterial(req.body);
+    res.send('Se agrego un nuevo material')
+})
 
+router.post('/material/search', async (req,res)=>{
+    const mat = await findmaterial(req.body);
+    return res.json(mat);
+});
+
+/*
+[
+       {"codigo":"CC231"} ,
+       {
+           "$push":{"alumnos":"20192196K"}
+       }        
+]
+*/
 module.exports = router;

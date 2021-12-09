@@ -7,7 +7,8 @@ import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios'
-let course = test['cursos']
+
+//let course = test['cursos']
 
 export default function NuevoCurso(props){
     const {idCurso} = useParams()
