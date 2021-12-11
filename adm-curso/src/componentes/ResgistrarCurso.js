@@ -27,7 +27,7 @@ export default function RegistroCurso(props){
                     }} disabled = {(disable)? "disabled" : ""}/>
                         <button className="ebton" onClick={()=>{
                             setDiseable(!disable);
-                            axios.post('/registro/buscar', {token:tokCurso}).then((response) => {
+                            axios.post('/registroCurso/buscar', {token:tokCurso}).then((response) => {
                                 let body = response.data;
                                 axios.post('/curso/search', {codigo: body[0].codigoCurso}).then((response) => {
                                     let curso = response.data;

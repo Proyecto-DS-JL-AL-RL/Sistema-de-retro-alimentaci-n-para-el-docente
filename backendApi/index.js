@@ -14,12 +14,23 @@ app.set('port', process.env.PORT || 4000);
 //Zona De middleware:
 const storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, './archivos')
+        callBack(null, './public')
     },
     filename: (req, file, callBack) => {
         callBack(null, file.originalname)
     }
 })
+
+const whitelist = ['http://localhost:4000'];
+const corsOptions = {
+  credentials: true, // This is important.
+  origin: (origin, callback) => {
+    if(whitelist.includes(origin))
+      return callback(null, true)
+
+      callback(new Error('Not allowed by CORS'));
+  }
+}
 
 const upload = multer({storage});
 
@@ -32,12 +43,15 @@ app.post('/uploadFile',  upload.single('archivo'), (req, res, next) => {
     }
       res.send(file.filename);
 })
-
+/*
 app.get('/getFile/:id', function(req, res) {
     res.send(__dirname)
     res.sendFile(req.params.id, {root:path.join(__dirname+'/archivos')});
 });
+*/
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use("/static", express.static("public"));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
@@ -63,10 +77,6 @@ app.use('/login',require('./Router/sessionL'));
 
 app.use('/',require('./Router/gestionRouter'));
 
-
-//app.use('/gestion', require...);});
-//app.use('/retroalimentacion', require...);});
-//app.use('/interaccion', require...);});
 
 
 //Asignando el puerto del server

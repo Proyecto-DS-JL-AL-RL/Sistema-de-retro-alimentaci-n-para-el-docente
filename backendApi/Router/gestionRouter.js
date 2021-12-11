@@ -70,11 +70,11 @@ router.post('/nota/create', async (req,res)=>{
     res.send('Se creo una nueva nota')
 })
 
-router.post('/registro/register', async (req,res)=>{
+router.post('/registroCurso/register', async (req,res)=>{
     await Registrar(req.body);
     res.send('Se creo un nuevo token')
 })
-router.post('/registro/buscar', async (req,res)=>{
+router.post('/registroCurso/buscar', async (req,res)=>{
     const token = await BuscarToken(req.body);
     return res.json(token);
 })
@@ -99,6 +99,9 @@ router.delete('/material/:idcurso/delete', async (req,res)=>{
     res.send('Se eliminó un material')
 });
 
+router.get('/static/:id', async (req, res)=>{
+    return res.sendFile(req.body)
+})
 
 /*
 [

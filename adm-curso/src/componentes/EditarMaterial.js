@@ -29,6 +29,8 @@ componentDidMount() {
     console.log(this.props)
     axios.post('/material/search', {file: this.state.idFile}).then((response) => {
         let body = response.data;
+        this.setState({titulo:body[0].titulo})
+        this.setState({descripcion:body[0].description})
     }, (error) => {
         console.log(error);
     })
@@ -37,7 +39,7 @@ componentDidMount() {
     render() {    
     return (
         <div className="eText">
-            <h1>Editar Curso</h1>
+            <h1>Editar Material</h1>
                 <div id="Edit">
                         <p id="datos">Titulo:</p>
                         <input id="einput" value={this.state.titulo} onChange={(e)=>{
