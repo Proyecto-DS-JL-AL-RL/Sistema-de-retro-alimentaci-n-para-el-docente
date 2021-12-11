@@ -61,7 +61,7 @@ class ListaForms extends  React.Component {
                     <div><h1>Formularios de la Clase</h1></div>
                     <div className = 'listaForms'>
                         {this.state.Formularios.map(function(eForm){
-                            return <div onClick = {()=>{this.mostrarForm(eForm.formId)}}  key = {eForm.id} className = 'FormElement'>{eForm.titulo} {eForm.respondidos}%</div>
+                            return <div onClick = {()=>{this.mostrarForm(eForm.formId)}}  key = {eForm.id} className = 'FormElement'>{eForm.titulo} {eForm.respondidos}</div>
                         },this)}
                         {this.state.showCrearButton?
                             <div className = 'FormElement' onClick = {()=>{this.crearForm()}} > Crear </div>
@@ -73,7 +73,7 @@ class ListaForms extends  React.Component {
                 </div>
             </div>
             {this.state.showingVista?
-            <div className = 'vistaWindow'><FormVista vista = {this.state.showCrearButton} id = {this.state.idShowVista}/>
+            <div className = 'vistaWindow'><FormVista vista = {this.state.showCrearButton} id = {this.state.idShowVista} idUser ={this.props.session.user}/>
             <div className = 'ClosPopUp'><button className = 'closeButton' onClick = {()=>{this.setState({showingVista:false})}}>X</button></div>
             </div>                  
             :<div></div>}

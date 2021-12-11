@@ -1,6 +1,6 @@
 var form = require('../../Esquemas/Retroalimentacion/scFormularios');
 var resForm = require('../../Esquemas/Retroalimentacion/scRespuestaForm');
-
+var user = require('../../Esquemas/Gestion/gUser');
 
 var createForm = async function (formu,idClase){
     formu.clase = idClase;
@@ -9,9 +9,32 @@ var createForm = async function (formu,idClase){
     return("Done");
 }
 
-var answerForm = async function(form,answers){
-    //Respuesta de a form
-    return("xd");
+var answerForm = async function(formId,userCod,answers){
+    const userQ = await user.findOne({codigo : userCod}).exec().catch(e=>console.log(e));
+    const resFormCreate = {  
+        Alumno : userQ._id,
+        formOrigen: formId,  
+        respuestas: answers
+        };
+    console.log(resFormCreate);
+    resForm.create( resFormCreate );
+    const formQ = await form.findById(formId);
+    if (formQ){
+        const total = formQ.respondidos ;
+        for (let i = 0;i<formQ.preguntas.length;i++){
+            for(let j = 0;j<formQ.preguntas[i].alternativas.length;j++){
+                const per = formQ.preguntas[i].alternativas[j].percent;
+                let cont = per*total;
+                if (j == answers[i]){
+                    cont = cont+1;
+                }
+                formQ.preguntas[i].alternativas[j].percent = cont/(total+1);
+            }
+        }
+        formQ.respondidos = total+1;
+        formQ.save();
+    }
+    return("Done");
 }
 
 var getFormView = async function(idForm){

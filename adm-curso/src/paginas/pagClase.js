@@ -26,13 +26,16 @@ export default function PagClase(props) {
 
     
     const store = useStore();
-    //session = asdparams.session
-    const session = useStore().getState().session;
+
+
+    const session = store.getState().session;
+
+
     //store = useStore()
 
     useEffect(()=>{
         //store.getState().session; 
-        console.log(store.getState());
+        console.log(store.getState().session.type);
 
         if (session){
             if(session.type== "Profesor"){
@@ -57,9 +60,9 @@ export default function PagClase(props) {
 
             </div>
         }else if (PCstate === 1){
-            return <div className = 'pagMblListaAlumnos'><ListaComentario clase = {idClase} session = {props.session}/></div>
+            return <div className = 'pagMblListaAlumnos'><ListaComentario clase = {idClase} session = {session}/></div>
         }else if (PCstate === 2){
-            return <div className = 'pagMblListaForms'><ListaForms clase = {idClase} session = {props.session}/></div>
+            return <div className = 'pagMblListaForms'><ListaForms clase = {idClase} session = {session}/></div>
         }
     }
     
@@ -101,13 +104,12 @@ export default function PagClase(props) {
                     <div className = 'statWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
                     }
                     <div className = 'pagListaAlumnos'>
-                        <ListaComentario clase = {idClase} session = {props.session}/>
+                        <ListaComentario clase = {idClase} session = {session}/>
                     </div>
-                    <div className = 'pagListaForms'><ListaForms clase = {idClase} session = {props.session}/></div>
+                    <div className = 'pagListaForms'><ListaForms clase = {idClase} session = {session}/></div>
                     <div className = 'titleEsc'>{clase.titulo}</div>
                 </div>
             }            
-            <Header componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

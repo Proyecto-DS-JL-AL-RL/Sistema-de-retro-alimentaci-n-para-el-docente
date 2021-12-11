@@ -14,7 +14,10 @@ class FormPregunta extends  React.Component {
         };        
       };
     
-    
+    updateAns(index){
+        const updt = this.props.updateAnswer;
+        updt(index);
+    }
 
 
     render() {
@@ -27,16 +30,16 @@ class FormPregunta extends  React.Component {
 
             <div id = "fPopciones">
                 <fieldset>
-                    {   this.state.opciones.map(function(opcion){
+                    {   this.state.opciones.map(function(opcion,index){
                         return <div key = { opcion.descripcion }>
                                     <label className = "lblOption">
                                         {this.state.isProfesor?
                                             <div/>                                           
                                             :
-                                            <input type = "radio" name = {this.state.titulo} value = {opcion.descripcion}/>
+                                            <input type = "radio" name = {this.state.titulo} value = {opcion.descripcion} onChange = {()=>{this.updateAns(index)}}/>
                                         }     
                                         {opcion.descripcion}       
-                                        {this.state.isProfesor? <label>  = {opcion.percent}%</label>:<div/>}                                
+                                        {this.state.isProfesor? <label>  = {opcion.percent*100}%</label>:<div/>}                                
                                     </label>
                                 </div>
                     },this)}

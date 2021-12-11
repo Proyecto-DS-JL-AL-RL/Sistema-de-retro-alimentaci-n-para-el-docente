@@ -9,9 +9,11 @@ import { useParams } from 'react-router';
 import test  from '../componentes/clases/clases.js';
 import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
 import VerPerfil from '../componentes/Perfil';
-import './pagCurso.css';
-import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import './pagCurso.css';import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+
 import Principal from './Principal';
+import { useStore } from 'react-redux';
+import {setHeaderContent,setIdCourse } from '../feature/sessionSlice';
 
 export default function PagCurso(props) {
     const [PCstate,setPCstate] = React.useState(0);
@@ -19,6 +21,7 @@ export default function PagCurso(props) {
     const [user,setUser] = React.useState({});
     const [idCurso,setIdCurso] = React.useState(useParams().id);
     const curso = test['cursos']
+    const store = useStore();
     const switchMobil = function(){
         if (PCstate === 0){
             return <div>
@@ -38,7 +41,7 @@ export default function PagCurso(props) {
             )
         
     }
-    
+
     const buttonWindow = function(){
         return (
             <div className ='WindowBtnContainers'>
@@ -48,6 +51,11 @@ export default function PagCurso(props) {
         )
     
 }
+    useEffect(()=>{
+        store.dispatch(setHeaderContent(curso[idCurso-1].nombre_curso));
+        store.dispatch(setIdCourse(idCurso));
+    },[])
+
     
     return (        
         <div>           
@@ -67,7 +75,7 @@ export default function PagCurso(props) {
                     {buttonWindow()}
                 </div>
             }            
-            <Header NameCurso={curso[idCurso-1].nombre_curso} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
+            
         </div>
     );
 }

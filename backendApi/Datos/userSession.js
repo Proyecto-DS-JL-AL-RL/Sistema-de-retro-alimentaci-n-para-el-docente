@@ -38,9 +38,9 @@ var checkUser = async function (username,password,request){
             user: username, 
             type: saveUserId.condicion ,
             logged : true,
-            tittle: ''
+            tittle: '',
+            webSession: null
         };
-
         return {user: username,pass : password , accepted: true, message: "Login exitoso"};
     }else{
         return {user: username,pass : password , accepted: false, message: "Usuario o contraseña incorrectos"};
@@ -94,6 +94,24 @@ var getSession = async function(request){
     };
 }
 
+var setSala = async function(request,sala){
+    if (request.session.userInfo){
+        request.session.userInfo.sala = sala;
+        return request.session.userInfo
+    }else{
+        return (request.session.userInfo)
+    };
+}
+var killSala = async function(request){
+    if (request.session.userInfo){
+        request.session.userInfo.sala = null;
+        return request.session.userInfo
+    }else{
+        return (request.session.userInfo)
+    };
+}
+
+
 var endSession = async function(request){
     if (request.session.userInfo){
         request.session.userInfo = null;
@@ -107,3 +125,4 @@ module.exports.savePassword = savePassword;
 module.exports.getSession = getSession;
 module.exports.endSession = endSession;
 module.exports.registerUser = registerUser;
+

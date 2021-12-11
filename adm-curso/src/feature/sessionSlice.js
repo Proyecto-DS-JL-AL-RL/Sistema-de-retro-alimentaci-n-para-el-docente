@@ -6,7 +6,9 @@ export const sessionSlicer = createSlice({
     name: "SessionInfo",
     initialState:{
         session:null,
-        curso: null
+        headerContent: null,
+        idCourse : null,
+        interSession:null
     },
     //state.session.user
     //store.getState . curso
@@ -15,14 +17,20 @@ export const sessionSlicer = createSlice({
             state.session = action.payload;
             //console.log('from redus', state.session);
         },
-        setCourse: (state,action)=>{
-            state.curso = action.payload;
+        setHeaderContent: (state,action)=>{
+            state.headerContent = action.payload;
             //console.log('from redux course',state.session.course)
         },
+        setInterSession: (state,action)=>{
+            state.interSession = action.payload;
+        },
+        setIdCourse : (state,action) =>{
+            state.idCourse = action.payload;
+        }
     },
 });
 
-export const {startSession,setCourse} = sessionSlicer.actions;
+export const {startSession,setHeaderContent,setInterSession,setIdCourse} = sessionSlicer.actions;
 
 
 

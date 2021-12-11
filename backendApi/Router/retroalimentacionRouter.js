@@ -41,6 +41,10 @@ router.post('/createForm/:idClase',async function(req,res){
     res.send(resp);
 });
 
+router.post('/saveFormAnswer',async function(req,res){
+    let resp = await RetForm.answerForm(req.body.formId,req.body.userCod,req.body.answers);
+    res.send(resp);
+});
 router.post('/createCommentary',async function(req,res){
     let resp = await retComentario.createCommentary(req.body);
     res.send(resp);
