@@ -7,20 +7,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import '../Notas.css'
+import axios from 'axios'
 function createData(id_curso, tipo_practica, puntuacion) {
   return {id_curso, tipo_practica, puntuacion};
 }
 
-
-export default function BasicTable(props) {
-  const rows = []
-  for(let i = 0; i <props.Nota.length; i++) {
-     rows.push(createData(props.Nota[i].getID_curso(), props.Nota[i].getTipo_practica(), props.Nota[i].getPuntuacion()))
+const rows = []
+export default class BasicTable extends React.Component{
+  state = {
+    notas: []
   }
-
+  componentDidMount() {
+    axios.post('/nota/search',{codigCurso:this.props.curso, codigoAlumn:this.props.user}).then((response) => {
+      let body = response.data;  
+      console.log(body);
+      this.setState({ body }, ()=>{
+        for(let i = 0; i <body.length; i++) {
+          rows.push(createData(body[i].codigCurso,body[i].TipoPractica, body[i].Puntuacion))
+        }
+      })
+    
+    })
+  }
+    render(){
     return (
-      <div id={props.style}>
-          <h2 id={props.text_style}>Mis Notas</h2>  
+      <div>
+          <h2>Mis Notas</h2>  
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
@@ -46,4 +58,6 @@ export default function BasicTable(props) {
     </TableContainer>
     </div>
   );
+
+          }
 }

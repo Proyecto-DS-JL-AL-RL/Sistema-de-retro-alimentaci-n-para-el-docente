@@ -30,7 +30,7 @@ export default function ListaClases(props) {
     
 
     return ( 
-        <div id = "LCContainer">            
+        <div id = "LCContainer"> 
             <div className = "frameContainer">
                 <div className = 'clasesTitulo'>Lista de Clases</div>
                 <div className = 'containerFlex'> 

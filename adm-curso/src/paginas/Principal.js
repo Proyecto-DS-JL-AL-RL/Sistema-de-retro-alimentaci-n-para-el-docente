@@ -3,15 +3,16 @@ import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
 
-import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
+//import SelectedListItem  from '../componentes/componentesBasicos/MenuCurso';
 
 import EditarCurso from '../componentes/EditarCurso';
 import VerCurso from '../componentes/Curso'
 import VerPerfil from '../componentes/Perfil';
-import SubirNota from '../componentes/SubirNota'
+//import SubirNota from '../componentes/SubirNota'
 import Inicio from '../componentes/Inicio'
 import VerNotas  from  '../componentes/Notas'
-
+import NuevoCurso from '../componentes/NuevoCurso'
+import RegistroCurso from '../componentes/ResgistrarCurso'
 import VerEstadisticas from '../componentes/Visualizacion/mouduloInteraccion/VerEstadisticas/VerEstadisticas';
 import VerRespuesta from '../componentes/Visualizacion/mouduloInteraccion/VerRespuesta/VerRespuesta';
 import Header from '../componentes/Header';
@@ -20,8 +21,10 @@ import PagClase from './pagClase';
 import { useState } from 'react';
 import Login from './Login';
 import Registro from './registro';
+import EditarMaterial from '../componentes/EditarMaterial'
 import axios from 'axios';
 import { useStore } from 'react-redux';
+import VerMaterial from '../componentes/verMaterial';
 import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
 
@@ -72,7 +75,7 @@ export default function Principal() {
                 <ModuloInteraccion/>     
                 <Switch>
                     <Route exact path="/">
-                        <Inicio/>
+                        <Inicio iduser={session.user}/>
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
@@ -89,7 +92,7 @@ export default function Principal() {
                     </Route>
                     
                     <Route path="/VerPerfil">
-                        <VerPerfil/>
+                        <VerPerfil idprofesor={session.user}/>
                     </Route>
                     <Route path = '/VerCurso/:id' component = {VerCurso} >
                         <VerCurso session = {session}/>
@@ -100,11 +103,22 @@ export default function Principal() {
                         <EditarCurso/>
                     </Route>
                     <Route path='/VerNotas/:nota' component = {VerNotas}>
-                        <VerNotas/>
+                        <VerNotas />
                     </Route>
-
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}>
                         <PagClase session = {session}/>
+                    </Route>
+                    <Route path='/NuevoCurso'>
+                        <NuevoCurso idprofesor={session.user}/>
+                    </Route>
+                    <Route path='/registrarse'>
+                        <RegistroCurso iduser = {session.user}/>
+                    </Route>
+                    <Route path='/verMaterial/:id' component={VerMaterial}>
+                        <VerMaterial/>
+                    </Route>
+                    <Route path='/EditarMaterial/:idFile' component={EditarMaterial}>
+                        <EditarMaterial/>
                     </Route>
                 </Switch>          
                 <div className = 'LoginState'>  
