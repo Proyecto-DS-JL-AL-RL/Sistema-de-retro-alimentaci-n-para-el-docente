@@ -12,12 +12,15 @@ const QuestionSchema = new Schema({
     options: [],
     correct: String,
     answers : [{type: Schema.Types.ObjectId, ref : 'Answer'}],
-    sesion:{type:Schema.Types.ObjectId, ref: 'Sesion'}
+    sesion:{type:Schema.Types.ObjectId, ref: 'Sesion'},
 })
 const SesionSchema = new Schema({
     title: String,
-    questions: [{type : Schema.Types.ObjectId, ref:'Question'}],
-    user:{type:Schema.Types.ObjectId,ref:'User'}
+    questions: {type:[{type : Schema.Types.ObjectId, ref:'Question'}],default: []},
+    user:{type:Schema.Types.ObjectId,ref:'User'},
+    salaToken:String,
+    inicio:{type:Date, default: new Date()},
+    fin:Date
 })
 const Question = mongoose.model('Question',QuestionSchema);
 const Answer = mongoose.model('Answer',AnswerSchema);

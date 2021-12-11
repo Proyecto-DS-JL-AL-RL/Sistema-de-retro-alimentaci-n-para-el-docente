@@ -7,6 +7,7 @@ const user = new Schema({
     correo: String,
     condicion: String,
     edad: Number,
+    sala:{type:String, default:''}
 })
 
 module.exports = model('User', user);

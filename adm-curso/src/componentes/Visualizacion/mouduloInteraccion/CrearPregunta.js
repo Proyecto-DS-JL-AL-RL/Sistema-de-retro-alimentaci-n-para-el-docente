@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
 import './estiloPreguntas.css'
 import {tipos,alterIni} from './Datos.js';
 import ResponderPregunta from './ResponderPregunta';
@@ -6,6 +6,8 @@ import CrearAlternativas from './CrearAlternativas';
 import { useHistory } from 'react-router-dom';
 import { SocketContext } from '../../../context/SocketContext';
 import { useLocationStorage } from '../../../hook/useLocationStorage';
+import { useStore } from 'react-redux';
+import { SalaContext } from '../../../context/SalaContext';
 export default function CrearPregunta() {
     const history = useHistory();
     const [pregunta,setPregunta] = useState('');
@@ -14,7 +16,8 @@ export default function CrearPregunta() {
     const [alternativas,setAlternativas] = useState(alterIni);
     const {socket} = useContext(SocketContext);
     const [sesion,setSesion] = useLocationStorage('sesion',[]);
-    
+    const store = useStore();
+    const {salaState} = useContext(SalaContext);
     const changeAlternativas= (alt) =>{
         setAlternativas(alt);
     }
@@ -34,14 +37,24 @@ export default function CrearPregunta() {
             tipo:tipo,
             options : tipo ===3? alternativas:[],
             file:archivo,
-            acertada:0
+            correct:'0'
         }
-        socket.emit('newQuestion',dataQuestion);
-        const data  = await fetch('/lastquestion/'+sesion.id);
-        const res = await  data.json();
-        console.log(res);
-        history.push("/VerRespuesta/"+res._id);
+        const codigo = store.getState().session.user;
+        console.log(codigo);
+        socket.emit('newQuestion',dataQuestion,codigo,salaState.sala.salaToken);
+        //const data  = await fetch('/lastquestion/'+salaState.sala.salaToken);
+        //const res = await  data.json();
+        //console.log(res,"last");
+        //history.push("/VerRespuesta/"+res._id);
     }
+    useEffect(()=>{
+        socket.on('allQuestion',(data)=>{
+            history.push("/VerRespuesta/"+data._id)
+        })
+        return ()=>{
+            socket.off('allQuestion');
+        }
+    },[socket]);
     return (
         <div className="ctnCont">
             <form>

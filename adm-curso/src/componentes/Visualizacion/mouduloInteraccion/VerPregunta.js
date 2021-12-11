@@ -5,6 +5,7 @@ import VerTipo1 from './VerRespuesta/VerTipo/VerTipo1';
 import { SocketContext } from '../../../context/SocketContext';
 
 import { useStore } from 'react-redux';
+import { SalaContext } from '../../../context/SalaContext';
 function mensaje(tipo){
     if(tipo==1){
         return 'Describa con una palabra';
@@ -36,6 +37,7 @@ export default function VerPregunta() {
     const [content,setContent] = useState('');
     const {socket} = useContext(SocketContext);
     const store = useStore();
+    const {salaState} = useContext(SalaContext);
     useEffect(async () => {
         const res = await fetch('/question/'+params.idPregunta);
         const question = await res.json();
@@ -58,7 +60,7 @@ export default function VerPregunta() {
             user: store.getState().session.user,
             content
         }
-        socket.emit('newAnswer',answer,params.idPregunta);
+        socket.emit('newAnswer',answer,params.idPregunta,salaState.sala.salaToken);
         history.push('/VerRespuesta/'+params.idPregunta);
     }
     const handletipo2 = (e) =>{

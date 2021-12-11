@@ -3,6 +3,7 @@ import { SocketContext } from '../../context/SocketContext';
 import { useLocationStorage } from '../../hook/useLocationStorage';
 import { useHistory } from 'react-router-dom';
 import { useStore } from 'react-redux';
+import { SalaContext } from '../../context/SalaContext';
 export default function ListQuestion() {
     const {socket} = useContext(SocketContext);
     const [sesion,setSesion] = useLocationStorage('sesion',{});
@@ -10,11 +11,12 @@ export default function ListQuestion() {
     const history = useHistory();
     const [dato,setDato] =useState(''); 
     const store = useStore();
+    const {salaState} = useContext(SalaContext);
     useEffect(async()=>{
-        const res = await fetch('/questions/'+sesion.id);
+        const res = await fetch('/questions/'+salaState.sala.salaToken);
         const data = await res.json();
         setQuestions(data.reverse());
-    },[]);
+    },[salaState.sala.salaToken]);
     
     
     const handleClick = (e)=>{
@@ -23,11 +25,11 @@ export default function ListQuestion() {
         history.push("/Ver"+direction+"/"+e.target.id);
     }
     useEffect(()=>{
-        socket.on('allQuestion',(data)=>{
+        socket.on('newQuestion',(data)=>{
             setDato(data);
         })
         return ()=>{
-            socket.off('allQuestion');
+            socket.off('newQuestion');
         }
     },[socket]);
     useEffect(()=>{

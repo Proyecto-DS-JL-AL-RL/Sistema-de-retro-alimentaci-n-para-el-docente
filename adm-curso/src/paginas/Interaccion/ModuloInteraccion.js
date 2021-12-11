@@ -7,7 +7,10 @@ import './ModuloInteraccion.css'
 import PreguntasPendientes from './PreguntasPendientes';
 import { useStore } from 'react-redux';
 import ListQuestion from './ListQuestion';
-
+import { SalaContext } from '../../context/SalaContext';
+import { types } from '../../types/types';
+import { Socket } from 'socket.io-client';
+import { SocketContext } from '../../context/SocketContext';
 const atrib = ['Curso','Sesion'];
 const curses = ['Curso1','Curso2','Curso3'];
 function getHoraMin(){
@@ -42,6 +45,9 @@ export default function Interaccion() {
     const [tipoUser,setTipoUser] = useState(usuarioTipo[0]);
     //////
     const [allQuestion,setAllQuestion] = useState([]);
+    const {salaState,dispatch} = useContext(SalaContext);
+    const {socket} = useContext(SocketContext);
+    const [newSala,setNewSala] = useState('');
     useEffect(()=>{
         setTipoUser(store.getState().session.type);
     },[])
@@ -105,9 +111,26 @@ export default function Interaccion() {
     const handleActivo = (e)=>{
         setActivo(e.target.id);
     }
+    const conectSala = async() =>{
+        const res = await fetch('/sesion/'+newSala);
+        const sala = await res.json();
+        dispatch({
+            type: types.actualizarSala,
+            payload:{
+                ...salaState.sala,
+                title:sala.title,
+                salaToken:sala.salaToken,
+                inicio:sala.inicio
+            }
+        })
+        socket.emit('unirse-sala',sala.salaToken);
+        console.log(sala);
+    }
     
-    
-    
+    const handleNewSala = (e)=>{
+        setNewSala(e.target.value);
+        
+    }
     
     return (
         
@@ -117,7 +140,7 @@ export default function Interaccion() {
             onClick={(e)=>changeVisible()}>{"<"}</button>
             
             {tipoUser == usuarioTipo[0]&& visible && <div className="contenido">
-                <div className="containerSesion">{sesion.title}</div>
+                <div className="containerSesion">{salaState.sala.title+ ": " + salaState.sala.salaToken}</div>
                 <div className="containerOpt">
                 {opt.map((e,i)=>{
                     return <>
@@ -133,6 +156,11 @@ export default function Interaccion() {
                     {activo===opt[0] && <ConfSesion handleTitle = {handleTitle} sesion = {sesion}/>}
                     {activo===opt[1] && 
                         <>
+                            <div>
+                                <input type="text" name="sala" 
+                                value={newSala} onChange={e=>handleNewSala(e)}/>
+                                <button onClick ={()=>{conectSala()}}>Ir a Sala</button>
+                            </div>
                             <ListQuestion/>
                         </>}
                     
@@ -146,6 +174,11 @@ export default function Interaccion() {
             {tipoUser == usuarioTipo[1] && visible && <div className="contenido">
                 <div className="subctn">Preguntas Pendientes</div>
                 <div className="pendientesCtn">
+                <div>
+                    <input type="text" name="sala" 
+                    value={newSala} onChange={e=>handleNewSala(e)}/>
+                    <button onClick ={()=>{conectSala()}}>Ir a Sala</button>
+                </div>
                 <ListQuestion/>
                 </div>
             </div>}

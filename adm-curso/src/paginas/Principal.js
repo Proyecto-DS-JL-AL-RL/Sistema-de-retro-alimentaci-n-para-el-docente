@@ -30,8 +30,11 @@ import VerPregunta from '../componentes/Visualizacion/mouduloInteraccion/VerPreg
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
-    const {online} = useContext(SocketContext);
-
+    const {socket} = useContext(SocketContext);
+    useEffect(() => {
+        socket.emit('unirse-sala','hola')
+        
+    }, [])
 
     const store = useStore();
 

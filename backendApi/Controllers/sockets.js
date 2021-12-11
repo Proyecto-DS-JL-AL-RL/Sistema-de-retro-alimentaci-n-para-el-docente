@@ -5,27 +5,40 @@ const PreguntasSesion = async (idSesion)=>{
     console.log(sesion.questions)
     return sesion.questions;
 }
-const newQuestion = async (data,idSesion) =>{
+
+const newQuestion = async (data,userCod,salaToken) =>{
     //const {content,tipo,options,file,acertada} = data;
     
-    
+    //console.log(userCod);
+    const user = await User.findOne({codigo:userCod});
+    const sala = await Sesion.findOne({salaToken});
+    //console.log(sala);
     const question = new Question({
        content: data.content,
        tipo : data.tipo,
        options: data.options,
-       sesion :idSesion
+       correct:data.correct? data.correct: '',
+       sesion :sala,
+       user
     });
-    const sesion = await Sesion.findByIdAndUpdate(idSesion,{$push : {questions:question}});
+    const sesion = await Sesion.findByIdAndUpdate(sala,{$push : {questions:question}});
     await question.save();
     await sesion.save();
+    
     return question;
 }
 const newAnswer = async (data,idQuestion) =>{
     
     try{
         const user = await User.find({codigo:data.user}).exec(); 
-        const idUser = user._id;
-        console.log(user._id);
+        const exist = await Answer.find({user:user[0]._id,question:idQuestion});
+        /*if(exist){
+            
+            return false;
+        }else{
+            console.log("No");
+        }*/
+        
         const answer = new Answer({
             question: idQuestion,
             user:user[0],
@@ -35,7 +48,7 @@ const newAnswer = async (data,idQuestion) =>{
         await answer.save();
         await question.save();
         const ans = await answer.populate('user',['codigo','nombre','apellido']);
-        console.log(ans);
+        
         return ans;
     }
     catch (error){
