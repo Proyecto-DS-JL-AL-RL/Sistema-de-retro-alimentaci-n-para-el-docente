@@ -1,0 +1,24 @@
+#sEdit{
+  margin:4% 3%;
+  padding:20% 70%;
+  width:70%;
+  position:absolute center;
+  font-size:italic;
+  background-color:rgba(163, 163, 5, 0.959);
+}
+.sebton{
+  font-size: 1vw;
+  padding:1%;
+  color:black;
+  background-color:gold;
+}
+
+#sdatos{
+  font-size: 1vw;
+
+}
+
+#seinput{
+  position:relative;
+  font-size: 1vw;
+}

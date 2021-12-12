@@ -5,10 +5,11 @@ var createCurso = async function(curso){
     await newcurso.save()
 }
 
-var fidnCurso = async function(codigo){
+var findCurso = async function(codigo){
     const findcurso = await Curso.find(codigo).catch(err=> console.log(err))
     return findcurso
 }
+
 
 var updateCurso = async function(codigo, update){
     const curso = await Curso.findOneAndUpdate(codigo, update)
@@ -18,6 +19,8 @@ var updateCurso = async function(codigo, update){
 var deleteCurso = async function(codigo){
     await Curso.findByIdAndDelete(codigo)
 }
+
+
 //createCurso("CC421", "Inteligencia Artificial", "19942196K", [])
 //createCurso("CC312", "Administracion de Redes", "19801295J", [])
 //createCurso("CC3S2", "Desarollo de Software", "19851225A", [])
@@ -27,6 +30,6 @@ var deleteCurso = async function(codigo){
 
 
 module.exports.createCurso = createCurso;
-module.exports.fidnCurso = fidnCurso;
+module.exports.findCurso = findCurso;
 module.exports.updateCurso = updateCurso;
 module.exports.deleteCurso = deleteCurso;

@@ -12,13 +12,14 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import './Inicio.css'
+import './notasAlumnos.css'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Principal from '../paginas/Principal'
 import { useState } from 'react';
 import test from './clases/clases'
 import SubirNota from './SubirNota'
+import './notasAlumnos.css'
 
 let  alumno = test['alumno']
 function range(start, stop) {
@@ -43,46 +44,11 @@ export default function VerNotaAlumnos(props) {
     const [idCurso, setIdCurso] = useState('')
     const [idAlumno, setIdAlumno] = useState('')
   return (
+  
     <div>
-      <div id="Cards">
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image={alumno[card-1].getImagen()}
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {alumno[card-1].getNombre()+" "+alumno[card-1].getApellido()} 
-                    </Typography>
-                    <Typography> 
-                    </Typography>
-                  </CardContent>
-                  <CardActions> 
-                    <Button onClick={()=>{
-                      setSubirNota(true)
-                      setIdCurso(props.curso)
-                      setIdAlumno(card)
-                    }
-                  } size="small">Subir Notas</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-          {subirNota?<SubirNota id={idCurso} id2={idAlumno}/>:null}
-        </Container>
-      </div>
+      <div>
+          {subirNota?<SubirNota/>:null}
+          </div>
     </div>
   );
 }

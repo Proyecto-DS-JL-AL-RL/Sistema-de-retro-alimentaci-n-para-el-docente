@@ -18,14 +18,21 @@ import {setHeaderContent,setIdCourse } from '../feature/sessionSlice';
 export default function PagCurso(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
-    const [user,setUser] = React.useState({});
+    const [nameCursp,setNameCurso] = React.useState('');
     const [idCurso,setIdCurso] = React.useState(useParams().id);
     const curso = test['cursos']
+
     const store = useStore();
+    useEffect(()=>{
+        axios.post('/curso/search', {codigo:idCurso}).then((response) => {
+        let body = response.data;
+        setNameCurso(body[0].nombre)
+        }) 
+    },[])
     const switchMobil = function(){
         if (PCstate === 0){
             return <div>
-                    <div className= 'statMblWindowContainer'><Body/></div>
+                    <div className= 'statMblWindowContainer'><Body tipo={props.session.type}/></div>
             </div>
         }else if (PCstate === 1){
             return <div className = 'pagMblListaAlumnos'><ListaClases idCurso = {idCurso} session = {props.session}/></div>
@@ -75,7 +82,8 @@ export default function PagCurso(props) {
                     {buttonWindow()}
                 </div>
             }            
-            
+
+            <Header NameCurso={nameCursp} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }
