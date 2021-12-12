@@ -1,21 +1,23 @@
 import React,{useContext,useState,useEffect} from 'react'
 import { SocketContext } from '../../context/SocketContext';
-import { useLocationStorage } from '../../hook/useLocationStorage';
 import { useHistory } from 'react-router-dom';
 import { useStore } from 'react-redux';
 import { SalaContext } from '../../context/SalaContext';
+import { types } from '../../types/types';
 export default function ListQuestion() {
     const {socket} = useContext(SocketContext);
-    const [sesion,setSesion] = useLocationStorage('sesion',{});
-    const [questions,setQuestions] = useState([]);
-    const history = useHistory();
-    const [dato,setDato] =useState(''); 
+    const history = useHistory(); 
     const store = useStore();
-    const {salaState} = useContext(SalaContext);
+    const {salaState,dispatch} = useContext(SalaContext);
     useEffect(async()=>{
+        if(salaState.sala.salaToken==='') return;
         const res = await fetch('/questions/'+salaState.sala.salaToken);
         const data = await res.json();
-        setQuestions(data.reverse());
+        //setQuestions(data.reverse());
+        dispatch({
+            type:types.iniciarPreguntas,
+            payload:data.reverse()
+        })
     },[salaState.sala.salaToken]);
     
     
@@ -26,20 +28,20 @@ export default function ListQuestion() {
     }
     useEffect(()=>{
         socket.on('newQuestion',(data)=>{
-            setDato(data);
+            dispatch({
+                type:types.actualizarPreguntas,
+                payload:data._id
+            })
         })
         return ()=>{
             socket.off('newQuestion');
         }
     },[socket]);
-    useEffect(()=>{
-        setQuestions([dato._id,...questions]);
-    },[dato])
     return (
         <>
-            {questions.map((e,i)=>{
+            {salaState.preguntas.map((e,i)=>{
                 return <div className="indPreguntas" key={"Question"+i} id={e} onClick={e=>handleClick(e)}>
-                    {"Pregunta "+(questions.length - i)}
+                    {"Pregunta "+(salaState.preguntas.length - i)}
                 </div>
             })}
         </>

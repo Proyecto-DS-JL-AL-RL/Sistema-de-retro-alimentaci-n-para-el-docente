@@ -9,6 +9,22 @@ export const salaReducer = (state, action) =>{
                 ...state,
                 sala: action.payload
             }
+        case types.terminarSala:
+            return{
+                ...state,
+                sala: action.payload,
+                preguntas:[]
+            }
+        case types.iniciarPreguntas:
+            return{
+                ...state,
+                preguntas:[...action.payload]
+            }
+        case types.actualizarPreguntas:
+            return{
+                ...state,
+                preguntas:[action.payload,...state.preguntas]
+            }
         default:
             return state;
     }

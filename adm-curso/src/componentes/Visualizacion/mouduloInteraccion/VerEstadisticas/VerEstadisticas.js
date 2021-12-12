@@ -9,16 +9,23 @@ import { SocketContext } from '../../../../context/SocketContext';
 export default function VerEstadisticas() {
     const params = useParams();
     const [ansXQues,setAnsXQues] = useState([]);
+    const [estadoAlumno,setEstadoAlumno] = useState([]);
+    const [tablaAlumno,setTablaAlumno] = useState([]);
     const {socket} = useContext(SocketContext);
     useEffect(async()=>{
         const res = await fetch('/estadisticas/'+params.idSesion);
         const data = await res.json();
+        
         setAnsXQues(data.respuestasPorPregunta);
+        setEstadoAlumno(data.estadoAlumno);
+        setTablaAlumno(data.tablaAlumno);
         //console.log(data.respuestasPorPregunta);
     },[socket]);
 
     return (
+        
         <div className="ctnEstadisticas">
+            
             <div className="ctnContenido">
                 Estadisticas de Sesión
             </div>
@@ -26,7 +33,7 @@ export default function VerEstadisticas() {
                 <div className="ctnGrafico">
                     <div className="Titulo"> Estado - Alumnos </div>
                     <div className="grafico">
-                        <EstadoAlumnos/>
+                        <EstadoAlumnos estadoAlumno={estadoAlumno}/>
                     </div>
                 </div>
                 
@@ -39,7 +46,7 @@ export default function VerEstadisticas() {
                 </div>
             </div>
             <div className="ctnRespuestas">
-                <RespuestaAlumno/>
+                <RespuestaAlumno tablaAlumno={tablaAlumno}/>
             </div>
         </div>
     )

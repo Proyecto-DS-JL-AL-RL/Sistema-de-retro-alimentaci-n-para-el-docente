@@ -71,7 +71,7 @@ export default function VerEstadisticasPorPregunta(props) {
     },[])
     useEffect(()=>{
         draw();
-    },[props])
+    })
     
     return (
         <div ref = {contRef}  style={{"width":"100%","height":"100%"}}>

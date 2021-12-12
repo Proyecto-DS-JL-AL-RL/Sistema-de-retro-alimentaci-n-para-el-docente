@@ -30,10 +30,9 @@ router.get('/questions/:salaToken', async (req,res) =>{
 })
 router.get('/lastquestion/:salaToken', async (req,res)=>{
     const salaToken = req.params.salaToken;
-    const sesion = await Sesion.findOne({salaToken}).populate('questions');
-    //console.log(sesion);
+    const sesion = await Sesion.findOne({salaToken:salaToken}).populate('questions');
     const questions = sesion.questions;
-
+    //console.log(questions);
     res.json(questions[questions.length-1]);
 
 })
@@ -77,9 +76,9 @@ router.get('/QA/:id_question',async (req, res) =>{
     console.log(answers[answers.length-1]);
     res.json({question,answers});
 });
-router.get('/estadisticas/:idSesion',async (req,res) =>{
-    const idSesion = req.params.idSesion;
-    const estadisticas = await verEstadisticas(idSesion);
+router.get('/estadisticas/:salaToken',async (req,res) =>{
+    const salaToken = req.params.salaToken;
+    const estadisticas = await verEstadisticas(salaToken);
     //console.log(estadisticas);
     res.json(estadisticas);
 })

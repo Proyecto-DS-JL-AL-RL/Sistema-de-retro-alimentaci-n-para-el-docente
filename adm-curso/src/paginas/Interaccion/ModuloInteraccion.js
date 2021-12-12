@@ -89,11 +89,12 @@ export default function Interaccion() {
 
     }
     function verEstadisticas(){
-        history.push("/VerEstadisticas/"+sesion.id);
+        history.push("/VerEstadisticas/"+salaState.sala.salaToken);
     }
 
     const verRespuesta = async()=>{
-        const res = await fetch('/lastquestion/'+sesion.id);
+        
+        const res = await fetch('/lastquestion/'+salaState.sala.salaToken);
         const data = await res.json();
         history.push("/VerRespuesta/"+data._id);
     }

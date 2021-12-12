@@ -14,8 +14,8 @@ export default function CrearPregunta() {
     const [archivo,setArchivo] = useState(false);
     const [tipo,setTipo] = useState(3);
     const [alternativas,setAlternativas] = useState(alterIni);
+    const [correct,setCorrect] = useState('0');
     const {socket} = useContext(SocketContext);
-    const [sesion,setSesion] = useLocationStorage('sesion',[]);
     const store = useStore();
     const {salaState} = useContext(SalaContext);
     const changeAlternativas= (alt) =>{
@@ -30,14 +30,19 @@ export default function CrearPregunta() {
     const changeTipo = (e) =>{
         setTipo(e.target.id);
     }
+    const changeCorrect = (index) =>{
+        setCorrect(index);
+    }
     const crearPregunta = async (e) =>{
         e.preventDefault();
+        let sol= '';
+        if(tipo === 3 || tipo===4) sol = correct;
         const dataQuestion = {
             content: pregunta,
             tipo:tipo,
             options : tipo ===3? alternativas:[],
             file:archivo,
-            correct:'0'
+            correct:sol
         }
         const codigo = store.getState().session.user;
         console.log(codigo);
@@ -81,7 +86,14 @@ export default function CrearPregunta() {
                 {tipo==3 && <CrearAlternativas 
                 alternativas = {alternativas}
                 changeAlt={changeAlternativas} 
+                changeCorrect = {changeCorrect}
+                correct = {correct}
                 /> }
+                {tipo ==4 && <>
+                    <div onClick={()=>{changeCorrect(0)}}>V</div>
+                    <div onClick={()=>{changeCorrect(1)}}>F</div>
+                     </>   
+                }
                 <div className="ctnArchivo">
                     <input className="check1" id="checkarchivo" 
                     type="checkbox" onChange={changeArchivo}/>
@@ -90,8 +102,6 @@ export default function CrearPregunta() {
                     </label>
                     <button className="btnCrear" onClick={(e)=>crearPregunta(e)}>Crear</button>
                 </div>
-                
-                
                 <fieldset className="itmform lblform">
                     <legend>Previsualización:</legend>
                 <div className="ctnPrevius">

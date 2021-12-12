@@ -66,7 +66,7 @@ export default function ConfSesion(props) {
         if(salaState.sala.salaToken==='') return;
         socket.emit('terminar-sala',salaState.sala.salaToken);
         dispatch({
-            type:types.actualizarSala,
+            type:types.terminarSala,
             payload:{
                 ...salaState.sala,
                 title:'',
