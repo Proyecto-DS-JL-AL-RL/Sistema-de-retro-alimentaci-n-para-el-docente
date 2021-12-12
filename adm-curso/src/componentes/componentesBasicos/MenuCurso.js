@@ -13,12 +13,7 @@ export default function SelectedListItem(props) {
   };
 
   return (
-    <div>
-      <Router>
-      <Route path="/Principal">
-            {props.Back}
-      </Route>
-      </Router>      
+    <div>    
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'rgba(77, 76, 76, 0.959);' }}>
         <List component="nav">
           <ListItemButton
@@ -27,7 +22,7 @@ export default function SelectedListItem(props) {
               (event) => handleListItemClick(event, 0)
             }
           >
-            <ListItemText primary={<Link id="link" to="/">volver al incio</Link>}/>
+            <ListItemText primary={<Link id="link" to="/">volver al inicio</Link>}/>
           </ListItemButton>
         </List>
       </Box>

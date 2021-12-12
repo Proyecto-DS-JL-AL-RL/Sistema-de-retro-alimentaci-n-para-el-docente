@@ -65,7 +65,6 @@ export default function Login(props) {
                     <button className = "confirmButton" onClick = {()=>{history.push('/register');}}>Registrar</button>
                 </div>
             </div>         
-            <Header/>
         </div>
     );
 }

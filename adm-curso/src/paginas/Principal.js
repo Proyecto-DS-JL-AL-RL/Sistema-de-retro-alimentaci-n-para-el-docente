@@ -38,9 +38,10 @@ export default function Principal() {
 
 
     const initSession = function(){
-        axios.get('/login/getSession').then(function(response){
-            setSession(response.data);
+        axios.get('/login/getSession').then(function(response){            
             store.dispatch(startSession(response.data));
+            //store.dispatch(setInterSession({asdada}));
+            setSession(response.data);
             if(response.data.logged != null) setLogged(response.data.logged);            
         });   
         
@@ -79,16 +80,13 @@ export default function Principal() {
                     </Route>
                     <Route path="/VerRespuesta">
                         <VerRespuesta/>
-                        <Header NameCurso={'Respuesta'}/>
                     </Route>
                     <Route path="/CrearPregunta">
                         <CrearPregunta/>
-                        <Header NameCurso={'Crear Pregunta'}/>
                     </Route>                    
 
                     <Route path="/VerEstadisticas">
                         <VerEstadisticas/>
-                        <Header NameCurso={'Estadisticas'}/>
                     </Route>
                     
                     <Route path="/VerPerfil">
@@ -107,7 +105,8 @@ export default function Principal() {
                     </Route>
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}>
                         <PagClase session = {session}/>
-                    </Route>
+                    </Route>    
+                  
                     <Route path='/NuevoCurso'>
                         <NuevoCurso idprofesor={session.user}/>
                     </Route>
@@ -120,11 +119,13 @@ export default function Principal() {
                     <Route path='/EditarMaterial/:idFile' component={EditarMaterial}>
                         <EditarMaterial/>
                     </Route>
-                </Switch>          
+                </Switch>    
+                <Header/>  
                 <div className = 'LoginState'>  
                 <button className = 'LoggoutButton' onClick = {handleLogout}>CerrarSession</button>
                 </div>
-            </Router>            
+            
+            </Router>                  
             }
 
         </div>
