@@ -8,4 +8,8 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(db => console.log('BDConnected'))
 .catch(err=>console.log(err));
 
-comentario.findOneAndUpdate({titulo: "Justificacion de falta"},{fileRef : 'Yet to implement F'});
+
+
+form.findOneAndUpdate({titulo: "Modalidad PC9"},{clase : '619f36e3b1281b5139de6934',respondidos : 0.0}).exec();
+
+form.findOneAndUpdate({titulo: "Recuperacion de Clases"},{clase : '619f36e3b1281b5139de6934',respondidos: 0.0}).exec();

@@ -1,53 +1,51 @@
 import React from 'react';
-import test from './clases/clases'
-import {useParams} from "react-router-dom";
+//import test from './clases/clases'
 import './EditarCurso.css'
-import BasicButtons from './componentesBasicos/CommonButton'
-import {Link,BrowserRouter as Router,
-    Route,Switch} from 'react-router-dom';
 import { useState } from 'react';
-
-let course = test['cursos']
-let alumnos = test['alumno']
+import './subNota.css'
+import axios from 'axios'
 export default function SubirNota(props){
     const [disable, setDiseable] = useState(true)
-    const [idcurso, setIdrecurso] = useState('')
+    const [codig, setcodig] = useState('20192196K')
+    const [idcurso, setIdrecurso] = useState(props.idcurso)
     const [tipoPractica, setTipoPractica]= useState('')
     const [puntuacion, setPuntuacion] = useState('')
     const [estado, setEstado] = useState('')
+    console.log(props.idCurso)
     return (
-        <div className="eText">
-            <h1>Subir Nota</h1>
-                <div id="Edit">
-                        <p id="datos">Código del Alumno:</p>
-                        <input id="einput" value={alumnos[props.id2-1].id}  disabled = {(disable)? "disabled" : ""}/>
-                        <p id="datos">Alumno:</p>
-                        <input id="einput" value={alumnos[props.id2-1].getNombre()+" "+alumnos[props.id2-1].getApellido()}  disabled = {(disable)? "disabled" : ""}/>
-                        <p id="datos">ID Curso:</p>
-                        <input id="einput" value={course[props.id-1].codigo} onChange={(e)=>{
+        <div>
+            <h3>Subir Nota</h3>
+                <div id="sEdit">
+                        <p id="sdatos">Código del Alumno:</p>
+                        <input id="seinput" value={'20192196K'}  disabled/>
+                        <p id="sdatos">Alumno:</p>
+                        <input id="seinput" value={'Alexander Lique'}  disabled/>
+                        <p id="sdatos">ID Curso:</p>
+                        <input id="seinput" value={idcurso} onChange={(e)=>{
                             setIdrecurso(e.target.value)
-                        }} disabled = {(disable)? "disabled" : ""}/>
-                        <p id="datos">Tipo prática:</p>
-                        <input id="einput" value={tipoPractica} onChange={(e)=>{
+                        }} disabled/>
+                        <p id="sdatos">Tipo prática:</p>
+                        <input id="seinput" value={tipoPractica} onChange={(e)=>{
                             setTipoPractica(e.target.value)
                         }} disabled = {(disable)? "disabled" : ""}/>
-                        <p id="datos">Puntuación</p>
-                        <input id="einput" value={puntuacion} onChange={(e)=>{
+                        <p id="sdatos">Puntuación</p>
+                        <input id="seinput" value={puntuacion} onChange={(e)=>{
                             setPuntuacion(e.target.value)
                         }} disabled = {(disable)? "disabled" : ""}/>
-                        <p id="datos">Estado</p>
-                        <input id="einput" value={estado} onChange={()=>{
+                        <p id="sdatos">Estado</p>
+                        <input id="seinput" value={estado} onChange={()=>{
                             setEstado("")
-                        }} disabled = {(disable)? "disabled" : ""}/>                    
-                        <button className="ebton" onClick={()=>{
+                        }} disabled = {(disable)? "disabled" : true}/>                    
+                        <button className="sebton" onClick={()=>{
                             setDiseable(false)
                             setEstado("Sin Registro")
                         }}>Editar</button>
-                        <button className="ebton" onClick={()=>{
+                        <button className="sebton" onClick={()=>{
                             setDiseable(true)
                             setPuntuacion('')
                             setEstado('Se ha registrado correctamente')
-                            }
+                            axios.post('/nota/create', {codigoAlumn:codig, codigCurso:idcurso,  TipoPractica:tipoPractica, Puntuacion:puntuacion})    
+                        }
                             }>Guardar</button>
                 </div>
         </div>

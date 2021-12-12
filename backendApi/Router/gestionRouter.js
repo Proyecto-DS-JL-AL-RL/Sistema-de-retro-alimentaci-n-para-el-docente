@@ -6,10 +6,12 @@ const router = express.Router();
 var {createCurso, findCurso, updateCurso, deleteCurso } = require('../Datos/Gestion/gCurso')
 var {createUser, findUser, updateUser, deleteUser} = require('../Datos/Gestion/gUser')
 var {crearNota, findNota, updateNota, deleteNota} = require('../Datos/Gestion/gNota');
+var {Registrar, BuscarToken} = require('../Datos/Gestion/gRegistro');
+var {createMaterial, findmaterial, updateMaterial, deleteMaterial} = require('../Datos/Gestion/gMaterial');
 
 router.post('/user/search', async (req,res)=>{
     const usr = await findUser(req.body);
-    res.json(usr);
+    return res.json(usr);
 });
 
 router.post('/user/:id/update', async (req,res)=>{
@@ -58,7 +60,7 @@ router.post('/nota/:id/update', async (req,res)=>{
     res.json(nota);
 });
 
-router.delete('/curso/:idcurso/delete', async (req,res)=>{
+router.delete('/nota/:idcurso/delete', async (req,res)=>{
     await deleteNota(req.params.idcurso.toString());
     res.send('Se eliminó una nota')
 });
@@ -68,5 +70,45 @@ router.post('/nota/create', async (req,res)=>{
     res.send('Se creo una nueva nota')
 })
 
+router.post('/registroCurso/register', async (req,res)=>{
+    await Registrar(req.body);
+    res.send('Se creo un nuevo token')
+})
+router.post('/registroCurso/buscar', async (req,res)=>{
+    const token = await BuscarToken(req.body);
+    return res.json(token);
+})
 
+router.post('/material/create', async (req,res)=>{
+    await createMaterial(req.body);
+    res.send('Se agrego un nuevo material')
+})
+
+router.post('/material/search', async (req,res)=>{
+    const mat = await findmaterial(req.body);
+    return res.json(mat);
+});
+
+router.post('/material/update', async (req,res)=>{
+    const mat = await updateMaterial(req.body[0], req.body[1]);
+    res.json(mat);
+});
+
+router.delete('/material/:idcurso/delete', async (req,res)=>{
+    await deleteMaterial(req.params.idcurso.toString());
+    res.send('Se eliminó un material')
+});
+
+router.get('/static/:id', async (req, res)=>{
+    return res.sendFile(req.body)
+})
+
+/*
+[
+       {"codigo":"CC231"} ,
+       {
+           "$push":{"alumnos":"20192196K"}
+       }        
+]
+*/
 module.exports = router;
