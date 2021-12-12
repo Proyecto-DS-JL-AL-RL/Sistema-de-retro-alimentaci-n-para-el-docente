@@ -11,12 +11,7 @@ export default function SelectedListIncio(props) {
     setSelectedIndex(index);
   };
   return (
-    <div>
-    <Router>
-       <Route path="/VerPerfil">
-          {props.iperfil}
-       </Route>
-    </Router>    
+    <div>  
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'rgba(77, 76, 76, 0.959);' }}>
       <List component="nav">
         <ListItemButton

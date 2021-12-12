@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header'
-import '../componentes/notas.css'
+import './notas.css'
 import test from './clases/clases'
 //import VerNotaAlumnos from './VerNotaAlumnos'
 import SubirNota from './SubirNota';
@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import axios from 'axios'
-import AlignItemsList from './listaalumnos'
+//import AlignItemsList from './listaalumnos'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -43,7 +43,6 @@ export default function VerNotas(props) {
     const [listcodAlum, setListcodAlum] = useState([])
     const [alumnos, SetAlumnos] = useState([])
     const [alu, setalu] = useState('') 
-    const [codigalu, setcodigalu] = useState('') 
     const [subir, setSubir] = useState(false)
     const [tipo, setTipo] = React.useState(store.getState().session.type)
     const [user, setUser] = React.useState(store.getState().session.user)

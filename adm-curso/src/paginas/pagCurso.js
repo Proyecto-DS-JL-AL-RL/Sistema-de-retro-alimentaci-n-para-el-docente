@@ -26,7 +26,9 @@ export default function PagCurso(props) {
     useEffect(()=>{
         axios.post('/curso/search', {codigo:idCurso}).then((response) => {
         let body = response.data;
-        setNameCurso(body[0].nombre)
+        store.dispatch(setHeaderContent(body[0].nombre));
+        store.dispatch(setIdCourse(idCurso));
+        //setNameCurso(body[0].nombre)
         }) 
     },[])
     const switchMobil = function(){
@@ -58,10 +60,6 @@ export default function PagCurso(props) {
         )
     
 }
-    useEffect(()=>{
-        store.dispatch(setHeaderContent(curso[idCurso-1].nombre_curso));
-        store.dispatch(setIdCourse(idCurso));
-    },[])
 
     
     return (        
@@ -82,8 +80,6 @@ export default function PagCurso(props) {
                     {buttonWindow()}
                 </div>
             }            
-
-            <Header NameCurso={nameCursp} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

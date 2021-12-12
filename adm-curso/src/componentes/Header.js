@@ -6,6 +6,8 @@ import Avatar from './componentesBasicos/Avatar'
 import { useState } from 'react';
 import { useStore } from 'react-redux';
 import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import SelectedListaInicio from './componentesBasicos/ListaIncio.js';
+import SelectedListIncio from './componentesBasicos/MenuInicio.js';
 import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
 import VerPerfil from '../componentes/Perfil';
 //import { style } from '@mui/system';
@@ -34,16 +36,30 @@ export default function Header(props){
         }     
     
     useEffect(()=>{
-        console.log(store.getState());
-        if(store.getState().headerContent){
-            console.log(store.getState());
-            setContent(store.getState().headerContent);
+        const stateS = store.getState();
+        console.log(stateS);
+        if(stateS.headerContent){
+            console.log(stateS);
+            setContent(stateS.headerContent);
         }
-        if (store.getState().session)
-            setUser(store.getState().session.user);
+        if (stateS.session)
+            setUser(stateS.session.user);
+        if (stateS.idCourse)
+            setIdCurso(stateS.idCourse)
     },[]);
         
-    
+    const getSelectedItemMenu = () => {
+        if (store.getState().idCourse)
+            return <SelectedListItem/>
+        else
+            return <SelectedListaInicio/>
+    }
+    const getSelectedItemAvatar = () => {
+        if (store.getState().idCourse)
+            return <SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>
+        else
+            return  <SelectedListIncio />
+    }
         
         return ( 
         <div id="Header">
@@ -52,14 +68,14 @@ export default function Header(props){
                         <DehazeIcon fontSize={'small'}/>
                     </button>
                     <div>
-                        {menu?<SelectedListItem/>:false}
+                        {menu?getSelectedItemMenu():false}
                     </div>
             </div>  
             <div id="List" onClick={imageClick}> 
                 <div id="Foto">
                     <Avatar style={avatar_style} avatar={test['user'].getImagen()}/> 
                 </div>
-                <div id="menu-avatar">{avatar?<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>:false}</div>
+                <div id="menu-avatar">{avatar?getSelectedItemAvatar():false}</div>
             </div>
             <div id="NombreCurso">
                     <h1 id="hTitulo">{content}  {user}</h1>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Header from './Header';
 //import SelectedListIncio from './componentesBasicos/MenuInicio.js';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';

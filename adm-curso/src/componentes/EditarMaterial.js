@@ -1,11 +1,8 @@
 import React from 'react';
-import test from './clases/clases'
-import {useParams} from "react-router-dom";
+//import test from './clases/clases'
 import './EditarCurso.css'
 import BasicButtons from './componentesBasicos/CommonButton'
-import {Link,BrowserRouter as Router,
-    Route,Switch} from 'react-router-dom';
-import { useState } from 'react';
+import {Link} from 'react-router-dom';
 import { withRouter } from "react-router";
 import axios from 'axios';
 

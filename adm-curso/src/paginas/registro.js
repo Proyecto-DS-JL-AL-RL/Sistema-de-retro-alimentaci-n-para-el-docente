@@ -59,7 +59,7 @@ export default function Registro(props) {
                     setMessage(body.message);                    
                 }
             });
-            console.log('Enviando ',username,password,nombre,apellido,correo,password2);
+            //console.log('Enviando ',username,password,nombre,apellido,correo,password2);
         }        
     };
 
@@ -117,7 +117,6 @@ export default function Registro(props) {
                 </div>
                 </div>
             </div>         
-            <Header/>
         </div>
     );
 }
