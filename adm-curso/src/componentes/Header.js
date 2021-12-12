@@ -56,7 +56,7 @@ export default function Header(props){
     }
     const getSelectedItemAvatar = () => {
         if (store.getState().idCourse)
-            return <SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>
+            return <SelectedListAvatar curso_id={store.getState().idCourse}   perfil={<VerPerfil/>}/>
         else
             return  <SelectedListIncio />
     }
