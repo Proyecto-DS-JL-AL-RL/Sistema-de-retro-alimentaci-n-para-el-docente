@@ -7,27 +7,47 @@ import Principal from './Principal';
 import SelectedListIncio from '../componentes/componentesBasicos/MenuInicio';
 import VerPerfil from '../componentes/Perfil';
 import { useEffect } from 'react';
+import { useParams } from 'react-router';
 
 import ResumenEstadisticas from '../componentes/moduloRetroalimentacion/ResumenEstadisticas';
 import StatsGenerales from '../componentes/moduloRetroalimentacion/StatsGenerales';
 import ListaForms from '../componentes/moduloRetroalimentacion/listaForms';
+import axios from 'axios';
 
 import './pagClase.css';
-import test from '../componentes/clases/clases'
+import test from '../componentes/clases/clases';
+import {useStore} from 'react-redux';
 
 export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
+    const [idClase,setIdClase] = React.useState(useParams().idClase);
+    const [clase,setClase] = React.useState({titulo : ''});
+
+    
+    const store = useStore();
+
+
+    const session = store.getState().session;
+
+
+    //store = useStore()
 
     useEffect(()=>{
-        console.log(props.session);
-        if (props.session){
-            if(props.session.type== "Profesor"){
+        //store.getState().session; 
+        console.log(store.getState().session.type);
+
+        if (session){
+            if(session.type== "Profesor"){
                 setVista(0);
-            }else if (props.session.type == "Alumno"){
+            }else if (session.type == "Alumno"){
                 setVista(1);
             }
         }
+        axios.get('/retAl/getClass/'+String(idClase)).then(function(response){
+            //console.log(response.data);
+            setClase(response.data);
+        });
     },[])
     const switchMobil = function(){
         if (PCstate === 0){
@@ -40,9 +60,9 @@ export default function PagClase(props) {
 
             </div>
         }else if (PCstate === 1){
-            return <div className = 'pagMblListaAlumnos'><ListaComentario/></div>
+            return <div className = 'pagMblListaAlumnos'><ListaComentario clase = {idClase} session = {session}/></div>
         }else if (PCstate === 2){
-            return <div className = 'pagMblListaForms'><ListaForms/></div>
+            return <div className = 'pagMblListaForms'><ListaForms clase = {idClase} session = {session}/></div>
         }
     }
     
@@ -70,24 +90,26 @@ export default function PagClase(props) {
         <div>           
 
             {Math.min(window.innerHeight,window.innerWidth)<600?
-                <div>                    
+                <div>                   
                     {switchMobil()}
                     {buttonMbl()}
+                    <div className = 'titleMobile'>{clase.titulo}</div>
                 </div>
             :
                 <div>
+                    <div className = 'titleEsc'>{clase.titulo}</div>
                     {!PCvista?
                     <div className= 'statWindowContainer'><StatsGenerales/></div>
                     :
                     <div className = 'statWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
                     }
                     <div className = 'pagListaAlumnos'>
-                        <ListaComentario/>
+                        <ListaComentario clase = {idClase} session = {session}/>
                     </div>
-                    <div className = 'pagListaForms'><ListaForms/></div>
+                    <div className = 'pagListaForms'><ListaForms clase = {idClase} session = {session}/></div>
+                    <div className = 'titleEsc'>{clase.titulo}</div>
                 </div>
             }            
-            <Header componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListIncio  perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

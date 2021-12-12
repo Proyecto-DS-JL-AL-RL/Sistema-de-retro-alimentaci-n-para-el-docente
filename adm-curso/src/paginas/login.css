@@ -73,6 +73,17 @@
     margin-left:-35px;
 }
 
+#FormRegisterButton{
+    font-weight: 1000;
+    font-size: x-large;
+    top: 70%;
+    position:absolute;
+    width: 100px;
+    height: 35px;
+    left: 50%;
+    margin-left:-50px;
+}
+
 @media (max-height: 600px){
     #loginTittle{
         position:absolute;
@@ -121,8 +132,18 @@
         position:absolute;
         width: 70px;
         height: 35px;
-        left: 50%;
+        left: 42%;
         margin-left:-35px;
+    }
+    #FormRegisterButton{
+        font-weight: 1000;
+        font-size: x-large;
+        top: 70%;
+        position:absolute;
+        width: 100px;
+        height: 35px;
+        left: 65%;
+        margin-left:-100px;
     }
 
 

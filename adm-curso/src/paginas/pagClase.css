@@ -76,3 +76,23 @@
     position:fixed;
     height: 85vh;
 }
+
+.titleMobile{
+    color: white;
+    font-size: x-large;
+    font-weight: 1000;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 5vh;
+}
+
+.titleEsc{
+    color: white;
+    font-size: x-large;
+    font-weight: 1000;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10vh;
+}

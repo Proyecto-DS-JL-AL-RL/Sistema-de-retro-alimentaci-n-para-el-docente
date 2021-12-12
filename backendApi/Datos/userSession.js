@@ -30,7 +30,17 @@ var checkUser = async function (username,password,request){
     const hashedPassword =  await hash(salt,password);
     
     if(hashedPassword == correctHashedPass){
-        request.session.userInfo = {user: username, type: saveUserId.condicion ,logged : true};
+        //Pack
+
+        //////////////////////////
+        ///////////////////////////
+        request.session.userInfo = {
+            user: username, 
+            type: saveUserId.condicion ,
+            logged : true,
+            tittle: '',
+            webSession: null
+        };
         return {user: username,pass : password , accepted: true, message: "Login exitoso"};
     }else{
         return {user: username,pass : password , accepted: false, message: "Usuario o contraseña incorrectos"};
@@ -47,6 +57,33 @@ var savePassword = async function (userIdent,password){
     security.create({idUser: saveUserId._id.toString() , hashedPassword :saltHash});
 }
 
+
+var registerUser = async function(userParam,password){
+    //console.log(userParam);
+    const saveUser = await user.findOne({codigo: userParam.codigo}).exec().catch(err=>console.log(err));
+    if(saveUser){
+        return {
+            accepted: false,
+            message: "Este codigo ya esta en uso"
+        }
+    }
+
+    user.create({
+        codigo: userParam.codigo ,
+        nombre: userParam.nombre,
+        apellido:userParam.apellido,
+        correo:userParam.correo,
+        condicion: userParam.condicion,
+        edad: 20
+    }).then(function(){
+        savePassword(userParam.codigo,password);
+    });
+    return {
+        accepted: true,
+        message: "Registro realizado con exito"
+    };
+}
+
 var getSession = async function(request){
     if (request.session.userInfo){
         const userInfo = request.session.userInfo;
@@ -56,6 +93,24 @@ var getSession = async function(request){
         return ({logged: false})
     };
 }
+
+var setSala = async function(request,sala){
+    if (request.session.userInfo){
+        request.session.userInfo.sala = sala;
+        return request.session.userInfo
+    }else{
+        return (request.session.userInfo)
+    };
+}
+var killSala = async function(request){
+    if (request.session.userInfo){
+        request.session.userInfo.sala = null;
+        return request.session.userInfo
+    }else{
+        return (request.session.userInfo)
+    };
+}
+
 
 var endSession = async function(request){
     if (request.session.userInfo){
@@ -69,3 +124,5 @@ module.exports.checkUser = checkUser;
 module.exports.savePassword = savePassword;
 module.exports.getSession = getSession;
 module.exports.endSession = endSession;
+module.exports.registerUser = registerUser;
+

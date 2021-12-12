@@ -1,16 +1,11 @@
 import React from 'react';
-import test from './clases/clases'
-import {useParams} from "react-router-dom";
+//import test from './clases/clases'
 import './EditarCurso.css'
-import BasicButtons from './componentesBasicos/CommonButton'
-import {Link,BrowserRouter as Router,
-    Route,Switch} from 'react-router-dom';
 import { useState } from 'react';
 import './subNota.css'
 import axios from 'axios'
 export default function SubirNota(props){
     const [disable, setDiseable] = useState(true)
-    const [nom, setNom] = useState('Alexander Lique')
     const [codig, setcodig] = useState('20192196K')
     const [idcurso, setIdrecurso] = useState(props.idcurso)
     const [tipoPractica, setTipoPractica]= useState('')
