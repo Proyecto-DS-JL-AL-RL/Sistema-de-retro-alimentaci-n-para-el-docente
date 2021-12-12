@@ -13,12 +13,14 @@ export const salaReducer = (state, action) =>{
             return{
                 ...state,
                 sala: action.payload,
-                preguntas:[]
+                preguntas:[],
+                pedido:false
             }
         case types.iniciarPreguntas:
             return{
                 ...state,
-                preguntas:[...action.payload]
+                preguntas:[...action.payload],
+                pedido:true
             }
         case types.actualizarPreguntas:
             return{

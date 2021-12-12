@@ -1,5 +1,6 @@
 const User = require('../Esquemas/Gestion/gUser');
-const {Sesion} = require('../Esquemas/Interaccion/interaction');
+const {Sesion,Answer} = require('../Esquemas/Interaccion/interaction');
+const { mensajeError } = require('./funcionesUtiles');
 const unirseSala = async (idUser,salaToken) =>{
 
 }
@@ -20,7 +21,37 @@ const crearSala = async (codigo,nombreSala)=>{
     console.log(token);
     console.log(codigo,nombreSala);
 }
+const preguntaWithAnswers = async(salaToken,idUser)=>{
+    const sesion = await Sesion.findOne({salaToken})
+    .populate({
+        path:'questions',
+        populate:{
+            path:'answers',
+            populate:{
+                path:'user'
+            }
+        }
+            
+    });
+    const user = await User.findOne({codigo:idUser});
+    //const ans = await Answer.find({user,sesion});
+    if(!sesion) return mensajeError('No se encontro la sala');
+    const validQuestions = sesion.questions.map((question)=>{
+        for(let i=0;i<question.answers.length;i++){
+            if(question.answers[i].user.equals(user)) {
+                return {
+                    id:question.id,
+                    valid: true}
+            };
+        }
+        return {
+            id:question.id,
+            valid:false};
+    });
+    return validQuestions;    
+}
 module.exports = {
     unirseSala,
-    crearSala,actualizarSala,terminarSala
+    crearSala,actualizarSala,terminarSala,
+    preguntaWithAnswers
 }

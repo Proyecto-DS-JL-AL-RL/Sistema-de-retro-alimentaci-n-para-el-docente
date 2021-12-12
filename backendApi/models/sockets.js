@@ -1,4 +1,4 @@
-const {PreguntasSesion,newQuestion,newAnswer} = require('../Controllers/sockets');
+const {PreguntasSesion,newQuestion,newAnswer,comprobarPregunta} = require('../Controllers/sockets');
 const {actualizarSala,terminarSala} = require('../Controllers/Sala');
 class Sockets{
     constructor(io){
@@ -29,25 +29,46 @@ class Sockets{
                 }
             })
             socket.on('newQuestion',  async (data,user,salaToken)=>{
-                console.log(this.io.rooms);
+
                 const question = await  newQuestion(data,user,salaToken);
                 //socket.emit('allQuestion', question);
                 //socket.broadcast.emit('allQuestion', question);
+                if(question.error) {
+                    socket.emit('problemas-question',question);
+                    return;
+                }
+                
                 if(!socket.rooms.has(salaToken)){
                     socket.rooms.clear();
                     socket.join(salaToken);
                 }
+
                 this.io.to(salaToken).emit('allQuestion', question);
                 this.io.to(salaToken).emit('newQuestion', question);
             })
+            /*socket.on('comprobar-usuario', async(codigoUser,idQuestion)=>{
+                console.log(codigoUser,idQuestion);
+                const respuesta = await comprobarPregunta(codigoUser,idQuestion);
+                const data = {
+                    respuesta:respuesta,
+                    idQuestion: idQuestion
+                }
+                socket.emit('comprobar-usuario',data);
+            })*/
             socket.on('newAnswer',async (data,idQuestion,salaToken)=>{
                 //console.log(io.sockets.adapter.rooms);
                 //console.log(this.io,"Hola");
+                const answer = await newAnswer(data,idQuestion);
+                console.log(answer);
+                if(answer.error) {
+                    socket.emit('error-answer',answer);
+                    return;
+                }
                 if(!socket.rooms.has(salaToken)){
                     socket.rooms.clear();
                     socket.join(salaToken);
                 }
-                const answer = await newAnswer(data,idQuestion);
+                socket.emit('correct-answer', answer);
                 this.io.to(salaToken).emit('newAnswer',answer);
                 //socket.broadcast.emit('newAnswer',answer);
             });

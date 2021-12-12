@@ -44,6 +44,9 @@ export default function VerRespuesta() {
         socket.on('newAnswer',newAnswer =>{
             setDato(newAnswer);
         })
+        return ()=>{
+            socket.off('newAnswer');
+        }
     },[socket])
     useEffect(()=>{
         

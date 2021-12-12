@@ -11,7 +11,8 @@ const initialState= {
         inicio:null,
         fin:null
     },
-    preguntas:[]
+    preguntas:[],
+    pedido:false
 }
 export const SalaProvider = ({ children }) => {
     

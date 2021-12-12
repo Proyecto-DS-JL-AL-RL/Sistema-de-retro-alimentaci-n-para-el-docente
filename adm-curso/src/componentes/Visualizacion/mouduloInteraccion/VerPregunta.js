@@ -6,6 +6,7 @@ import { SocketContext } from '../../../context/SocketContext';
 
 import { useStore } from 'react-redux';
 import { SalaContext } from '../../../context/SalaContext';
+import { types } from '../../../types/types';
 function mensaje(tipo){
     if(tipo==1){
         return 'Describa con una palabra';
@@ -37,7 +38,7 @@ export default function VerPregunta() {
     const [content,setContent] = useState('');
     const {socket} = useContext(SocketContext);
     const store = useStore();
-    const {salaState} = useContext(SalaContext);
+    const {salaState,dispatch} = useContext(SalaContext);
     useEffect(async () => {
         const res = await fetch('/question/'+params.idPregunta);
         const question = await res.json();
@@ -61,7 +62,7 @@ export default function VerPregunta() {
             content
         }
         socket.emit('newAnswer',answer,params.idPregunta,salaState.sala.salaToken);
-        history.push('/VerRespuesta/'+params.idPregunta);
+        //history.push('/VerRespuesta/'+params.idPregunta);
     }
     const handletipo2 = (e) =>{
         setContent(e.target.value);
@@ -75,6 +76,34 @@ export default function VerPregunta() {
     const handleTipo4 = (i) =>{
         setContent(i.toString());
     }
+    useEffect(()=>{
+        socket.on('error-answer',(data)=>{
+            alert(data.mensaje);
+        })
+        return ()=>{
+            socket.off('error-answer');
+        }
+    },[socket])
+    useEffect(()=>{
+        socket.on('correct-answer',(data)=>{
+            console.log(data._id,pregunta);
+            const questions = salaState.preguntas.map((ques)=>{
+                console.log(typeof(ques.id),typeof(data._id));
+                if(ques.id == data.question) return {...ques,valid:true};
+                return ques;
+            });
+            console.log(questions);
+            dispatch({
+                type:types.iniciarPreguntas,
+                payload:questions
+            })
+            history.push('/VerRespuesta/'+params.idPregunta);
+            
+        })
+        return ()=>{
+            socket.off('correct-answer');
+        }
+    },[socket])
 
     return (
         <div className="container">

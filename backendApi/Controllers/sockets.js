@@ -1,5 +1,6 @@
 const {Sesion,Question,Answer} = require('../Esquemas/Interaccion/interaction');
 const User =require('../Esquemas/Gestion/gUser');
+const {mensajeError} = require('./funcionesUtiles');
 const PreguntasSesion = async (idSesion)=>{
     const sesion = await Sesion.findById(idSesion);
     console.log(sesion.questions)
@@ -11,8 +12,11 @@ const newQuestion = async (data,userCod,salaToken) =>{
     
     //console.log(userCod);
     const user = await User.findOne({codigo:userCod});
-    const sala = await Sesion.findOne({salaToken});
+    
+    if(!user) return mensajeError('Problemas el usuario')
+    const sala = await Sesion.findOne({salaToken,user});
     //console.log(sala);
+    if(!sala) return mensajeError('Problemas con la verifición de la sala');
     const question = new Question({
        content: data.content,
        tipo : data.tipo,
@@ -21,6 +25,7 @@ const newQuestion = async (data,userCod,salaToken) =>{
        sesion :sala,
        user
     });
+    if(!question) return {error:true,mensaje: 'Problemas con la creación de pregunta'};
     const sesion = await Sesion.findByIdAndUpdate(sala,{$push : {questions:question}});
     await question.save();
     await sesion.save();
@@ -30,8 +35,12 @@ const newQuestion = async (data,userCod,salaToken) =>{
 const newAnswer = async (data,idQuestion) =>{
     
     try{
-        const user = await User.find({codigo:data.user}).exec(); 
-        const exist = await Answer.find({user:user[0]._id,question:idQuestion});
+        const user = await User.findOne({codigo:data.user});
+        
+        if(!user) return mensajeError('Problemas con el usuario');
+        console.log(user);
+        const exist = await Answer.findOne({user:user._id,question:idQuestion});
+        if(exist) return mensajeError('Ya se respondio la pregunta');
         /*if(exist){
             
             return false;
@@ -41,7 +50,7 @@ const newAnswer = async (data,idQuestion) =>{
         
         const answer = new Answer({
             question: idQuestion,
-            user:user[0],
+            user:user,
             content : data.content
         });
         const question = await Question.findByIdAndUpdate(idQuestion,{$push : {answers:answer}});
@@ -53,10 +62,18 @@ const newAnswer = async (data,idQuestion) =>{
     }
     catch (error){
         console.log('error',error)
+        return mensajeError('Error desconocido');
     }
+}
+const comprobarPregunta = async (codigo,idQuestion)=>{
+    const user = await User.findOne({codigo});
+    if(!user) return mensajeError('Problemas con el usuario').error;
+    const answer = await Answer.findOne({question:idQuestion,user});
+    return answer? true:false;
 }
 module.exports = {
     PreguntasSesion,
     newQuestion,
-    newAnswer
+    newAnswer,
+    comprobarPregunta
 }

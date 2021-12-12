@@ -3,7 +3,7 @@ const router = express.Router();
 const {Answer,Question,Sesion} = require("../Esquemas/Interaccion/interaction");
 const { verEstadisticas } = require("../Controllers/estadisticas");
 const User = require('../Esquemas/Gestion/gUser');
-const { terminarSala } = require("../Controllers/Sala");
+const { terminarSala,preguntaWithAnswers } = require("../Controllers/Sala");
 router.get('/sesion/:salaToken', async (req,res)=>{
     const salaToken = req.params.salaToken;
     const sesions = await Sesion.findOne({salaToken});
@@ -101,5 +101,12 @@ router.put('/endSesion/',async (req,res)=>{
     const {fin} = sesion;
     console.log(fin); 
     res.json({fin});
+})
+router.get('/questionsUS/:salaToken/:idUser', async(req,res)=>{
+    const {salaToken,idUser} = req.params;
+    console.log(salaToken,idUser);
+    const questions = await preguntaWithAnswers(salaToken,idUser);
+    
+    res.json(questions); 
 })
 module.exports = router;

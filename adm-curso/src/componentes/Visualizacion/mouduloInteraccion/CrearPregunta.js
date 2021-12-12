@@ -60,6 +60,14 @@ export default function CrearPregunta() {
             socket.off('allQuestion');
         }
     },[socket]);
+    useEffect(()=>{
+        socket.on('problemas-question',(data)=>{
+            alert(data.mensaje);
+        })
+        return ()=>{
+            socket.off('problemas-question');
+        }
+    },[socket])
     return (
         <div className="ctnCont">
             <form>
