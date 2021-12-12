@@ -62,7 +62,7 @@ app.use(session({
     resave: true,
     saveUninitialized: false,
     cookie:{
-        expires: 3*60*60*1000
+        expires: 3*60*60*10000
     }
 }));
 
@@ -80,7 +80,12 @@ app.use('/',require('./Router/gestionRouter'));
 
 
 //Asignando el puerto del server
-app.listen(app.get('port'),()=>{
+const server = app.listen(app.get('port'),()=>{
     console.log('Listening on port',app.get('port'));
 })
 
+//Socket XD
+const SocketIO = require('socket.io');
+const io = SocketIO(server);
+const Sockets = require('./models/sockets');
+new Sockets(io);

@@ -7,8 +7,8 @@ const initRand = Math.floor(Math.random()*colores.length);
 const respuestaAlternativas = [
     'Ausentes','NecesitaAyuda', 'Activo', 'Pasivo', 'Distraido'
 ]
-const tamAlt = [2,3,9,5,9];
-export default function RespuestaAlternativas() {
+//const tamAlt = [2,3,9,5,9];
+export default function EstadoAlumnos(props) {
     const contRef = useRef(null);
     const canvasRef= useRef(null);
     
@@ -26,7 +26,7 @@ export default function RespuestaAlternativas() {
         //dibujarBarra(context,0,0,width,height,"yellow");
         //dibujarRecta(context,0,0,width,height);
         //dibujarRecta(context,0,100,width,100);
-        
+        let tamAlt = props.estadoAlumno;
         let n = tamAlt.length;
         let height_t = height-20;
         let height_barras = height_t/n;
@@ -51,7 +51,9 @@ export default function RespuestaAlternativas() {
             window.removeEventListener("resize",draw);
         }
     },[])
-    
+    useEffect(()=>{
+        draw();
+    })
     return (
         <div ref = {contRef}  style={{"width":"100%","height":"100%",}}>
             <canvas ref={canvasRef}/>

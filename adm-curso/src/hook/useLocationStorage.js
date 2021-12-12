@@ -10,8 +10,9 @@ export function useLocationStorage(key,initialValue) {
         }
     }
     );
-    const setValue = value =>{
+    const setValue = (value) =>{
         try{
+            console.log(value);
             setStoredValue(value);
             window.localStorage.setItem(key,JSON.stringify(value));
         }

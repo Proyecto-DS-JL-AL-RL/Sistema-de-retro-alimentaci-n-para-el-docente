@@ -1,7 +1,7 @@
 import React,{useRef,useEffect} from 'react';
-import {num as vof} from './DatosRA.js';
+//import {num as vof} from './DatosRA.js';
 import {dibujarBarra,dibujarRecta,text,graficarPunto} from './Draw.js';
-export default function VerEstadisticasPorPregunta() {
+export default function VerEstadisticasPorPregunta(props) {
     const contRef = useRef(null);
     const canvasRef= useRef(null);
     
@@ -14,6 +14,8 @@ export default function VerEstadisticasPorPregunta() {
         const width = content.clientWidth;
         const height = content.clientHeight;
         const context = canvas.getContext("2d");
+        const lenAns = props.ansXQues.length;
+        const vof = lenAns>5? props.ansXQues.slice(lenAns-7,lenAns):props.ansXQues;
         let n = vof.length;
         const sep = width/n; 
 
@@ -67,6 +69,9 @@ export default function VerEstadisticasPorPregunta() {
             window.removeEventListener("resize",draw);
         }
     },[])
+    useEffect(()=>{
+        draw();
+    })
     
     return (
         <div ref = {contRef}  style={{"width":"100%","height":"100%"}}>

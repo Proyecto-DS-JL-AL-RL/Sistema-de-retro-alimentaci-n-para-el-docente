@@ -14,7 +14,7 @@ function clasificar(totalPregunta,totalRespuestas,erradas,totalDirectas){
     else if(relativo<=0.3) return 'Distraido';
     
 }
-export default function RespuestaAlumno() {
+export default function RespuestaAlumno(props) {
     return (
         
         
@@ -30,16 +30,16 @@ export default function RespuestaAlumno() {
             </thead>
             <tbody className="tcuerpo">
                 
-                {respuestaAlumno.map((e,i)=>{
-                const rndInt = Math.floor(Math.random()*6);
-                const rndErr = Math.floor(Math.random()*(Math.min(rndInt,4)));
+                {props.tablaAlumno.map((e,i)=>{
+                //const rndInt = Math.floor(Math.random()*6);
+                //const rndErr = Math.floor(Math.random()*(Math.min(rndInt,4)));
                    
                 return <tr className="contItem" key={e.id}>
                     <td>{i+1}</td>
                     <td>{e.nombre}</td>
-                    <td> {clasificar(5,rndInt,rndErr,4)}</td>
-                    <td>{rndInt}</td>
-                    <td>{rndErr}</td>
+                    <td> {e.estado}</td>
+                    <td>{e.respuestas}</td>
+                    <td>{e.errores}</td>
                 </tr>
                 })}
             </tbody>

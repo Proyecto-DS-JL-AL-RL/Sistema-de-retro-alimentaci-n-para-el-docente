@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useContext } from 'react'
 import {Link,BrowserRouter as Router,
     Route,Switch} from 'react-router-dom';
 import CrearPregunta from '../componentes/Visualizacion/mouduloInteraccion/CrearPregunta';
@@ -27,12 +27,17 @@ import { useStore } from 'react-redux';
 import VerMaterial from '../componentes/verMaterial';
 import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
+import { SocketContext } from '../context/SocketContext';
+import VerPregunta from '../componentes/Visualizacion/mouduloInteraccion/VerPregunta';
 
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
-
-
+    const {socket} = useContext(SocketContext);
+    useEffect(() => {
+        socket.emit('unirse-sala','hola')
+        
+    }, [])
 
     const store = useStore();
 
@@ -57,9 +62,12 @@ export default function Principal() {
     useEffect(()=>{
         initSession();
     },[]);
-
+    //<h1>hola {online?'online':'offline'}</h1>
     return (
+        
         <div>
+            
+            
             {!logged? 
             <Router>
             <Switch>
@@ -78,17 +86,20 @@ export default function Principal() {
                     <Route exact path="/">
                         <Inicio iduser={session.user}/>
                     </Route>
-                    <Route path="/VerRespuesta">
+                    <Route path="/VerRespuesta/:idPregunta">
                         <VerRespuesta/>
                     </Route>
                     <Route path="/CrearPregunta">
                         <CrearPregunta/>
                     </Route>                    
 
-                    <Route path="/VerEstadisticas">
+                    <Route path="/VerEstadisticas/:idSesion">
                         <VerEstadisticas/>
                     </Route>
-                    
+                    <Route path="/VerPregunta/:idPregunta">
+                        <VerPregunta/>
+                        <Header NameCurso={'VerPregunta'}/>
+                    </Route>
                     <Route path="/VerPerfil">
                         <VerPerfil idprofesor={session.user}/>
                     </Route>

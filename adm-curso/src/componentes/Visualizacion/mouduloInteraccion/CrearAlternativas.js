@@ -35,8 +35,9 @@ export default function CrearAlternativas(props) {
         <div>
             <label>Opciones:</label>
             {
-                alternativas.map(e=>{
-                    return <div className='itmAlt'>
+                alternativas.map((e,i)=>{
+                    return <div className='itmAlt' key = {"Alternativa"+i}>
+                    <button onClick={(e)=>{e.preventDefault(); props.changeCorrect(i)}}>*</button>
                     <input className="txtAlt" type="text" value={e.cont} 
                     onChange={(event)=>changeAlternativas(event,e.id)} id={e.id}/>
                     <button className="btnAlt" onClick={addAlternativa} id={e.id}>+</button>
