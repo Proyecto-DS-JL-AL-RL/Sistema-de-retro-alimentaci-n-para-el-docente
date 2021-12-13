@@ -1,21 +1,15 @@
 import React,{useState,useEffect} from 'react'
 
-import Canvas from './Canvas';
 import RespuestaAlternativas from './Tipos/RespuestaAlternativas.js';
 import RespuestaVF from './Tipos/RespuestaVF';
 import RespuestaPalabra from './Tipos/RespuestaPalabra';
 import './VerRespuesta.css';
-import RespuestaArgumento from './Tipos/RespuestaArgumento';
-import { respuestaAlternativas } from './Tipos/DatosRespuesta';
-import Tipo from './Tipo';
 import RespuestaPorAlumno from './RespuestaPorAlumno';
 import { useParams } from 'react-router-dom';
-import io from 'socket.io-client';
 import { useContext } from 'react';
 import { SocketContext } from '../../../../context/SocketContext';
 import { useStore } from 'react-redux';
 
-const pregunta = "¿Cuanto es 1 +1 ?";
 function answersToArray(respuestas){
     if(respuestas.length<1) return [];
     let rpta =respuestas[0].content;
@@ -33,6 +27,7 @@ export default function VerRespuesta() {
     const [dato,setDato] = useState({});
     const store = useStore();
     useEffect(async () => {
+        console.log(params);
         const res = await fetch('/QA/'+params.idPregunta);
         const {question,answers} = await res.json();
         //console.log(question);
@@ -42,16 +37,16 @@ export default function VerRespuesta() {
     
     useEffect(()=>{
         socket.on('newAnswer',newAnswer =>{
-            setDato(newAnswer);
+            if(newAnswer.question.localeCompare(params.idPregunta)===0) {
+                setDato(newAnswer)
+            };
         })
         return ()=>{
             socket.off('newAnswer');
         }
-    },[socket])
-    useEffect(()=>{
-        
+    },[socket,params])
+    useEffect(()=>{ 
         setRespuestas([...respuestas,dato]);
-        
     },[dato])
     return (
         <div className="ctnVerRespuesta" >

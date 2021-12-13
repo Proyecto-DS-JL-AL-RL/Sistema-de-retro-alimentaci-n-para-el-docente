@@ -9,11 +9,6 @@ export default function RespuestaPalabra(props) {
     const contentRef = useRef(null);
     const canvasRef = useRef(null);
     //const [rpta,setRpta] = useState(props.answers);
-    const [size,setSize] = useState(0);
-    
-    function cambio(){
-        setSize(window.innerWidth);
-    }
     function draw() {
         //if(canvasRef === null || contentRef===null) return;
         const rpta = props.answers;
@@ -81,7 +76,7 @@ export default function RespuestaPalabra(props) {
     },[])
     useEffect(()=>{
         draw();
-    })
+    },[props])
     return (
         
         <div ref = {contentRef}  style={{"width":"100%","height":"100%",}}>

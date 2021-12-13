@@ -6,7 +6,7 @@ import { SalaContext } from '../../context/SalaContext';
 import { types } from '../../types/types';
 import './ListQuestion.css';
 export default function ListQuestion() {
-    const {socket} = useContext(SocketContext);
+    //const {socket} = useContext(SocketContext);
     const history = useHistory(); 
     const store = useStore();
     const {salaState,dispatch} = useContext(SalaContext);
@@ -22,7 +22,7 @@ export default function ListQuestion() {
             type:types.iniciarPreguntas,
             payload:data.reverse()
         })
-    },[salaState.sala.salaToken]);
+    },[salaState]);
     
     
     const handleClick = (id,valid)=>{
@@ -35,17 +35,7 @@ export default function ListQuestion() {
         const goTo = store.getState().session.type==='Profesor'?'Respuesta':'Pregunta';
         history.push("/Ver"+goTo+"/"+id);
     }
-    useEffect(()=>{
-        socket.on('newQuestion',(data)=>{
-            dispatch({
-                type:types.actualizarPreguntas,
-                payload:{id:data._id,valid:false}
-            })
-        })
-        return ()=>{
-            socket.off('newQuestion');
-        }
-    },[socket]);
+    
     /*
     useEffect(()=>{
         socket.on('comprobar-usuario', (data)=>{

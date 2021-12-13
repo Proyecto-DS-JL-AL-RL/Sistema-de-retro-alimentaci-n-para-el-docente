@@ -4,18 +4,19 @@ import {dibujarBarra,dibujarRecta,text,graficarPunto} from './Draw.js';
 export default function VerEstadisticasPorPregunta(props) {
     const contRef = useRef(null);
     const canvasRef= useRef(null);
-    
+    const datosPregunta = props.ansXQues;
     const draw = function(){
+        //const datosPregunta = props.ansXQues;
         const canvas = canvasRef.current;
         const content = contRef.current;
-        
+        //console.log(props.ansXQues);
         canvas.width = content.clientWidth;
         canvas.height = content.clientHeight;
         const width = content.clientWidth;
         const height = content.clientHeight;
         const context = canvas.getContext("2d");
-        const lenAns = props.ansXQues.length;
-        const vof = lenAns>5? props.ansXQues.slice(lenAns-7,lenAns):props.ansXQues;
+        const lenAns = datosPregunta.length;
+        const vof = lenAns>5? datosPregunta.slice(lenAns-7,lenAns):datosPregunta;
         let n = vof.length;
         const sep = width/n; 
 
@@ -25,14 +26,12 @@ export default function VerEstadisticasPorPregunta(props) {
         //dibujarRecta(context,0,0,width,height);
         //dibujarRecta(context,0,100,width,100);
         //text(context,'hola',10,100,100,"orange","button");
-        let margenTop =50;
-        let middleWidth = width/2;
-        let separacion = 30;
-        let sizeLetters = Math.min(20,separacion);
-        let height_barra = height-(sizeLetters+10)-margenTop;
-        let espacioInf = sizeLetters+15;
-        let vf = ['V','F'];
-        let maxHeight = Math.max(...vof);
+        const margenTop =50;
+        const separacion = 30;
+        const sizeLetters = Math.min(20,separacion);
+        const height_barra = height-(sizeLetters+10)-margenTop;
+        const espacioInf = sizeLetters+15;
+        const maxHeight = Math.max(...vof);
         
         graficarPunto(context,10,10);
         context.strokeStyle = 'red';
@@ -68,13 +67,11 @@ export default function VerEstadisticasPorPregunta(props) {
         return ()=>{
             window.removeEventListener("resize",draw);
         }
-    },[])
-    useEffect(()=>{
-        draw();
-    })
+    },[props])
     
     return (
         <div ref = {contRef}  style={{"width":"100%","height":"100%"}}>
+            
             <canvas ref={canvasRef}/>
         </div>
     )

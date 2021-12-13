@@ -132,7 +132,17 @@ export default function Interaccion() {
         setNewSala(e.target.value);
         
     }
-    
+    useEffect(()=>{
+        socket.on('newQuestion',(data)=>{
+            dispatch({
+                type:types.actualizarPreguntas,
+                payload:{id:data._id,valid:false}
+            })
+        })
+        return ()=>{
+            socket.off('newQuestion');
+        }
+    },[socket]);
     return (
         
         <div className="interaccion">
