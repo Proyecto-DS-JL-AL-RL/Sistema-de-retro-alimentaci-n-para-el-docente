@@ -1,4 +1,4 @@
-import React,{useRef,useEffect} from 'react';
+import React,{useRef,useEffect,useState} from 'react';
 
 import {dibujarBarra,dibujarRecta,text} from './Draw.js';
 
@@ -12,7 +12,8 @@ export default function EstadoAlumnos(props) {
     const contRef = useRef(null);
     const canvasRef= useRef(null);
     
-    const draw = function(){
+    const draw = ()=>{
+        //console.log("dibujando",props.estadoAlumno);
         const canvas = canvasRef.current;
         const content = contRef.current;
         canvas.width = content.clientWidth;
@@ -26,13 +27,13 @@ export default function EstadoAlumnos(props) {
         //dibujarBarra(context,0,0,width,height,"yellow");
         //dibujarRecta(context,0,0,width,height);
         //dibujarRecta(context,0,100,width,100);
-        let tamAlt = props.estadoAlumno;
-        let n = tamAlt.length;
-        let height_t = height-20;
-        let height_barras = height_t/n;
-        let separacion = Math.max(10,height_barras/n);
-        let inicio = Math.max(10,height_barras/2);
-        let max_width = Math.max(...tamAlt);
+        const tamAlt = props.estadoAlumno;
+        const n = tamAlt.length;
+        const height_t = height-20;
+        const height_barras = height_t/n;
+        const separacion = Math.max(10,height_barras/n);
+        const inicio = Math.max(10,height_barras/2);
+        const max_width = Math.max(...tamAlt);
         for(let i=0;i<n;i++){
           dibujarBarra(context,inicio,i*height_barras+10,(width-inicio)/max_width*tamAlt[i],height_barras-separacion,colores[(initRand+i)%colores.length]);
           text(context,tamAlt[i],0,i*height_barras+10+height_barras/2-separacion/2,(height_barras)/2,"skyblue","middle");
@@ -50,12 +51,12 @@ export default function EstadoAlumnos(props) {
         return ()=>{
             window.removeEventListener("resize",draw);
         }
-    },[])
+    },[props])
     useEffect(()=>{
         draw();
-    })
+    });
     return (
-        <div ref = {contRef}  style={{"width":"100%","height":"100%",}}>
+        <div  ref = {contRef}  style={{"width":"100%","height":"100%",}}>
             <canvas ref={canvasRef}/>
           
         </div>

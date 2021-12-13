@@ -1,6 +1,5 @@
 import React,{useRef,useEffect} from 'react';
 import { useState } from 'react';
-import {respuestaAlternativas} from './DatosRespuesta.js';
 import {dibujarBarra,dibujarRecta,text} from './Draw.js';
 
 const colores = ['red','blue','green','orange','skyblue','blueviolet'];
