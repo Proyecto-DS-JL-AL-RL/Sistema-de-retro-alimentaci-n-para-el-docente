@@ -33,8 +33,6 @@ export default function Interaccion() {
     const [activarPreguntas,setActivarPreguntas] = useState(false);
     const [ver,setVer] = useState(false);
     const [clase,setClase] = useState(curses[0]);
-    const [inicio,setInicio] = useState(null);
-    const [fin,setFin] = useState(null);
     const [sesion,setSesion] = useLocationStorage('sesion',{
         id:'',
         title:'cualquiera',
@@ -44,7 +42,7 @@ export default function Interaccion() {
     const [activo,setActivo] = useState(opt[1]);
     const [tipoUser,setTipoUser] = useState(usuarioTipo[0]);
     //////
-    const [allQuestion,setAllQuestion] = useState([]);
+    
     const {salaState,dispatch} = useContext(SalaContext);
     const {socket} = useContext(SocketContext);
     const [newSala,setNewSala] = useState('');
