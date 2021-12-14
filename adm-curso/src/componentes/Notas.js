@@ -104,7 +104,7 @@ export default function VerNotas(props) {
                                 {vernota?<ListaNota idcurso={id} palumno={alu}/>:false}
                                 </div> 
                   </div>:
-                    <BasicTable curso={store.getState().idCurso} user={user}/>}
+                    <BasicTable curso={id.id} user={user}/>}
         </div>
     )
 }

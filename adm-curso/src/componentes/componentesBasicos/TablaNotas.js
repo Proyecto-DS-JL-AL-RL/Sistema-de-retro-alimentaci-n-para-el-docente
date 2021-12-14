@@ -8,29 +8,28 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import '../tablaNotas.css'
 import axios from 'axios'
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 function createData(id_curso, tipo_practica, puntuacion) {
   return {id_curso, tipo_practica, puntuacion};
 }
+/*
+console.log(body);
+      setState( body , ()=>{
+        for(let i = 0; i <body.length; i++)rows.push(createData(body[i].codigCurso,body[i].TipoPractica, body[i].Puntuacion))
+*/
 
-const rows = []
-export default class BasicTable extends React.Component{
-  state = {
-    notas: []
-  }
-  componentDidMount() {
-    console.log(this.props.user)
-    axios.post('/nota/search',{codigCurso:this.props.curso, codigoAlumn:this.props.user}).then((response) => {
-      let body = response.data;  
-      console.log(body);
-      this.setState({ body }, ()=>{
-        for(let i = 0; i <body.length; i++) {
-          rows.push(createData(body[i].codigCurso,body[i].TipoPractica, body[i].Puntuacion))
-        }
-      })
-    
-    },[this.props.curso, this.props.user])
-  }
-    render(){
+export default function  BasicTable(props){
+  const [rows, setRow] = useState([])
+  useEffect(()=>{
+    axios.post('/nota/search',{codigCurso:props.curso, codigoAlumn:props.user}).then((response) => {
+      let body = response.data;
+      console.log(body)
+      setRow(body)
+        })
+    },[props.curso, props.user])
+    console.log(rows)
     return (
       <div>
           <h2>Mis Notas</h2>  
@@ -49,9 +48,9 @@ export default class BasicTable extends React.Component{
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="right">{row.id_curso}</TableCell>
-              <TableCell align="right">{row.tipo_practica}</TableCell>
-              <TableCell align="right">{row.puntuacion}</TableCell>
+              <TableCell align="right">{row.codigCurso}</TableCell>
+              <TableCell align="right">{row.TipoPractica}</TableCell>
+              <TableCell align="right">{row.Puntuacion}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -60,5 +59,7 @@ export default class BasicTable extends React.Component{
     </div>
   );
 
-          }
-}
+  }
+
+
+
