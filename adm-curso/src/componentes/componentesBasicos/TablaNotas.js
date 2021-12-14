@@ -18,6 +18,7 @@ export default class BasicTable extends React.Component{
     notas: []
   }
   componentDidMount() {
+    console.log(this.props.user)
     axios.post('/nota/search',{codigCurso:this.props.curso, codigoAlumn:this.props.user}).then((response) => {
       let body = response.data;  
       console.log(body);

@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header'
 import './notas.css'
-import test from './clases/clases'
 //import VerNotaAlumnos from './VerNotaAlumnos'
 import SubirNota from './SubirNota';
 import { useState } from 'react';
@@ -9,46 +8,49 @@ import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import axios from 'axios'
 //import AlignItemsList from './listaalumnos'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import './Inicio.css'
 import { useStore } from 'react-redux';
 import BasicTable from './componentesBasicos/TablaNotas'
-let profesor = test['user']
+import { stepConnectorClasses } from '@mui/material';
+//let profesor = test['user']
 
-profesor.condicion = true;
+//profesor.condicion = true;
 
-function range(start, stop) {
-    if (stop === undefined) {
-      stop = start;
-      start = 0;
-    }
-    
-    if (start > stop) 
-      return [];
   
-    return new Array(stop - start).fill(start).map((el, i) => el + i);
+function GutterlessList(props) {
+    return (      
+        <List sx={{width: '100%', maxWidth: 360, bgcolor: '#FFA500' }}>
+          {props.alumnos.map((value) => (
+         <Button onClick={()=>{
+           props.selectalumno(value)
+           props.hidden(false)
+         }}>
+         <ListItem
+            key={value}
+            disableGutters
+          >
+            <ListItemText primary={`${value.nombre+' '+value.apellido}`} />
+          </ListItem>
+          </Button>
+        ))}
+      </List>
+    );
   }
-  
-
 export default function VerNotas(props) {
     const store = useStore();
-    const [idCurso,setIdCurso] = React.useState(useParams().nota);
+    const [idCurso,setIdCurso] = useState(store.getState().idCurso);
     const [listcodAlum, setListcodAlum] = useState([])
     const [alumnos, SetAlumnos] = useState([])
-    const [alu, setalu] = useState('') 
+    const [alu, setalu] = useState(null) 
+    const [hiddenButton, setHiddenButton] = useState(true)
     const [subir, setSubir] = useState(false)
-    const [tipo, setTipo] = React.useState(store.getState().session.type)
-    const [user, setUser] = React.useState(store.getState().session.user)
-    const state = {
-        cards : Array.from(range(1, alumnos.length+1))
-    }
+    const [vernota, setVerNota] = useState(true)
+    const [tipo, setTipo] = useState(store.getState().session.type)
+    const [user, setUser] = useState(store.getState().session.user)
     const esProfesor = (tipo)=>{
       if (tipo === 'Profesor'){
           return true
@@ -57,75 +59,51 @@ export default function VerNotas(props) {
       }
   }
     useEffect(()=>{
-        axios.post('/curso/search', {codigo:idCurso}).then((response) => {
+      console.log(store.getState().idCourse)  
+      axios.post('/curso/search', {codigo:store.getState().idCourse}).then((response) => {
             let body = response.data;
+            setIdCurso(store.getState().idCurso)
             setListcodAlum(body[0].alumnos)
-        })
-        
-        axios.post('/user/search', {codigo: {$in: listcodAlum}}).then((response) => {
-            let body = response.data;
-            SetAlumnos(body)
-        })
+          })
     },[])
-
+  
+    useEffect(()=>{
+      axios.post('/user/search', {codigo: {$in: listcodAlum}}).then((response) => {
+        let body = response.data;
+        SetAlumnos(body)
+    })
+        },[listcodAlum])
     return(
 
         <div>
         <Header/>
               {esProfesor(tipo)?<div id="contenedor">
+              <div>
+                                    <h2>Alumnos</h2>
+                                    <div>
+                                          <GutterlessList hidden={setHiddenButton} selectalumno={setalu} alumnos={alumnos}/>
+                                    </div>
+                          </div>
                                 <div>
-                                <button onClick={()=>{
+                                <button hidden={hiddenButton} onClick={()=>{
                                         setSubir(false)
+                                        setVerNota(true)
                                     }}>Ver Notas</button>
-                                <button onClick={()=>{
+                                <button hidden={hiddenButton} onClick={()=>{
+                                        setVerNota(false)
                                         setSubir(true)
                                     }}>Subir Nota</button>
+                                <button hidden={hiddenButton} onClick={()=>{
+                                      setHiddenButton(true)
+                                      setVerNota(false)
+                                      setSubir(false)
+                                    }
+                                }>cancel</button>
                                 {subir?<SubirNota  palumno={alu} idcurso={idCurso}/>:false}
-                                {console.log(alu)}
-                                </div>
-                                <div>
-                                    <p>Alumnos</p>
-                                    <div>
-                        <div id="Cards">
-                          <Container sx={{ py: 10 }} maxWidth="md">
-                            <Grid container spacing={4}>
-                              {state.cards.map((card) => (
-                                <Grid item key={card} xs={12} sm={8} md={10}>
-                                  <Card
-                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                  >
-                                    <CardMedia
-                                      component="img"
-                                      sx={{
-                                        // 16:9
-                                        pt: '56.25%',
-                                      }}
-                                      image="https://tresubresdobles.com/wp-content/uploads/2019/08/skft-912381dcd5b2c45c4a9ce8acf32cfd8c-768x961.jpg"
-                                      alt="random"
-                                    />
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                      <Typography gutterBottom variant="h5" component="h5">
-                                        {alumnos[card-1].apellido} 
-                                      </Typography>
-                                    </CardContent>
-                                    <CardActions> 
-                                      {<Button onClick={()=>{
-                                          setSubir(true)
-                                          setalu(alumnos[card-1])
-                //                          setcodigalu(alumnos[card-1])
-                                      }}size="small">subir nota</Button>}
-                                      {/*this.state.esProfesor?<Button size="small"><Link to={"/Editar/Curso/"+this.state.cursos[card-1].codigo}>Editar</Link></Button>:null*/}
-                                    </CardActions>
-                                  </Card>
-                                </Grid>
-                              ))}
-                            </Grid>
-                          </Container>
-                        </div>
-                      </div>
-                </div>
-            </div>:
-                    <BasicTable curso={idCurso} user={user}/>}
+                                {vernota?<div>{console.log(alu)}</div>:false}
+                                </div> 
+                  </div>:
+                    <BasicTable curso={store.getState().idCurso} user={user}/>}
         </div>
     )
 }
