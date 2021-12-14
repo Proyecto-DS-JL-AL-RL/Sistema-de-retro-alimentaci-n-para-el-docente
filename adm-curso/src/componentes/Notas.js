@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 import './Inicio.css'
 import { useStore } from 'react-redux';
 import BasicTable from './componentesBasicos/TablaNotas'
-import { stepConnectorClasses } from '@mui/material';
+import ListaNota from './ListaNotas'
 //let profesor = test['user']
 
 //profesor.condicion = true;
@@ -41,6 +41,7 @@ function GutterlessList(props) {
     );
   }
 export default function VerNotas(props) {
+    const id = useParams()
     const store = useStore();
     const [idCurso,setIdCurso] = useState(store.getState().idCurso);
     const [listcodAlum, setListcodAlum] = useState([])
@@ -48,7 +49,7 @@ export default function VerNotas(props) {
     const [alu, setalu] = useState(null) 
     const [hiddenButton, setHiddenButton] = useState(true)
     const [subir, setSubir] = useState(false)
-    const [vernota, setVerNota] = useState(true)
+    const [vernota, setVerNota] = useState(false)
     const [tipo, setTipo] = useState(store.getState().session.type)
     const [user, setUser] = useState(store.getState().session.user)
     const esProfesor = (tipo)=>{
@@ -60,7 +61,7 @@ export default function VerNotas(props) {
   }
     useEffect(()=>{
       console.log(store.getState().idCourse)  
-      axios.post('/curso/search', {codigo:store.getState().idCourse}).then((response) => {
+      axios.post('/curso/search', {codigo:id.id}).then((response) => {
             let body = response.data;
             setIdCurso(store.getState().idCurso)
             setListcodAlum(body[0].alumnos)
@@ -99,8 +100,8 @@ export default function VerNotas(props) {
                                       setSubir(false)
                                     }
                                 }>cancel</button>
-                                {subir?<SubirNota  palumno={alu} idcurso={idCurso}/>:false}
-                                {vernota?<div>{console.log(alu)}</div>:false}
+                                {subir?<SubirNota  palumno={alu} idcurso={id}/>:false}
+                                {vernota?<ListaNota idcurso={id} palumno={alu}/>:false}
                                 </div> 
                   </div>:
                     <BasicTable curso={store.getState().idCurso} user={user}/>}

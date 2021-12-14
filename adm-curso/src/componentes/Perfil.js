@@ -40,7 +40,7 @@ class VerPerfil extends  React.Component {
         <div>
 
             <div id="pCuadro">
-                    <Avatar style={this.state.avatar_style} avatar={test['user'].getImagen()}/>
+                    <Avatar style={this.state.avatar_style} avatar={'https://somoskudasai.com/wp-content/uploads/2021/05/portada_kaguya-47.jpg'}/>
                     <div id="Perfil">
             <h1 id="Titulo">Mi Perfil</h1>
                         <h2>Nombre:</h2>

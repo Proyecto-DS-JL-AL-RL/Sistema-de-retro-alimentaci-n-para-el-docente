@@ -73,7 +73,7 @@ export default function Header(props){
             </div>  
             <div id="List" onClick={imageClick}> 
                 <div id="Foto">
-                    <Avatar style={avatar_style} avatar={test['user'].getImagen()}/> 
+                    <Avatar style={avatar_style} avatar={'https://somoskudasai.com/wp-content/uploads/2021/05/portada_kaguya-47.jpg'}/> 
                 </div>
                 <div id="menu-avatar">{avatar?getSelectedItemAvatar():false}</div>
             </div>

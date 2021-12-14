@@ -28,7 +28,7 @@ export default class BasicTable extends React.Component{
         }
       })
     
-    })
+    },[this.props.curso, this.props.user])
   }
     render(){
     return (

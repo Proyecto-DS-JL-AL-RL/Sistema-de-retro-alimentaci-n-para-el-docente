@@ -21,7 +21,7 @@ export default function SubirNota(props){
                         <p id="sdatos">Alumno:</p>
                         <input id="seinput" value={props.palumno.nombre+' '+props.palumno.apellido}  disabled/>
                         <p id="sdatos">ID Curso:</p>
-                        <input id="seinput" value={props.idCurso} onChange={(e)=>{
+                        <input id="seinput" value={'CC3S2'} onChange={(e)=>{
                             setIdrecurso(e.target.value)
                         }} disabled/>
                         <p id="sdatos">Tipo prática:</p>
