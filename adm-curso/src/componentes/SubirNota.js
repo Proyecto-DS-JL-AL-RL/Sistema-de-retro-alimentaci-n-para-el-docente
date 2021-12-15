@@ -6,8 +6,8 @@ import './subNota.css'
 import axios from 'axios'
 export default function SubirNota(props){
     const [disable, setDiseable] = useState(true)
-    const [codig, setcodig] = useState('')
-    const [idcurso, setIdrecurso] = useState(props.idcurso)
+    const [codig, setcodig] = useState(props.palumno.codigo)
+    const [idcurso, setIdrecurso] = useState(props.idcurso.id)
     const [tipoPractica, setTipoPractica]= useState('')
     const [puntuacion, setPuntuacion] = useState('')
     const [estado, setEstado] = useState('')
@@ -21,7 +21,7 @@ export default function SubirNota(props){
                         <p id="sdatos">Alumno:</p>
                         <input id="seinput" value={props.palumno.nombre+' '+props.palumno.apellido}  disabled/>
                         <p id="sdatos">ID Curso:</p>
-                        <input id="seinput" value={'CC3S2'} onChange={(e)=>{
+                        <input id="seinput" value={idcurso} onChange={(e)=>{
                             setIdrecurso(e.target.value)
                         }} disabled/>
                         <p id="sdatos">Tipo prática:</p>

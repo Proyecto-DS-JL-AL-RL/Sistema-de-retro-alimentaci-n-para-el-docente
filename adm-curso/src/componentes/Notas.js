@@ -12,7 +12,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
-import './Inicio.css'
+//import './Inicio.css'
 import { useStore } from 'react-redux';
 import BasicTable from './componentesBasicos/TablaNotas'
 import ListaNota from './ListaNotas'
@@ -79,13 +79,13 @@ export default function VerNotas(props) {
         <div>
         <Header/>
               {esProfesor(tipo)?<div id="contenedor">
-              <div>
+              <div className="izq">
                                     <h2>Alumnos</h2>
                                     <div>
                                           <GutterlessList hidden={setHiddenButton} selectalumno={setalu} alumnos={alumnos}/>
                                     </div>
-                          </div>
-                                <div>
+              </div>
+                    <div className="der">
                                 <button hidden={hiddenButton} onClick={()=>{
                                         setSubir(false)
                                         setVerNota(true)
@@ -100,6 +100,7 @@ export default function VerNotas(props) {
                                       setSubir(false)
                                     }
                                 }>cancel</button>
+                                {console.log(id)}
                                 {subir?<SubirNota  palumno={alu} idcurso={id}/>:false}
                                 {vernota?<ListaNota idcurso={id} palumno={alu}/>:false}
                                 </div> 
