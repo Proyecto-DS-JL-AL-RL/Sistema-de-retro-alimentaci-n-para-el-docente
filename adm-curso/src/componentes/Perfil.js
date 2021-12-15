@@ -3,9 +3,7 @@ import Avatar from './componentesBasicos/Avatar.js'
 import test  from './clases/clases.js'
 import './Perfil.css'
 import BasicButtons from './componentesBasicos/CommonButton'
-import Principal from '../paginas/Principal'
-import {Link,BrowserRouter as Router,
-    Route,Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 //import {useState} from 'react'
 

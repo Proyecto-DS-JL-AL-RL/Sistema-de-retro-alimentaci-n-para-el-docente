@@ -9,9 +9,11 @@ import { useParams } from 'react-router';
 import test  from '../componentes/clases/clases.js';
 import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
 import VerPerfil from '../componentes/Perfil';
-import './pagCurso.css';
-import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import './pagCurso.css';import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+
 import Principal from './Principal';
+import { useStore } from 'react-redux';
+import {setHeaderContent,setIdCourse } from '../feature/sessionSlice';
 
 export default function PagCurso(props) {
     const [PCstate,setPCstate] = React.useState(0);
@@ -19,10 +21,15 @@ export default function PagCurso(props) {
     const [nameCursp,setNameCurso] = React.useState('');
     const [idCurso,setIdCurso] = React.useState(useParams().id);
     const curso = test['cursos']
+
+    const store = useStore();
     useEffect(()=>{
         axios.post('/curso/search', {codigo:idCurso}).then((response) => {
         let body = response.data;
-        setNameCurso(body[0].nombre)
+        store.dispatch(setHeaderContent(body[0].nombre));
+        store.dispatch(setIdCourse(idCurso));
+        //setNameCurso(body[0].nombre)
+        axios.post('/login/setCourse',{idCur:idCurso});
         }) 
     },[])
     const switchMobil = function(){
@@ -54,6 +61,7 @@ export default function PagCurso(props) {
         )
     
 }
+
     
     return (        
         <div>           
@@ -73,7 +81,6 @@ export default function PagCurso(props) {
                     {buttonWindow()}
                 </div>
             }            
-            <Header NameCurso={nameCursp} componenteMenu={<SelectedListItem Back={<Principal/>}/>} componentes={<SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>}/>
         </div>
     );
 }

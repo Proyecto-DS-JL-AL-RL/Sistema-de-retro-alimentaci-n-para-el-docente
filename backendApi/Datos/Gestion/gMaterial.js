@@ -10,9 +10,21 @@ var findmaterial = async function(codigo){
     return findMaterial
 }
 
+var updateMaterial = async function(codigo, update){
+    const mewmaterial = await material.findOneAndUpdate(codigo, update)
+    mewmaterial.save()
+    return mewmaterial
+}
+
+var deleteMaterial = async function(codigo){
+    await material.findOneAndDelete(codigo)
+}
 
 module.exports.createMaterial = createMaterial;
 module.exports.findmaterial = findmaterial;
+module.exports.updateMaterial = updateMaterial;
+module.exports.deleteMaterial = deleteMaterial;
+
 
 
 

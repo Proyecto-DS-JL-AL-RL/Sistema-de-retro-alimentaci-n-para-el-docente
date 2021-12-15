@@ -5,10 +5,14 @@ var Schema = mongoose.Schema;
 var Formulario = new Schema({
     titulo: String, 
     clase: {type: Schema.Types.ObjectId, ref: 'Class'}, 
+    respondidos : Number,
     preguntas: [{
         titulo: String,  
         descripcion: String,
-        alternativas: [ String]
+        alternativas: [ {
+            descripcion: String,
+            percent: Number
+        }]
     }]
 });
 

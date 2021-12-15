@@ -1,21 +1,24 @@
 import React from 'react';
 import "./generales/general.css";
 import "./crearClase.css";
+import axios from 'axios';
 
 class CrearClase extends  React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cursos: ['xd1','xd2','xd3'],
-            cursoActual : this.props.curso, //Fixeado
+            cursoActual : 'CC312', //Fixeado
             titulo: '',                 //Fecha
             descripcion: '',
             fecha: new Date()
         };        
       };
-    
-    crearClase = function(){
-        console.log('Xd');
+    //CC312
+    crearClase = function(idCurso){
+        axios.post('/retAl/createClass/'+String(this.state.cursoActual),{titulo: this.state.titulo, cuerpo: this.state.descripcion}).then(function(response){
+            console.log(response.data);
+        });
+        this.props.close();
     };
 
     render() {
@@ -37,10 +40,7 @@ class CrearClase extends  React.Component {
             </div>
             
             <div id = "cClaseConfirm">
-            <button onClick = {(e)=>{
-
-                    console.log("Boton")
-            }} className = "confirmButton"> Crear</button>
+            <button onClick = {()=>this.crearClase(this.state.cursoActual)} className = "confirmButton"> Crear</button>
             </div>
 
         </div>

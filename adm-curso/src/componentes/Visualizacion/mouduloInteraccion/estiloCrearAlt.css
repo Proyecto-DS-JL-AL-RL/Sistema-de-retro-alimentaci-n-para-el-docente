@@ -4,7 +4,7 @@
 
 .itmAlt{
     display: grid;
-    grid-template-columns: 1fr 1.2em 1.2em;
+    grid-template-columns: 1.2em 1fr 1.2em 1.2em;
     
 }
 .txtAlt{

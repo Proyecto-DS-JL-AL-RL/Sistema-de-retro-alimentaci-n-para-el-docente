@@ -7,7 +7,7 @@ var {createCurso, findCurso, updateCurso, deleteCurso } = require('../Datos/Gest
 var {createUser, findUser, updateUser, deleteUser} = require('../Datos/Gestion/gUser')
 var {crearNota, findNota, updateNota, deleteNota} = require('../Datos/Gestion/gNota');
 var {Registrar, BuscarToken} = require('../Datos/Gestion/gRegistro');
-var {createMaterial, findmaterial} = require('../Datos/Gestion/gMaterial');
+var {createMaterial, findmaterial, updateMaterial, deleteMaterial} = require('../Datos/Gestion/gMaterial');
 
 router.post('/user/search', async (req,res)=>{
     const usr = await findUser(req.body);
@@ -70,11 +70,11 @@ router.post('/nota/create', async (req,res)=>{
     res.send('Se creo una nueva nota')
 })
 
-router.post('/registro/register', async (req,res)=>{
+router.post('/registroCurso/register', async (req,res)=>{
     await Registrar(req.body);
     res.send('Se creo un nuevo token')
 })
-router.post('/registro/buscar', async (req,res)=>{
+router.post('/registroCurso/buscar', async (req,res)=>{
     const token = await BuscarToken(req.body);
     return res.json(token);
 })
@@ -88,6 +88,20 @@ router.post('/material/search', async (req,res)=>{
     const mat = await findmaterial(req.body);
     return res.json(mat);
 });
+
+router.post('/material/update', async (req,res)=>{
+    const mat = await updateMaterial(req.body[0], req.body[1]);
+    res.json(mat);
+});
+
+router.delete('/material/:idcurso/delete', async (req,res)=>{
+    await deleteMaterial(req.params.idcurso.toString());
+    res.send('Se eliminó un material')
+});
+
+router.get('/static/:id', async (req, res)=>{
+    return res.sendFile(req.body)
+})
 
 /*
 [

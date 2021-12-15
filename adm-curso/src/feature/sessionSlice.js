@@ -1,25 +1,39 @@
 import {createSlice} from "@reduxjs/toolkit";
+import axios from 'axios';
 
 //Not in use yet
 export const sessionSlicer = createSlice({
     name: "SessionInfo",
     initialState:{
-        session:null
+        session:null,
+        headerContent: null,
+        idCourse : null,
+        interSession:null
     },
-
+    //state.session.user
+    //store.getState . curso
     reducers:{
-        getSession: (state,action) =>{
+        startSession: (state,action) =>{
             state.session = action.payload;
+            state.idCourse = action.payload.idCourse;
+            //console.log('from redus', state.session);
         },
-        getSession: (state)=>{
-            state.session = null;
+        setHeaderContent: (state,action)=>{
+            state.headerContent = action.payload;
+            //console.log('from redux course',state.session.course)
         },
+        setInterSession: (state,action)=>{
+            state.interSession = action.payload;
+        },
+        setIdCourse : (state,action) =>{
+            state.idCourse = action.payload;
+        }
     },
 });
 
-export const {startSession,endSession,modSession} = sessionSlicer.actions;
+export const {startSession,setHeaderContent,setInterSession,setIdCourse} = sessionSlicer.actions;
 
-export const getSession = (state) => state.session.session;
+
 
 export default sessionSlicer.reducer; 
 
