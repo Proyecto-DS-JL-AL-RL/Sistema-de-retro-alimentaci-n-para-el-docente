@@ -1,0 +1,15 @@
+.indPreguntas{
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:3px;
+    border-bottom: 2px solid white;
+    cursor: pointer;
+}
+.indPreguntas:hover{
+    transform:scale(1.1);
+}
+
+.colorValid{
+    border-color:red;
+}

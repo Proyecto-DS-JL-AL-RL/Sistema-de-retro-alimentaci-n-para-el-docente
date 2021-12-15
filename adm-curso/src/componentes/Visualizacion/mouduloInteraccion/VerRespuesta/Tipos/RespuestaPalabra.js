@@ -1,18 +1,19 @@
 import React,{useRef,useEffect,useState} from 'react';
-import {palabras} from './DatosRespuesta.js';
+//import {palabras} from './DatosRespuesta.js';
 import {dibujarBarra,dibujarRecta,text} from './Draw.js';
 import {random} from 'canvas-sketch-util';
 const colores = ['red','blue','green','orange','skyblue','blueviolet'];
 const initRand = Math.floor(Math.random()*colores.length);
-export default function RespuestaPalabra() {
+
+export default function RespuestaPalabra(props) {
     const contentRef = useRef(null);
     const canvasRef = useRef(null);
-    const [size,setSize] = useState(0);
-    function cambio(){
-        setSize(window.innerWidth);
-    }
+    //const [rpta,setRpta] = useState(props.answers);
     function draw() {
         //if(canvasRef === null || contentRef===null) return;
+        const rpta = props.answers;
+        const palabras = rpta.length===0?["No hay respuestas"]:rpta;
+
         const canvas = canvasRef.current;
         const content = contentRef.current;
         
@@ -25,8 +26,9 @@ export default function RespuestaPalabra() {
         //context.fillStyle = 'blue';
         //context.fillRect(0,0,canvas.width,canvas.height);
         //dibujarBarra(context,0,0,width,height,"yellow");
-        const cols = 4;
-        const rows = 3;
+        
+        const cols = Math.round(Math.sqrt(palabras.length))+1;
+        const rows = cols-1;
         const numCells =  cols*rows;
         const gridw = width*0.9;
         const gridh = height*0.9;
@@ -72,6 +74,9 @@ export default function RespuestaPalabra() {
             window.removeEventListener("resize",draw);
         }
     },[])
+    useEffect(()=>{
+        draw();
+    },[props])
     return (
         
         <div ref = {contentRef}  style={{"width":"100%","height":"100%",}}>

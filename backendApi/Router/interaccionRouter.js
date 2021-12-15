@@ -1,22 +1,46 @@
 const express = require("express")
 const router = express.Router();
 const {Answer,Question,Sesion} = require("../Esquemas/Interaccion/interaction");
-
-router.get('/sesion', async (req,res)=>{
-    
-    const sesions = await Sesion.find();
-    res.send(sesions);
+const { verEstadisticas } = require("../Controllers/estadisticas");
+const User = require('../Esquemas/Gestion/gUser');
+const { terminarSala,preguntaWithAnswers } = require("../Controllers/Sala");
+router.get('/sesion/:salaToken', async (req,res)=>{
+    const salaToken = req.params.salaToken;
+    const sesions = await Sesion.findOne({salaToken});
+    res.json(sesions);
 });
 router.post('/sesion',async (req,res)=>{
-    const {title} = req.body;
-    const sesion = new Sesion({title:title});
+    const {idUser,title} = req.body;
+    const user = await User.findOne({codigo:idUser})
+    const salaToken = Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString(36).substring(0, 10)
+    const sesion = new Sesion({user,title,salaToken});
     await sesion.save();
-    res.json(sesion);
+    console.log(sesion);
+    res.json({salaToken});
 });
 router.get('/question',async (req,res)=>{
     const question = await Question.find();
     res.json(question);
 })
+router.get('/questions/:salaToken', async (req,res) =>{
+    const salaToken = req.params.salaToken;
+    const sesion = await Sesion.findOne({salaToken});
+    console.log(sesion,"XD");
+    res.json(sesion.questions);
+})
+router.get('/lastquestion/:salaToken', async (req,res)=>{
+    const salaToken = req.params.salaToken;
+    const sesion = await Sesion.findOne({salaToken:salaToken}).populate('questions');
+    const questions = sesion.questions;
+    //console.log(questions);
+    res.json(questions[questions.length-1]);
+
+})
+router.get('/question/:id_question', async (req,res)=>{
+    const idQuestion = req.params.id_question;
+    const question = await Question.findById(idQuestion);
+    res.json(question);
+}) 
 router.post('/question/:id_sesion',async (req,res)=>{
     const idSesion = req.params.id_sesion;
     const {content,type,options} = req.body;
@@ -45,4 +69,44 @@ router.get('/answer',async (req, res)=>{
     
     res.json(answers);
 });
+router.get('/QA/:id_question',async (req, res) =>{
+    const idQuestion = req.params.id_question;
+    const question =  await Question.findById(idQuestion);
+    const answers = await Answer.find({question:idQuestion}).populate('user',['codigo','nombre','apellido']);
+    console.log(answers[answers.length-1]);
+    res.json({question,answers});
+});
+router.get('/estadisticas/:salaToken',async (req,res) =>{
+    const salaToken = req.params.salaToken;
+    const estadisticas = await verEstadisticas(salaToken);
+    //console.log(estadisticas);
+    res.json(estadisticas);
+})
+router.get('/sesionUser/:idUser', async(req,res)=>{
+    const idUser = req.params.idUser;
+    const user = await User.findOne({codigo:idUser});
+    const sala = user.sala;
+    res.json({sala});
+})
+router.put('/sesionUser/:idUser', async(req,res)=>{
+    const idUser = req.params.idUser;
+    const {salaToken} = req.body;
+    const user = await User.findOneAndUpdate({codigo:idUser},{sala:salaToken});
+    const sala = user.sala;
+    res.json({sala});
+})
+router.put('/endSesion/',async (req,res)=>{
+    const {salaToken} = req.body;
+    const sesion = await terminarSala(salaToken);
+    const {fin} = sesion;
+    console.log(fin); 
+    res.json({fin});
+})
+router.get('/questionsUS/:salaToken/:idUser', async(req,res)=>{
+    const {salaToken,idUser} = req.params;
+    console.log(salaToken,idUser);
+    const questions = await preguntaWithAnswers(salaToken,idUser);
+    
+    res.json(questions); 
+})
 module.exports = router;

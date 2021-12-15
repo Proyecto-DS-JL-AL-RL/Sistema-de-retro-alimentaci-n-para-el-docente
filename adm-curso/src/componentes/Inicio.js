@@ -45,7 +45,9 @@ export default function Inicio (props){
   React.useEffect(()=>{
     store.dispatch(setHeaderContent('Cursos'));
     store.dispatch(setIdCourse(null));
-    axios.post('/user/search', {codigo:props.iduser}).then((response) => {
+    axios.post('/login/setCourse',{idCur:null});
+
+    axios.post('/user/search', {codigo:props.iduser}).then((response) => {  
       let body = response.data;
       if(body[0].condicion === "Profesor"){
         axios.post('/curso/search', {IDProfe:props.iduser}).then((response) => {          

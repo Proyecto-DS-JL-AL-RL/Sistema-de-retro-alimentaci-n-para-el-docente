@@ -15,6 +15,7 @@ export const sessionSlicer = createSlice({
     reducers:{
         startSession: (state,action) =>{
             state.session = action.payload;
+            state.idCourse = action.payload.idCourse;
             //console.log('from redus', state.session);
         },
         setHeaderContent: (state,action)=>{

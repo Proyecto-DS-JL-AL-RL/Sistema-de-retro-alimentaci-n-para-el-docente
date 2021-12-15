@@ -1,14 +1,40 @@
 import React,{useRef,useEffect} from 'react';
-import {respuestaAlternativas,tamAlt} from './DatosRespuesta.js';
+import { useState } from 'react';
 import {dibujarBarra,dibujarRecta,text} from './Draw.js';
 
 const colores = ['red','blue','green','orange','skyblue','blueviolet'];
 const initRand = Math.floor(Math.random()*colores.length);
-export default function RespuestaAlternativas() {
+function transform(rpts,noptions){
+    let n = noptions;
+    let arr =[];
+    for(let i=0;i<n;i++) arr.push(0);
+    rpts.map(e=>{
+        arr[parseInt(e.content)]++;
+    })
+    
+    return arr;
+}
+export default function RespuestaAlternativas(props) {
     const contRef = useRef(null);
     const canvasRef= useRef(null);
-    
+    /*const [tamAlt,setTamAlt] = useState(()=>{
+        let n = props.question.options.length;
+        let arr=[];
+        for(let i=0;i<n;i++) arr.push(0);
+        props.answers.map(e=>{
+            arr[parseInt(e.content)]++;
+        })
+        console.log(props.answers);
+        return arr;
+    });*/
+
+    const [respuestaAlternativas,setRespuestaAlternativas] = useState(()=>{
+        return props.question.options.map(e=>{
+            return e.cont;
+        })
+    }); 
     const draw = function(){
+        const tamAlt = transform(props.answers,respuestaAlternativas.length);
         const canvas = canvasRef.current;
         const content = contRef.current;
         canvas.width = content.clientWidth;
@@ -41,13 +67,16 @@ export default function RespuestaAlternativas() {
         
     }
     useEffect(()=>{
+        
         draw();
         window.addEventListener("resize", draw);
         return ()=>{
             window.removeEventListener("resize",draw);
         }
     },[])
-    
+    useEffect(()=>{
+        draw();
+    })
     return (
         <div ref = {contRef}  style={{"width":"100%","height":"100%",}}>
             <canvas ref={canvasRef}/>

@@ -27,6 +27,10 @@ router.post('/register',async function(req,res){
         res.send(await userSession.registerUser(req.body.user,req.body.password));
 });
 
+router.post('/setCourse',async function(req,res){
+        res.send(await userSession.setCourse(req,req.body.idCur));
+});
+
 
 module.exports = router;
 

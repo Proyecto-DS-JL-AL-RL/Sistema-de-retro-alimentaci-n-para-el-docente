@@ -44,7 +44,7 @@ export default function Registro(props) {
                 nombre: nombre,
                 apellido:apellido,
                 correo:correo,
-                condicion: 'Profesor'
+                condicion: 'Alumno'
             },
             password:password            
             }).then(function(response){
