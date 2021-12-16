@@ -4,6 +4,7 @@ const {Answer,Question,Sesion} = require("../Esquemas/Interaccion/interaction");
 const { verEstadisticas } = require("../Controllers/estadisticas");
 const User = require('../Esquemas/Gestion/gUser');
 const { terminarSala,preguntaWithAnswers } = require("../Controllers/Sala");
+const { mensajeError } = require("../Controllers/funcionesUtiles");
 router.get('/sesion/:salaToken', async (req,res)=>{
     const salaToken = req.params.salaToken;
     const sesions = await Sesion.findOne({salaToken});
@@ -12,8 +13,10 @@ router.get('/sesion/:salaToken', async (req,res)=>{
 router.post('/sesion',async (req,res)=>{
     const {idUser,title} = req.body;
     const user = await User.findOne({codigo:idUser})
+    if(!user) return mensajeError('Usuario no identificado');
     const salaToken = Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString(36).substring(0, 10)
     const sesion = new Sesion({user,title,salaToken});
+    
     await sesion.save();
     console.log(sesion);
     res.json({salaToken});

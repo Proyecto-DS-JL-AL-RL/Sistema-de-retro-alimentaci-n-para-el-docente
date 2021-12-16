@@ -47,13 +47,14 @@ export default function Header(props){
         if (stateS.idCourse)
             setIdCurso(stateS.idCourse)
     },[]);
-        
+    //Boton Azul   
     const getSelectedItemMenu = () => {
         if (store.getState().idCourse)
             return <SelectedListItem/>
         else
             return <SelectedListaInicio/>
     }
+    //Derecha similar a Perfil
     const getSelectedItemAvatar = () => {
         if (store.getState().idCourse)
             return <SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>

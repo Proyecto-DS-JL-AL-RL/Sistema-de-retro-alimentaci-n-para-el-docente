@@ -5,8 +5,14 @@ import { SocketContext } from '../../context/SocketContext';
 import { types } from '../../types/types';
 
 import './ConfSesion.css';
+const handleTime =(time)=>{
+    if(!time) return ""
+    const tiempo = new Date(time);
+    console.log(tiempo.getHours());
+    return tiempo.getHours() +":" + tiempo.getMinutes();
+}
 const curses = ['Curso1','Curso2','Curso3'];
-
+handleTime()
 export default function ConfSesion(props) {
     const {salaState,dispatch} = useContext(SalaContext);
     const store = useStore();
@@ -96,8 +102,8 @@ export default function ConfSesion(props) {
                 <div>
                     <input text="text" value={salaState.sala.title} 
                     onChange = {(e)=>handleTitle(e)} onBlur={()=>actualizarTitle()}/>
-                    <div>Inicio: {salaState.sala.inicio}</div>
-                    <div>Fin: {salaState.sala.fin}</div>
+                    <div>Inicio: {handleTime(salaState.sala.inicio)}</div>
+                    <div>Fin: {handleTime(salaState.sala.fin)}</div>
                 </div>
                 
                 <div className="ctnActionConf">
