@@ -11,9 +11,6 @@ import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function createData(id_curso, tipo_practica, puntuacion) {
-  return {id_curso, tipo_practica, puntuacion};
-}
 /*
 console.log(body);
       setState( body , ()=>{
