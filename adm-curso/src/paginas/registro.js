@@ -13,7 +13,8 @@ export default function Registro(props) {
     const [password,setPassword] = React.useState("");
     const [password2,setPassword2] = React.useState("");
     const [showMessage,setShowMessage] = React.useState(false);
-    const [message,setMessage] = React.useState("")
+    const [message,setMessage] = React.useState("");
+    const [tipo,setTipo] = React.useState("");
     const initSession = props.initSession;
     let history = useHistory();
 
@@ -38,13 +39,17 @@ export default function Registro(props) {
     
     const sendUserPass = function(){
         if(checkInput()){
+            let tipoU = "Alumno";
+            if (tipo){
+                tipoU = "Profesor";
+            };
             axios.post('/login/register',
             {user : {
                 codigo: username,
                 nombre: nombre,
                 apellido:apellido,
                 correo:correo,
-                condicion: 'Alumno'
+                condicion: tipoU
             },
             password:password            
             }).then(function(response){
@@ -59,8 +64,10 @@ export default function Registro(props) {
                     setMessage(body.message);                    
                 }
             });
+            props.initSession();
             //console.log('Enviando ',username,password,nombre,apellido,correo,password2);
-        }        
+        }  
+
     };
 
 
@@ -70,8 +77,9 @@ export default function Registro(props) {
                 Registro
             </div>      
             {showMessage?<div id = 'messageReg'>{message}</div> :<div></div>}
+            <div className = "tipoUsuario">Profesor: <input type = "checkbox" onChange={(e)=>{setTipo(e.target.checked);}}/></div>
             <div id="LoginContainer"> 
-
+                
                 <div className = 'cont'>
                     <div className = 'labelP'> Código: </div>
                     <input type = "text" className = 'RInput' value = {username}

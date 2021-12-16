@@ -6,7 +6,7 @@ const { verEstadisticas } = require('../../Controllers/estadisticas');
 var storeStats = async function (salaToken){
     console.log('from axaxaxa',salaToken);    
     const {respuestasPorPregunta,estadoAlumno,tablaAlumno} = verEstadisticas(salaToken);
-    console.log(tablaAlumno);
+    console.log('###############################################\n',tablaAlumno);
     return("xd");
 }
 
