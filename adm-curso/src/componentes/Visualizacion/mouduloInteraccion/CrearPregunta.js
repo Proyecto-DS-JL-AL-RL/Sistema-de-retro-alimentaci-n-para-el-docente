@@ -81,14 +81,14 @@ export default function CrearPregunta() {
                 <label className="itmform lblform">Tipo de Respuesta:</label>
                 <div className="ctnTipos">
                     {tipos.map((e,i)=>{
-                        return <>
+                        return <div key={"Eleciones"+i}>
                         <input className="check" id={e.id} 
                         type="radio" name="tipos" onChange={changeTipo}
                          defaultChecked={e.id==tipo?true:false} key={i}/>
                         <label className="checklbl unselect"  htmlFor={e.id} key={i}>
                             {e.descp}
                         </label>
-                        </>
+                        </div>
                     })}
                 </div>
                 {tipo==3 && <CrearAlternativas 
@@ -97,10 +97,12 @@ export default function CrearPregunta() {
                 changeCorrect = {changeCorrect}
                 correct = {correct}
                 /> }
-                {tipo ==4 && <>
-                    <div onClick={()=>{changeCorrect(0)}}>V</div>
-                    <div onClick={()=>{changeCorrect(1)}}>F</div>
-                     </>   
+                {tipo ==4 && <div className="ctnVF">
+                    <div className={"binAlt btnAlt "+ (parseInt(correct)===0?"btnac":"btndes")} 
+                    onClick={()=>{changeCorrect(0)}}>V</div>
+                    <div  className={"binAlt btnAlt "+ (parseInt(correct)===1?"btnac":"btndes")}
+                    onClick={()=>{changeCorrect(1)}}>F</div>
+                     </div>   
                 }
                 <div className="ctnArchivo">
                     <input className="check1" id="checkarchivo" 

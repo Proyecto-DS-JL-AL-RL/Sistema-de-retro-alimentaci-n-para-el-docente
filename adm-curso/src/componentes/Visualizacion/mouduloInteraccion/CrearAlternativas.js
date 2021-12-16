@@ -30,18 +30,23 @@ export default function CrearAlternativas(props) {
         })
         setAlternativas(auAlt);
     }
+    
     return (
         
         <div>
             <label>Opciones:</label>
             {
                 alternativas.map((e,i)=>{
-                    return <div className='itmAlt' key = {"Alternativa"+i}>
-                    <button onClick={(e)=>{e.preventDefault(); props.changeCorrect(i)}}>*</button>
-                    <input className="txtAlt" type="text" value={e.cont} 
+                    return <div className='itmAlt' key = {"AlternativaPropuestas"+i+e}>
+                    <button className={"btnAlt "+ (parseInt(props.correct)===i?"btnac":"btndes")}
+                    onClick={(e)=>{e.preventDefault(); props.changeCorrect(i)}}>
+                    
+                    {String.fromCharCode(2705)}
+                    </button>
+                    <input className="txtAlt " type="text" value={e.cont} 
                     onChange={(event)=>changeAlternativas(event,e.id)} id={e.id}/>
-                    <button className="btnAlt" onClick={addAlternativa} id={e.id}>+</button>
-                    <button className="btnAlt" onClick={(event)=>popAlternativa(event,e.id)} id={e.id}>-</button>
+                    <button className="btnAlt btnadd" onClick={addAlternativa} id={e.id}>+</button>
+                    <button className="btnAlt btnpop" onClick={(event)=>popAlternativa(event,e.id)} id={e.id}>-</button>
                     </div>
                 })
             }

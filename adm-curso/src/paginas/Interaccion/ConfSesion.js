@@ -107,7 +107,7 @@ export default function ConfSesion(props) {
         <div>
             <fieldset className="ctnClassConf">
                 <legend>Curso</legend>
-                <select name = "cursos"  onChange={(e)=>{changeCurso(e)}}>
+                <select className="sltCursos" name = "cursos"  onChange={(e)=>{changeCurso(e)}}>
                     <option name = "cursos" key={"CursosSelectd"} value={""} selected={salaState.curso === ''}>
                         {""}
                     </option>
@@ -118,7 +118,6 @@ export default function ConfSesion(props) {
                         </option>
                     })}
                 </select>
-                <button>Cambiar Clase</button>
             </fieldset>
             <fieldset className="ctnSesionConf">
                 <legend>Sesion</legend>

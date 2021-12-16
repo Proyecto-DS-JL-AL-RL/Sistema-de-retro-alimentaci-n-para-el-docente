@@ -14,3 +14,10 @@
 .btnAlt{
     font-size: 0.9em;
 }
+.btnac{
+    width:100%;
+    background-color:var(--colorBack);
+}
+.binAlt{
+    width:10%;
+}

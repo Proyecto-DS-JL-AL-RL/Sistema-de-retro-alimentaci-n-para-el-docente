@@ -1,13 +1,14 @@
-.container{
-    margin-top: var(--tamanoNav);
+.containerP{
+    margin-top: 50px;
     width: 80vw;
     
-    background-color: var(--colorfondo);
+    background-color: rgb(1, 1,1,0.3);
     color:var(--colortext);
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     font-size: 30px;
+    padding:25px;
 }
 .ctnPreguntaAlumno{
     text-align: left;
@@ -36,7 +37,7 @@
     margin-bottom:10px;
     font-size:1em;
     border: none;
-    background-color: rgb(68, 0, 255);
+    background-color: rgb(251, 255, 0,0.4);
     animation: 1s infinite alternate buttonRpta;
     color:white;
 }
@@ -57,4 +58,18 @@
     border-bottom: 5px dashed red;
     font: oblique bold 120% cursive;
     font-family: "Homer Simpson UI";
+}
+.itmalt{
+    width:75%;
+    margin-right: auto;
+    margin-left: auto;
+    cursor: pointer;
+    border-bottom: 3px solid rgba(4, 4, 4, 0.9);
+}
+.selectItem{
+    background-color:rgba(175, 6, 236, 0.6);
+}
+.itmform{
+    margin-top:25px;
+    height: 3em;
 }

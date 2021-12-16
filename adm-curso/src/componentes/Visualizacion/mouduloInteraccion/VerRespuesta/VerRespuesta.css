@@ -2,7 +2,7 @@
     max-width:70vw;
     margin-right: auto;
     margin-left: auto;
-    margin-top: var(--tamanoNav);
+    margin-top: 50px;
     max-height:calc(90vh - var(--tamanoNav));
     background-color: #1119;
     box-shadow: 15px 15px #1115;

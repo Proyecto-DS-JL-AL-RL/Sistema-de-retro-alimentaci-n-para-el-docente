@@ -4,3 +4,7 @@ fieldset{
 .ctnSesionConf input{
     width: 90%;
 }
+.sltCursos{
+    font-size:1.2em;
+    width:50%;
+}
