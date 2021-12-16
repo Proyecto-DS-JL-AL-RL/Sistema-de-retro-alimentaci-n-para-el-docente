@@ -34,6 +34,11 @@ export const salaReducer = (state, action) =>{
                 ...state,
                 preguntas:[action.payload,...state.preguntas]
             }
+        case types.actualizarCurso:
+            return{
+                ...state,
+                curso:action.payload
+            }
         default:
             return state;
     }

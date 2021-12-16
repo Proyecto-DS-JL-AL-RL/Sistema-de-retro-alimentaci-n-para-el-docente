@@ -108,8 +108,8 @@ export default function VerPregunta() {
     return (
         <div className="container">
             {mensaje(pregunta.tipo)}
-            <div>
-                <p>{pregunta.content}</p>
+            <div className="ctnVerPregunta">
+                {pregunta.content}
             </div>
             <div className="ctnPreguntaAlumno">
             {pregunta.tipo==1 && 
@@ -121,7 +121,8 @@ export default function VerPregunta() {
                 pregunta.tipo == 3 &&
                 aleatorio(pregunta.options).map((alt,i) =>{
                     return <>
-                    <div className={'itmalt '}  onClick={()=>handleTipo3(i)} key = {i} value={i}>
+                    <div className={'itmalt '} 
+                     onClick={()=>handleTipo3(i)} key = {i} value={i}>
                         { alt.letra + ") " +alt.cont}</div></>
                 })
             }

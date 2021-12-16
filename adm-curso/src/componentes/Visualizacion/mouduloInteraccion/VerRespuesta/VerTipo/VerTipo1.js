@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './VerTipo1.css';
 function generarElemento(arr){
     if(arr.length == 0){
         return {id:0,cont:''};
@@ -53,18 +54,18 @@ export default function VerTipo1(props) {
         props.handlePregunta(unirContenido(auAlt));
     }
     return (
-        <> 
+        <div className="ctnAlt"> 
            <label>Opciones:</label>
             {
                 alternativas.map(e=>{
-                    return <div className='itmAlt'>
+                    return <div className='itmAltPreg'>
                     <input className="txtAlt completeText" type="text" value={e.cont} 
                     onChange={(event)=>changeAlternativas(event,e.id)} id={e.id}/>
-                    <button className="btnAlt" onClick={addAlternativa} id={e.id}>+</button>
-                    <button className="btnAlt" onClick={(event)=>popAlternativa(event,e.id)} id={e.id}>-</button>
+                    <button className="btnAlt btnadd" onClick={addAlternativa} id={e.id}>+</button>
+                    <button className="btnAlt btnpop" onClick={(event)=>popAlternativa(event,e.id)} id={e.id}>-</button>
                     </div>
                 })
             }
-        </>
+        </div>
     )
 }

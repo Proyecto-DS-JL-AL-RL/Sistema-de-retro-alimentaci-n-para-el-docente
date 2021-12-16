@@ -50,8 +50,13 @@ const preguntaWithAnswers = async(salaToken,idUser)=>{
     });
     return validQuestions;    
 }
+const cambiarCurso = async (salaToken,idCurso)=>{
+    const sala = await Sesion.findOneAndUpdate({salaToken},{curso:idCurso});
+    if(salaToken) return true;
+    return mensajeError('Error en la sala');
+}
 module.exports = {
     unirseSala,
     crearSala,actualizarSala,terminarSala,
-    preguntaWithAnswers
+    preguntaWithAnswers,cambiarCurso
 }

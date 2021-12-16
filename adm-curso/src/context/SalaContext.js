@@ -12,7 +12,8 @@ const initialState= {
         fin:null
     },
     preguntas:[],
-    pedido:false
+    pedido:false,
+    curso:''
 }
 export const SalaProvider = ({ children }) => {
     

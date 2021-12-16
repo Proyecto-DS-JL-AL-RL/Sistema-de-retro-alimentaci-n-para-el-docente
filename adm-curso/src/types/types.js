@@ -5,4 +5,5 @@ export const types = {
     terminarSala:'[Sala] terminada',
     actualizarPreguntas: '[Preguntas] actualizados',
     iniciarPreguntas: '[Preguntas] establecidas',
+    actualizarCurso: '[Curso] actualizado'
 }

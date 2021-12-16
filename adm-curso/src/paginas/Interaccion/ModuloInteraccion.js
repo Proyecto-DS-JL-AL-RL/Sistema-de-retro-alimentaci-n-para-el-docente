@@ -134,9 +134,11 @@ export default function Interaccion(props) {
                     inicio:sala.inicio
                 },
                 preguntas: sala.questions?sala.questions.reverse():[]
-                
-                
             }
+        })
+        dispatch({
+            type:types.actualizarCurso,
+            payload:sala.curso?sala.curso:''
         })
         
         socket.emit('unirse-sala',sala.salaToken);
