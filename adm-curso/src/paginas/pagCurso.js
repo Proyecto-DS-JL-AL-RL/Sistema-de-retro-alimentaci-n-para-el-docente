@@ -46,7 +46,7 @@ export default function PagCurso(props) {
     const buttonMbl = function(){
             return (
                 <div className ='PClaseBtnContainers'>
-                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0)}}> General </button>
+                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0)}}> Materiales </button>
                         <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(1)}}> Clases </button>
                 </div>
             )
@@ -56,7 +56,7 @@ export default function PagCurso(props) {
     const buttonWindow = function(){
         return (
             <div className ='WindowBtnContainers'>
-                    <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(0)}}> General </button>
+                    <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(0)}}> Materiales </button>
                     <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(1)}}> Clases </button>
             </div>
         )
