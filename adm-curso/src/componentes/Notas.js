@@ -75,7 +75,7 @@ export default function VerNotas(props) {
         },[listcodAlum])
     return(
 
-        <div>
+        <div className="containerGen">
               {esProfesor(tipo)?<div id="contenedor">
               <div className="izq">
                                     <h2>Alumnos</h2>

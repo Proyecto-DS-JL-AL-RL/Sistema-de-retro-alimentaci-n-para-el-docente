@@ -71,7 +71,6 @@ class VerPerfil extends  React.Component {
                         }}>Guardar</button>    
                 </div>
             </div>         
-                <BasicButtons style={this.state.id_style} variant={this.state.variant_button} text={<Link id="link" to="/"> Volver Inicio </Link>}/>
         </div>
     )}
 }

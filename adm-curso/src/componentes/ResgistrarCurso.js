@@ -27,19 +27,26 @@ export default function RegistroCurso(props){
                             setDiseable(!disable);
                             axios.post('/registroCurso/buscar', {token:tokCurso}).then((response) => {
                                 let body = response.data;
-                                axios.post('/curso/search', {codigo: body[0].codigoCurso}).then((response) => {
+                                console.log(body)
+                                if (body[0]){
+                                    axios.post('/curso/search', {codigo: body[0].codigoCurso}).then((response) => {
                                     let curso = response.data;
-                                    //let list = curso[0].alumnos.push(props.iduser)
-                                    axios.post('/curso/'+curso[0].codigo+'/update', [{codigo:curso[0].codigo},
-                                        {$push:{alumnos:props.iduser}
-                                        }])
+                                    if (curso[0]){
+                                        //let list = curso[0].alumnos.push(props.iduser)
+                                        axios.post('/curso/'+curso[0].codigo+'/update', [{codigo:curso[0].codigo},
+                                            {$push:{alumnos:props.iduser}
+                                            }])
+                                    }else{
+                                        return <div>Error</div>
+                                    }
                                 }, (error) => {
                                     console.log(error);
-                                })
-                            }, (error) => {
+                                })}
+                            }
+                            , (error) => {
                                 console.log(error);
                             })
-                        
+                            
                     }}>Registrarse</button>
                 </div>
             <BasicButtons  variant={"contained"} text={<Link id="link" to="/"> Volver Inicio </Link>}/>

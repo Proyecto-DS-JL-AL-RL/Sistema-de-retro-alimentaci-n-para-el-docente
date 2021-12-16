@@ -53,6 +53,7 @@ export default function NuevoCurso(props){
     const [token, setToken] = useState('')
 
     return (
+      <div className="containerGen">
         <div className="eText">
             <h1>Crear Curso</h1>
                 <div id="Edit">
@@ -107,6 +108,7 @@ export default function NuevoCurso(props){
                             setIDmentor('')
                             setDescripcion('')         }} text={<Link id="link" to="/"> Volver Inicio </Link>}/>
         </div>
+        </div>  
     )
 
 }
