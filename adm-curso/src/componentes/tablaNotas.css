@@ -2,7 +2,7 @@
     position:absolute center;
     padding:30%;
     width:auto;
-    height:73%;
+    height:70%;
     left:10%;
     margin:10% 15%;
     background-color: rgb(44, 4, 82);
@@ -14,9 +14,9 @@
 
 #table{
     position:absolute;
-    width:50%;
+    width:40%;
     height:20%;
-    margin:-30% -15%;
+    margin:-50% -15%;
 }
 
 

@@ -4,14 +4,16 @@ import { useState } from 'react';
 import axios from 'axios'
 import { useEffect } from 'react';
 import './ListaNotas.css'
-
+import { useParams } from 'react-router';
 export default function ListaNota(props){
+    const id = useParams()
     const [notas, setNotas] = useState([])
     const [editar, setEditar] = useState(true)
     const [tipoPractica, setTipoPractica] = useState('')
     const [puntuacion, setPuntuacion] = useState('')
     const [hidden, setHidden] = useState(true)
     const [eliminar, setEliminar] = useState(true)
+    const [practica, setPractica] = useState('')
     useEffect(()=>{
         setNotas([]);
         console.log(props.idcurso)
@@ -30,16 +32,18 @@ export default function ListaNota(props){
                     <div><input  type="text"  value= {nota.codigCurso} disabled/></div>   
                     ) ) }</div> 
                     <div className="TipoPractica">{notas.map( (nota) =>(
-                    <div><input value= {nota.TipoPractica} onChange={(e)=>{
+                    <div><input  type="text" value= {nota.TipoPractica} onChange={(e)=>{
+                        setTipoPractica(e.target.value)
                     }}  disabled={editar}/></div>   
                     ) ) }</div>                                
-                    <div className="Puntuacion">{notas.map( (nota, index) =>(
-                    <div><input  value= {nota.Puntuacion}  disabled={editar}/></div>   
+                    <div  className="Puntuacion">{notas.map( (nota, index) =>(
+                    <div><input type="text" value= {nota.Puntuacion}  disabled={editar}/></div>   
                     ) ) }</div>                                
             </div>
             <button onClick={()=>{
                 setEditar(false)
                 setHidden(false)
+                setEliminar(true)
             }}>Editar Notas</button>
             <button onClick={()=>{
                 console.log("codigoAlumn "+  props.palumno.codigo + "codigCurso "+props.idcurso.id +  "TipoPractica "+ tipoPractica)
@@ -55,22 +59,22 @@ export default function ListaNota(props){
                         ])
             }}>Guardar</button>
             <button onClick={()=>{
+                setEditar(false)
+                setHidden(true)
                 setEliminar(false)
-                console.log(props.palumno.codigo)
             }}>
                 Eliminar Nota
             </button>
-            <h3 hidden={eliminar}>Eliminar</h3>
-            <div ><input hidden={eliminar} value={tipoPractica} onChange={(e)=>{
-                setTipoPractica(e.target.value)
+            <h3 hidden={eliminar}>Eliminar Nota del Alumno {props.palumno.nombre +' '+props.palumno.apellido}</h3>
+            <div ><input hidden={eliminar} value={practica} onChange={(e)=>{
+                setPractica(e.target.value)
             }}/></div>
             <button hidden={eliminar} onClick={()=>{
-                            axios.post('/nota/search',{codigCurso:props.idcurso.id, codigoAlumn:props.palumno.codigo, TipoPractica:tipoPractica}).then((response) => {
-                                    let body = response.data
-                                    console.log(body[0])
-                                    axios.delete('/nota/'+body[0]._id+'/delete')
-                        
-                                })
+                                axios.delete('/nota/delete',{data: {
+                                    codigoAlumn:props.palumno.codigo, 
+                                    codigCurso:id.id,
+                                    TipoPractica:practica
+                                    }})
                             }
             }>Confirmar</button>
             <h3 hidden={hidden}>Tipo de Práctica</h3>
