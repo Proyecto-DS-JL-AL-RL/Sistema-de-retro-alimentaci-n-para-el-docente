@@ -8,7 +8,8 @@
     user-select: none; 
 }
 .ctnCont{
-    width: 80%;
+    margin:20px;
+    width: 85%;
     padding:30px;
     padding-top: 30px;
     margin-left: auto;
@@ -16,11 +17,15 @@
     font-size:1.5em;
     background-color: #1119;
     box-shadow: 15px 15px #1115;
-    margin-top: var(--tamanoNav);
+    height:80vh;
+    overflow-x:hidden;
+    overflow-y: auto;
+    padding-bottom: 50px;
 }
 .ctnPrevius{
     border:solid 2px white;
     padding: 10px;
+    margin-bottom: 25px;
 }
 .lblform{
     width:100%;
