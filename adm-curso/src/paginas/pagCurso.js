@@ -10,6 +10,7 @@ import test  from '../componentes/clases/clases.js';
 import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
 import VerPerfil from '../componentes/Perfil';
 import './pagCurso.css';import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import '../paginas/Principal.css'
 
 import Principal from './Principal';
 import { useStore } from 'react-redux';
@@ -29,6 +30,7 @@ export default function PagCurso(props) {
         store.dispatch(setHeaderContent(body[0].nombre));
         store.dispatch(setIdCourse(idCurso));
         //setNameCurso(body[0].nombre)
+        axios.post('/login/setCourse',{idCur:idCurso});
         }) 
     },[])
     const switchMobil = function(){
@@ -44,7 +46,7 @@ export default function PagCurso(props) {
     const buttonMbl = function(){
             return (
                 <div className ='PClaseBtnContainers'>
-                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0)}}> General </button>
+                        <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(0)}}> Materiales </button>
                         <button className = 'PCbtnChange2' onClick = {()=>{setPCstate(1)}}> Clases </button>
                 </div>
             )
@@ -54,7 +56,7 @@ export default function PagCurso(props) {
     const buttonWindow = function(){
         return (
             <div className ='WindowBtnContainers'>
-                    <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(0)}}> General </button>
+                    <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(0)}}> Materiales </button>
                     <button className = 'WindowbtnChange2' onClick = {()=>{setPCstate(1)}}> Clases </button>
             </div>
         )
@@ -63,7 +65,7 @@ export default function PagCurso(props) {
 
     
     return (        
-        <div>           
+        <div className='containerGen'>           
 
             {Math.min(window.innerHeight,window.innerWidth)<600?
                 <div>                    

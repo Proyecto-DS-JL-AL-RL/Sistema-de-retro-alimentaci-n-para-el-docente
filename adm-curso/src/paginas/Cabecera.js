@@ -44,7 +44,7 @@ export default function Cabecera(props) {
                     <div className="lblLogout"> Logout</div>
                 </button>
                 <button className="profile" onClick={()=>{verPerfil()}} >
-                    <img className="imgProfile" src="https://i.pinimg.com/736x/c1/d4/ab/c1d4ab48262c819bc8c865818d1b2cff.jpg"/>
+                    <img className="imgProfile" src="https://source.unsplash.com/random"/>
                     <div className="lblmg"> VerPerfil</div>
                 </button>
             </div>

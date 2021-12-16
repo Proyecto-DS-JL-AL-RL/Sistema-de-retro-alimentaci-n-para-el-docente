@@ -1,9 +1,11 @@
 
 
 #CFTittle{
-    width: 90vw;
+    margin: 5px;
+    width: 70%;
     font-size: xx-large;
     font-weight: 1200;
+    border-radius: 15px;
 }
 #CFContainer{
     height: 100%;

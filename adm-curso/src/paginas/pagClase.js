@@ -22,6 +22,7 @@ export default function PagClase(props) {
     const [PCstate,setPCstate] = React.useState(0);
     const [PCvista,setVista] = React.useState(0); // 0 = Profesor, 1 = Alumno
     const [idClase,setIdClase] = React.useState(useParams().idClase);
+    const idCourse = useParams().idCurso;
     const [clase,setClase] = React.useState({titulo : ''});
 
     
@@ -53,9 +54,9 @@ export default function PagClase(props) {
         if (PCstate === 0){
             return <div>
                 {!PCvista?
-                    <div className= 'statMblWindowContainer'><StatsGenerales/></div>
+                    <div className= 'statMblWindowContainer'><StatsGenerales idCurso = {idCourse} /></div>
                     :
-                    <div className = 'statMblWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
+                    <div className = 'statMblWindowContainer'><ResumenEstadisticas idCurso = {idCourse} vista = {PCvista} idAlumno = {store.getState().session.user} doneDatos = {false}/></div>
                 }
 
             </div>
@@ -87,29 +88,26 @@ export default function PagClase(props) {
 
     
     return (        
-        <div>           
-
-            {Math.min(window.innerHeight,window.innerWidth)<600?
+        <div className='pagClaseTodo'>           
+                                
+        {Math.min(window.innerHeight,window.innerWidth)<600?
                 <div>                   
                     {switchMobil()}
                     {buttonMbl()}
-                    <div className = 'titleMobile'>{clase.titulo}</div>
                 </div>
             :
                 <div>
-                    <div className = 'titleEsc'>{clase.titulo}</div>
                     {!PCvista?
-                    <div className= 'statWindowContainer'><StatsGenerales/></div>
+                    <div className= 'statWindowContainer'><StatsGenerales idCurso = {idCourse}/></div>
                     :
-                    <div className = 'statWindowContainer'><ResumenEstadisticas vista = {PCvista} idAlumno = {0}/></div>
+                    <div className = 'statWindowContainer'><ResumenEstadisticas idCurso = {idCourse} vista = {PCvista} idAlumno = {store.getState().session.user} doneDatos = {false}/></div>
                     }
                     <div className = 'pagListaAlumnos'>
                         <ListaComentario clase = {idClase} session = {session}/>
                     </div>
                     <div className = 'pagListaForms'><ListaForms clase = {idClase} session = {session}/></div>
-                    <div className = 'titleEsc'>{clase.titulo}</div>
                 </div>
-            }            
+            }       
         </div>
     );
 }

@@ -47,11 +47,7 @@ class ComentarioForm extends  React.Component {
             <div id = "cFormMensaje">
                 <textarea className = "defInput" value = {this.state.descripcion} onChange = {e=>this.setState({descripcion:e.target.value})}/>
             </div>
-            <div id = "CFaddBtn">
-                <label className = "adjButton" for = 'ComentadjFile'>+</label>
-            </div>
-                <input type = 'file' id = 'ComentadjFile' className = 'adjFileHid'/>
-            
+           
 
             <div id = "CFcloseBtn">
                 <button className = "closeButton" onClick = {this.props.close}> X</button>

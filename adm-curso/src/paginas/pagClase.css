@@ -1,18 +1,21 @@
 
+.pagClaseTodo{
+    width: calc(100% - 50px);
+    height: calc(100% - var(--tamanoNav));
+    position:absolute;
+}
 .PClaseBtnContainers{
     display:flex;
-    position:fixed;
-    left: 0vh;
-    top: 10vh;  
-    width: 102vw;
+    position: absolute;
+    top: 0;  
+    width: 100%;
 }
 .PCbtnChange2{
-    width: 51vw;
+    width: 50%;
     height: 40px;
-
 }
 .mainWindowContainer{
-    width: 96vw;
+    width: 100%;
 }
 .Prueba{
     width: 100vh;
@@ -20,61 +23,60 @@
 }
 
 .PCbtnChange3{
-    width: 34vw;
+    width: 33%;
     height: 40px;
-
 }
 
 .pagMblListaAlumnos{
     position: absolute;
-    width: 100vw;
-    left:0vh;
-    top: 10vh;
+    width: 100%;
+    left:0;
     margin-top: 40px;
 }
 
 .pagListaAlumnos{
-    position: fixed;
-    width: 25vw;
-    height: 60vh;
+    position: absolute;
+    width: 25%;
+    height: 70%;
     right: 0;
     bottom: 0;
     overflow-y: auto ;
     overflow-x: hidden ;
+    background-color: var(--colorfondoContenido);
 }
 .pagListaForms{
-    position: fixed;
-    width: 25vw;
-    height: 25vh;
+    position: absolute;
+    width: 25%;
+    height: 30%;
     right: 0;
-    bottom: 60vh;
+    top: 0;
     overflow-y: auto ;
     overflow-x: hidden ;
 }
 .statMblWindowContainer{
-    position: fixed;
-    width: 100vw;
+    position: absolute;
+    width: 100%;
     bottom: 0;
     left:0vh;
-    top: 10vh;
+    top: 0;
     margin-top: 40px;
 }
 
 .pagMblListaForms{
-    position: fixed;
-    width: 100vw;
+    position:absolute;
+    width: 100%;
     bottom: 0;
     left:0vh;
-    top: 10vh;
+    top: 0;
     margin-top: 40px;
 }
 
 .statWindowContainer{
-    right: 25vw;
-    width: 75vw;
+    left: 0;
+    width: 75%;
     bottom: 0;
-    position:fixed;
-    height: 85vh;
+    position:absolute;
+    height: 100%;
 }
 
 .titleMobile{

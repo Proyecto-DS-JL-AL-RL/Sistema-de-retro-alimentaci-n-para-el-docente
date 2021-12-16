@@ -66,7 +66,7 @@ export default function Principal() {
     //<h1>hola {online?'online':'offline'}</h1>
     return (
         
-        <div className="todo">
+        <div className="todoPrincipal">
             
             
             {!logged? 
@@ -116,8 +116,8 @@ export default function Principal() {
                     <Route path = '/Editar/Curso/:idCurso' component = {EditarCurso}>
                         <EditarCurso/>
                     </Route>
-                    <Route path='/VerNotas/:nota' component = {VerNotas}>
-                        <VerNotas />
+                    <Route path='/VerNotas/:id' component = {VerNotas}>
+                        <VerNotas user={session.user}/>
                     </Route>
                     <Route path = '/Clase/:idCurso/:idClase' component = {PagClase}>
                         <PagClase session = {session}/>

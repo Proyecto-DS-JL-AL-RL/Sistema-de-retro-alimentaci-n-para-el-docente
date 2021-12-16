@@ -49,6 +49,7 @@ class CrearFormulario extends  React.Component {
                         },this)}
                 <div id = 'CVPAddButton'><button className = 'confirmButton' onClick = {()=>{this.addPreg()}}>+</button></div>
                 <div id = "CFPconfirmSection">
+                    
                     <div id = "CFPconfirmButton">
                         <button className = "confirmButton" onClick = {()=>{this.sendForm()}}> Crear </button>
                     </div>

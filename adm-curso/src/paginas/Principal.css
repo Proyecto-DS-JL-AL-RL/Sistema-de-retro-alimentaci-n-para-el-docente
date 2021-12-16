@@ -4,6 +4,8 @@
 }
 body{
     overflow:none;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .ctn{
     margin:var(--tamanoNav);
@@ -20,7 +22,7 @@ body{
     border-radius: 10px;
     height: 40px;
 }
-.todo{
+.todoPrincipal{
     width: 100%;
     display:grid;
     grid-template-columns: var(---ancho-barra) 1fr;
@@ -33,11 +35,11 @@ body{
 }
 .ctngeneral{
     grid-column: 2;
-    grid-row: 2;
-    
+    grid-row: 2; 
     background-color:yellow;
     display:block;
 }
+
 
 .ctnVF{
     display:flex;
@@ -54,3 +56,12 @@ body{
 .itmVF:hover{
     cursor: pointer;
 }
+
+.containerGen{
+        height: calc(100% - var(--tamanoNav));
+        width: 100%;
+        position:absolute;
+        overflow-y: auto ;
+        overflow-x: hidden ;
+}
+

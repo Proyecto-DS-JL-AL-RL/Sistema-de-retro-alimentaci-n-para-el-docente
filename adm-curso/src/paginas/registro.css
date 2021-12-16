@@ -30,7 +30,11 @@
     align-content:center;
     align-items: center;
 }
-
+.tipoUsuario{
+    position: absolute;
+    left: 65vw;
+    top: 27vh;
+}
 .cont{
     display:flex;
     width: 100vw;

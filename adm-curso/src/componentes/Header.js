@@ -57,7 +57,7 @@ export default function Header(props){
     //Derecha similar a Perfil
     const getSelectedItemAvatar = () => {
         if (store.getState().idCourse)
-            return <SelectedListAvatar curso_id={idCurso}   perfil={<VerPerfil/>}/>
+            return <SelectedListAvatar curso_id={store.getState().idCourse}   perfil={<VerPerfil/>}/>
         else
             return  <SelectedListIncio />
     }
@@ -74,7 +74,7 @@ export default function Header(props){
             </div>  
             <div id="List" onClick={imageClick}> 
                 <div id="Foto">
-                    <Avatar style={avatar_style} avatar={test['user'].getImagen()}/> 
+                    <Avatar style={avatar_style} avatar={'https://source.unsplash.com/random'}/> 
                 </div>
                 <div id="menu-avatar">{avatar?getSelectedItemAvatar():false}</div>
             </div>

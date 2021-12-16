@@ -14,6 +14,7 @@ import { useStore } from 'react-redux';
 import {setHeaderContent , setIdCourse } from '../feature/sessionSlice';
 //import test from './clases/clases'
 import axios from 'axios';
+import '../paginas/Principal.css'
 //import { borderRadius } from '@mui/system';
 
 //let curso = test['cursos']
@@ -45,19 +46,15 @@ export default function Inicio (props){
   React.useEffect(()=>{
     store.dispatch(setHeaderContent('Cursos'));
     store.dispatch(setIdCourse(null));
-    axios.post('/user/search', {codigo:props.iduser}).then((response) => {
+    axios.post('/login/setCourse',{idCur:null});
+
+    axios.post('/user/search', {codigo:props.iduser}).then((response) => {  
       let body = response.data;
       if(body[0].condicion === "Profesor"){
-        setEsProfesor(true);
-      }
-      if(body[0].condicion === "Alumno"){
-        setEsProfesor(false);
-      };
-      console.log(esProfesor)
-      if(esProfesor){
         axios.post('/curso/search', {IDProfe:props.iduser}).then((response) => {          
           let body = response.data;
           console.log(body);
+          setEsProfesor(true);
           setCursos(body);
           setCards(Array.from(range(1, body.length+1)));         
         })
@@ -65,13 +62,14 @@ export default function Inicio (props){
         axios.post('/curso/search', {alumnos:props.iduser}).then((response) => {
           let body = response.data;
           setCursos(body);
+          setEsProfesor(false);
           setCards(Array.from(range(1, body.length+1)));           
       })      
     }    
 }) 
 },[])   ; 
     return (
-      <div>
+      <div className = 'containerGen'>
         <div id="Cards">
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={4}>
