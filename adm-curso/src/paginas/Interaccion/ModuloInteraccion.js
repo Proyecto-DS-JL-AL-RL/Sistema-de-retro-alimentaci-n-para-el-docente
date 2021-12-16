@@ -23,7 +23,7 @@ function getHoraMin(){
 const opt = ['Sesion','Preguntas'];
 const usuarioTipo =['Profesor','Alumno'] 
 //const socket = io('/');
-export default function Interaccion() {
+export default function Interaccion(props) {
     const store = useStore();
     const history = useHistory();
     const location = useLocation();
@@ -115,17 +115,24 @@ export default function Interaccion() {
     const conectSala = async() =>{
         const res = await fetch('/sesion/'+newSala);
         const sala = await res.json();
+        console.log(sala);
         dispatch({
-            type: types.actualizarSala,
+            type: types.conectarSala,
             payload:{
-                ...salaState.sala,
-                title:sala.title,
-                salaToken:sala.salaToken,
-                inicio:sala.inicio
+                sala:{
+                    ...salaState.sala,
+                    title:sala.title,
+                    salaToken:sala.salaToken,
+                    inicio:sala.inicio
+                },
+                preguntas: sala.questions?sala.questions.reverse():[]
+                
+                
             }
         })
+        
         socket.emit('unirse-sala',sala.salaToken);
-        console.log(sala);
+  
     }
     
     const handleNewSala = (e)=>{
@@ -146,11 +153,8 @@ export default function Interaccion() {
     return (
         
         <div className="interaccion">
-            
-            <button className="actionModule"
-            onClick={(e)=>changeVisible()}>{"<"}</button>
-            
-            {tipoUser == usuarioTipo[0]&& visible && <div className="contenido">
+            {tipoUser == usuarioTipo[0]&& props.visible && <div className="contenido">
+                <div className="capa">
                 <div className="containerSesion">{salaState.sala.title+ ": " + salaState.sala.salaToken}</div>
                 <div className="containerOpt">
                 {opt.map((e,i)=>{
@@ -181,8 +185,10 @@ export default function Interaccion() {
                     <button onClick={(e) => {e.preventDefault(); verEstadisticas()}}>VerEstadisticas</button>
                     <button onClick={(e)=>{e.preventDefault(); verRespuesta()}}>VerRespuesta</button>
                 </div>
+                </div>
             </div>}
-            {tipoUser == usuarioTipo[1] && visible && <div className="contenido">
+            {tipoUser == usuarioTipo[1] && props.visible && <div className="contenido">
+                <div className="capa">
                 <div className="subctn">Preguntas Pendientes</div>
                 <div className="pendientesCtn">
                 <div>
@@ -192,8 +198,13 @@ export default function Interaccion() {
                 </div>
                 <ListQuestion/>
                 </div>
+                </div>            
             </div>}
             
         </div>
     )
 }
+/**
+ * <button className="actionModule"
+            onClick={(e)=>changeVisible()}>{"<"}</button>
+ */

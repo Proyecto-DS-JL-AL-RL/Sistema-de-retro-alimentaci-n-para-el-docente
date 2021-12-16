@@ -43,7 +43,7 @@ class Sockets{
                     socket.join(salaToken);
                 }
 
-                this.io.to(salaToken).emit('allQuestion', question);
+                socket.emit('allQuestion', question);
                 this.io.to(salaToken).emit('newQuestion', question);
             })
             /*socket.on('comprobar-usuario', async(codigoUser,idQuestion)=>{

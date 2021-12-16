@@ -13,14 +13,13 @@ export default function ListQuestion() {
     useEffect(async()=>{
         if(salaState.sala.salaToken==='') return;
         if(salaState.pedido) return;
-        console.log(store.getState.session);
+        
         const res = await fetch('/questionsUS/'+salaState.sala.salaToken+"/"+store.getState().session.user);
         const data = await res.json();
         //setQuestions(data.reverse());
-        console.log(data);
         dispatch({
             type:types.iniciarPreguntas,
-            payload:data.reverse()
+            payload:data?data.reverse():[]
         })
     },[salaState]);
     
@@ -48,6 +47,7 @@ export default function ListQuestion() {
     },[socket])*/
     return (
         <>
+
             {salaState.preguntas.map((e,i)=>{
                 return <div className={"indPreguntas" + " " + (e.valid?"colorValid":"")} key={"Question"+i}
                 onClick={event=>{event.preventDefault(); handleClick(e.id,e.valid)}}>
