@@ -10,6 +10,7 @@ import test  from '../componentes/clases/clases.js';
 import SelectedListAvatar from '../componentes/componentesBasicos/MenuAvatar.js';
 import VerPerfil from '../componentes/Perfil';
 import './pagCurso.css';import SelectedListItem from '../componentes/componentesBasicos/MenuCurso';
+import '../paginas/Principal.css'
 
 import Principal from './Principal';
 import { useStore } from 'react-redux';
@@ -64,7 +65,7 @@ export default function PagCurso(props) {
 
     
     return (        
-        <div>           
+        <div className='containerGen'>           
 
             {Math.min(window.innerHeight,window.innerWidth)<600?
                 <div>                    

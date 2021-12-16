@@ -37,7 +37,7 @@ class VerPerfil extends  React.Component {
 
     render() {
         return ( 
-        <div>
+        <div className=' containerGen'>
 
             <div id="pCuadro">
                     <Avatar style={this.state.avatar_style} avatar={'https://somoskudasai.com/wp-content/uploads/2021/05/portada_kaguya-47.jpg'}/>

@@ -14,6 +14,7 @@ import { useStore } from 'react-redux';
 import {setHeaderContent , setIdCourse } from '../feature/sessionSlice';
 //import test from './clases/clases'
 import axios from 'axios';
+import '../paginas/Principal.css'
 //import { borderRadius } from '@mui/system';
 
 //let curso = test['cursos']
@@ -68,7 +69,7 @@ export default function Inicio (props){
 }) 
 },[])   ; 
     return (
-      <div>
+      <div className = 'containerGen'>
         <div id="Cards">
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={4}>

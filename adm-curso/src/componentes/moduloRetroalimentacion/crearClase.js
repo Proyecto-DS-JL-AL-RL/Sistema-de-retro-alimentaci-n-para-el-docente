@@ -7,7 +7,7 @@ class CrearClase extends  React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cursoActual : 'CC312', //Fixeado
+            cursoActual : props.curso, //Fixeado
             titulo: '',                 //Fecha
             descripcion: '',
             fecha: new Date()

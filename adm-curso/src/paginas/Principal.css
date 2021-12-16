@@ -29,8 +29,15 @@ body{
 }
 .ctngeneral{
     grid-column: 2;
-    grid-row: 2;
-    
+    grid-row: 2; 
     background-color:yellow;
     display:block;
+}
+
+.containerGen{
+        height: calc(100% - var(--tamanoNav));
+        width: 100%;
+        position:absolute;
+        overflow-y: auto ;
+        overflow-x: hidden ;
 }

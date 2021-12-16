@@ -87,17 +87,15 @@ export default function PagClase(props) {
 
     
     return (        
-        <div>           
-
-            {Math.min(window.innerHeight,window.innerWidth)<600?
+        <div className='pagClaseTodo'>           
+                                
+        {Math.min(window.innerHeight,window.innerWidth)<600?
                 <div>                   
                     {switchMobil()}
                     {buttonMbl()}
-                    <div className = 'titleMobile'>{clase.titulo}</div>
                 </div>
             :
                 <div>
-                    <div className = 'titleEsc'>{clase.titulo}</div>
                     {!PCvista?
                     <div className= 'statWindowContainer'><StatsGenerales/></div>
                     :
@@ -107,9 +105,8 @@ export default function PagClase(props) {
                         <ListaComentario clase = {idClase} session = {session}/>
                     </div>
                     <div className = 'pagListaForms'><ListaForms clase = {idClase} session = {session}/></div>
-                    <div className = 'titleEsc'>{clase.titulo}</div>
                 </div>
-            }            
+            }       
         </div>
     );
 }
