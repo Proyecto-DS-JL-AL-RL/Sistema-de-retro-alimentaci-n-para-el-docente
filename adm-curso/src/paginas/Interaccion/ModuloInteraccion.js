@@ -23,7 +23,7 @@ function getHoraMin(){
 const opt = ['Sesion','Preguntas'];
 const usuarioTipo =['Profesor','Alumno'] 
 //const socket = io('/');
-export default function Interaccion() {
+export default function Interaccion(props) {
     const store = useStore();
     const history = useHistory();
     const location = useLocation();
