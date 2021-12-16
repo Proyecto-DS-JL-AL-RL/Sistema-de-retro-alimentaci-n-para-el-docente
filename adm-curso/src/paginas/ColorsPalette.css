@@ -1,0 +1,15 @@
+.ctnColorsCont{
+    width:40px;
+    background-color:white;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items: center;
+    border: 2px solid white;
+    
+}
+.btnColor{
+    width: 20px;
+    height:20px;
+    border: 1px solid white;
+}

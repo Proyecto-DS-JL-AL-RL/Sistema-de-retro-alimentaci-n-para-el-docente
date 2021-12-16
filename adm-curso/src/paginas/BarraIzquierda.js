@@ -11,6 +11,8 @@ import Interaccion from './Interaccion/ModuloInteraccion';
 import { SocketContext } from '../context/SocketContext';
 import { types } from '../types/types';
 import { SalaContext } from '../context/SalaContext';
+import { style } from '@mui/system';
+import ColorsPalette from './ColorsPalette';
 export default function BarraIzquierda() {
     const history = useHistory();
     const store = useStore();
@@ -75,6 +77,9 @@ export default function BarraIzquierda() {
                 <NoteAltIcon  sx={{fontSize:40}} />
                 <div className="lblLogout"> Ver Notas</div>
             </button>}
+            <div className="ctnColors">
+                <ColorsPalette/>
+            </div>
         </div>
     )
 }
