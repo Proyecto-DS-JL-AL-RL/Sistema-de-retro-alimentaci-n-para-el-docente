@@ -1,5 +1,6 @@
 const {Sesion} = require('../Esquemas/Interaccion/interaction');
 const arrayEstado = ['Ausentes','NecesitaAyuda', 'Activo', 'Pasivo', 'Distraido'];
+const {mensajeError} = require('./funcionesUtiles');
 function clasificar(totalPregunta,totalRespuestas,erradas,totalDirectas){
     if(totalRespuestas ==0) return 0;
     if((totalDirectas - erradas)/totalDirectas<0.3) return 1;
@@ -28,6 +29,9 @@ const verEstadisticas = async(salaToken) =>{
         }
             
     });
+    console.log(sesion);
+    if(!sesion) return mensajeError('Conectese a una sala');
+    if(sesion.questions==[])return mensajeError('Espere, aun no hay preguntas');
     /**
      * Por ahora sera una union masiva :V <--->
      */
@@ -92,9 +96,7 @@ const verEstadisticas = async(salaToken) =>{
     const respuestasPorPregunta = questions.map(e=>{
         return e.answers.length;
     })
-    const answersSesion = questions.map(e=>{
-        return e.answers;
-    })
+    
     //console.log(answersSesion,sesion.questions[questions.length-1].answers);
     return {respuestasPorPregunta,estadoAlumno,tablaAlumno};
 }
