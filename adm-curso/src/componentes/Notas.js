@@ -22,7 +22,7 @@ import ListaNota from './ListaNotas'
   
 function GutterlessList(props) {
     return (      
-        <List sx={{width: '100%', maxWidth: 360, bgcolor: '#FFA500' }}>
+        <List sx={{width: '100%', maxWidth: 360, bgcolor: '#A9A9A9' }}>
           {props.alumnos.map((value) => (
          <Button onClick={()=>{
            props.selectalumno(value)
