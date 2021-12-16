@@ -1,15 +1,12 @@
 import React,{useState,useEffect,useContext} from 'react'
 import { useHistory,useLocation, useParams } from "react-router-dom";
 import {useLocationStorage} from "../../hook/useLocationStorage";
-import MostrarPreguntas from "./MostrarPreguntas";
 import ConfSesion from "./ConfSesion";
 import './ModuloInteraccion.css'
-import PreguntasPendientes from './PreguntasPendientes';
 import { useStore } from 'react-redux';
 import ListQuestion from './ListQuestion';
 import { SalaContext } from '../../context/SalaContext';
 import { types } from '../../types/types';
-import { Socket } from 'socket.io-client';
 import { SocketContext } from '../../context/SocketContext';
 const atrib = ['Curso','Sesion'];
 const curses = ['Curso1','Curso2','Curso3'];
@@ -44,7 +41,6 @@ export default function Interaccion(props) {
     const [activo,setActivo] = useState(opt[1]);
     const [tipoUser,setTipoUser] = useState(usuarioTipo[0]);
     //////
-    const [allQuestion,setAllQuestion] = useState([]);
     const {salaState,dispatch} = useContext(SalaContext);
     const {socket} = useContext(SocketContext);
     const [newSala,setNewSala] = useState('');
@@ -105,6 +101,18 @@ export default function Interaccion(props) {
         console.log(e.target)
         
     }
+    useEffect(()=>{
+        socket.on('newQuestion',(data)=>{
+            console.log(salaState.preguntas,"NewQuestion");
+            dispatch({
+                type:types.actualizarPreguntas,
+                payload:{id:data._id,valid:false}
+            })
+        })
+        return ()=>{
+            socket.off('newQuestion');
+        }
+    },[socket,salaState]);
     //Refactorring
     const changeVisible =()=>{
         setVisible(!visible);
@@ -139,17 +147,7 @@ export default function Interaccion(props) {
         setNewSala(e.target.value);
         
     }
-    useEffect(()=>{
-        socket.on('newQuestion',(data)=>{
-            dispatch({
-                type:types.actualizarPreguntas,
-                payload:{id:data._id,valid:false}
-            })
-        })
-        return ()=>{
-            socket.off('newQuestion');
-        }
-    },[socket]);
+    
     return (
         
         <div className="interaccion">

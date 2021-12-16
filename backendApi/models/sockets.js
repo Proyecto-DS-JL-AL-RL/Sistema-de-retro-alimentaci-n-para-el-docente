@@ -29,7 +29,7 @@ class Sockets{
                 }
             })
             socket.on('newQuestion',  async (data,user,salaToken)=>{
-
+                console.log("XD");
                 const question = await  newQuestion(data,user,salaToken);
                 //socket.emit('allQuestion', question);
                 //socket.broadcast.emit('allQuestion', question);

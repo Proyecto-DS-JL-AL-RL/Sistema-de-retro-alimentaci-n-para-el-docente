@@ -76,7 +76,7 @@ router.get('/QA/:id_question',async (req, res) =>{
     const idQuestion = req.params.id_question;
     const question =  await Question.findById(idQuestion);
     const answers = await Answer.find({question:idQuestion}).populate('user',['codigo','nombre','apellido']);
-    console.log(answers[answers.length-1]);
+    
     res.json({question,answers});
 });
 router.get('/estadisticas/:salaToken',async (req,res) =>{

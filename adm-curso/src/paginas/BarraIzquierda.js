@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import './BarraIzquierda.css';
 import HomeIcon from '@mui/icons-material/Home';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
@@ -8,12 +8,17 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { useHistory } from 'react-router-dom';
 import { useStore } from 'react-redux';
 import Interaccion from './Interaccion/ModuloInteraccion';
+import { SocketContext } from '../context/SocketContext';
+import { types } from '../types/types';
+import { SalaContext } from '../context/SalaContext';
 export default function BarraIzquierda() {
     const history = useHistory();
     const store = useStore();
     const [user,setUser] = useState(null);
     const [curso,setCurso] = useState(null);
     const [visible,setVisible] = useState(false);
+    const {salaState,dispatch} = useContext(SalaContext);
+    const {socket} = useContext(SocketContext)
     useEffect(() => {
         setCurso(store.getState().idCourse);
         setUser(store.getState().session.type)
@@ -41,6 +46,7 @@ export default function BarraIzquierda() {
     const changeVisible = () => {
         setVisible(!visible);
     }
+    
     return (
         <div className="barra-izquierda">
             <button className="btn-barra btnLogout" onClick={()=>{goHome()}}>
