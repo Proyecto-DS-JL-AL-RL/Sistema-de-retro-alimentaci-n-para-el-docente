@@ -1,0 +1,10 @@
+.barra-izquierda{
+    grid-column: 1;
+    grid-row: 2;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:column;
+    background-color: rgba(2, 1, 1, 0.411);
+    padding-top: 10px;
+    box-shadow:10px 5px 10px black;
+}

@@ -16,12 +16,16 @@ export default function VerEstadisticas() {
     useEffect(async()=>{
         const res = await fetch('/estadisticas/'+params.idSesion);
         const data = await res.json();
+        if(data.error){
+            alert(data.mensaje);
+            return;
+        }
         console.log(data);
         setAnsXQues(data.respuestasPorPregunta);
         setEstadoAlumno(data.estadoAlumno);
         setTablaAlumno(data.tablaAlumno);
         //console.log(data.respuestasPorPregunta);
-    },[]);
+    },[params]);
     /*useEffect(()=>{
         socket.on('newQuestion',(data)=>{
             setAnsXQues([

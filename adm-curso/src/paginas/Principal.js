@@ -29,7 +29,8 @@ import { startSession } from '../feature/sessionSlice';
 import './Principal.css'
 import { SocketContext } from '../context/SocketContext';
 import VerPregunta from '../componentes/Visualizacion/mouduloInteraccion/VerPregunta';
-
+import Cabecera from './Cabecera';
+import BarraIzquierda from './BarraIzquierda';
 export default function Principal() {
     const [logged,setLogged] = useState(false);
     const [session,setSession] = useState({logged:false});
@@ -65,7 +66,7 @@ export default function Principal() {
     //<h1>hola {online?'online':'offline'}</h1>
     return (
         
-        <div>
+        <div className="todo">
             
             
             {!logged? 
@@ -81,6 +82,12 @@ export default function Principal() {
             </Router>
             :
             <Router>
+                <Cabecera initSession={initSession}/> 
+                
+                    <BarraIzquierda/>
+                <div className="ctnGeneral">
+
+                
                 <ModuloInteraccion/>     
                 <Switch>
                     <Route exact path="/">
@@ -98,7 +105,6 @@ export default function Principal() {
                     </Route>
                     <Route path="/VerPregunta/:idPregunta">
                         <VerPregunta/>
-                        <Header NameCurso={'VerPregunta'}/>
                     </Route>
                     <Route path="/VerPerfil">
                         <VerPerfil idprofesor={session.user}/>
@@ -130,11 +136,13 @@ export default function Principal() {
                     <Route path='/EditarMaterial/:idFile' component={EditarMaterial}>
                         <EditarMaterial/>
                     </Route>
-                </Switch>    
-                <Header/>  
-                <div className = 'LoginState'>  
-                <button className = 'LoggoutButton' onClick = {handleLogout}>CerrarSession</button>
+                    </Switch>
+                    
                 </div>
+                
+                  
+                
+                
             
             </Router>                  
             }
@@ -142,4 +150,8 @@ export default function Principal() {
         </div>
     )
 }
-
+/**
+ * <div className = 'LoginState'>  
+                <button className = 'LoggoutButton' onClick = {handleLogout}>CerrarSession</button>
+                </div>
+ */
