@@ -39,10 +39,6 @@ export default function Cabecera(props) {
             </div>
             
             <div className="item-izq">
-                <button className="btn-header btnVerNotas">
-                    <NoteAltIcon  fontSize="large" />
-                    <div className="lblLogout"> VerNotas</div>
-                </button>
                 <button className="btn-header btnLogout" onClick = {handleLogout}>
                     <LogoutIcon  fontSize="large" />
                     <div className="lblLogout"> Logout</div>
