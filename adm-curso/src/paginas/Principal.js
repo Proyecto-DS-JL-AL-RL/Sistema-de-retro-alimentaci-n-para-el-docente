@@ -66,7 +66,7 @@ export default function Principal() {
     //<h1>hola {online?'online':'offline'}</h1>
     return (
         
-        <div className="todo">
+        <div className="todoPrincipal">
             
             
             {!logged? 

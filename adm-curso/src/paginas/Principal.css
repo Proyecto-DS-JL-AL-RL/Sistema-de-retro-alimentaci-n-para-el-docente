@@ -1,5 +1,7 @@
 body{
     overflow:none;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .ctn{
     margin:var(--tamanoNav);
@@ -16,7 +18,7 @@ body{
     border-radius: 10px;
     height: 40px;
 }
-.todo{
+.todoPrincipal{
     width: 100%;
     display:grid;
     grid-template-columns: 50px 1fr;
