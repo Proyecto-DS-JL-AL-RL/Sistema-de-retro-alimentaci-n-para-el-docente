@@ -40,6 +40,23 @@ body{
     display:block;
 }
 
+
+.ctnVF{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    
+}
+.itmVF{
+    width: 10%;
+    margin-right: 20px;
+    text-align:center;
+}
+.itmVF:hover{
+    cursor: pointer;
+}
+
 .containerGen{
         height: calc(100% - var(--tamanoNav));
         width: 100%;
@@ -47,3 +64,4 @@ body{
         overflow-y: auto ;
         overflow-x: hidden ;
 }
+

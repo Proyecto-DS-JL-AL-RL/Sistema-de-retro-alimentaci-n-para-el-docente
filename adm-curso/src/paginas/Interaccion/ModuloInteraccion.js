@@ -8,6 +8,10 @@ import ListQuestion from './ListQuestion';
 import { SalaContext } from '../../context/SalaContext';
 import { types } from '../../types/types';
 import { SocketContext } from '../../context/SocketContext';
+import PlaylistPlaySharpIcon from '@mui/icons-material/PlaylistPlaySharp';
+import QueryStatsSharpIcon from '@mui/icons-material/QueryStatsSharp';
+import QuizRoundedIcon from '@mui/icons-material/QuizRounded';
+import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 const atrib = ['Curso','Sesion'];
 const curses = ['Curso1','Curso2','Curso3'];
 function getHoraMin(){
@@ -172,18 +176,30 @@ export default function Interaccion(props) {
                     {activo===opt[1] && 
                         <>
                             <div>
-                                <input type="text" name="sala" 
+                                <input type="text" className = "toSala" name="sala" 
                                 value={newSala} onChange={e=>handleNewSala(e)}/>
-                                <button onClick ={()=>{conectSala()}}>Ir a Sala</button>
+                                <button className="btnSala" onClick ={()=>{conectSala()}}>
+                                    <PlaylistPlaySharpIcon sx={{fontSize:20 , color:'white'}}  />
+                                    <div className="refSala">Ir a Sala</div>
+                                </button>
+                                
                             </div>
                             <ListQuestion/>
                         </>}
                     
                 </div>
                 <div className="containerAcesos">
-                    <button onClick={otraPregunta}>Crear Pregunta</button>
-                    <button onClick={(e) => {e.preventDefault(); verEstadisticas()}}>VerEstadisticas</button>
-                    <button onClick={(e)=>{e.preventDefault(); verRespuesta()}}>VerRespuesta</button>
+                    <button className="btnInteraccion" onClick={otraPregunta}>
+                        <QuizRoundedIcon/><br/>
+
+                        Crear Pregunta</button>
+                    <button className="btnInteraccion" onClick={(e) => {e.preventDefault(); verEstadisticas()}}>
+                    <QueryStatsSharpIcon/>
+                        VerEstadisticas
+                        </button>
+                    <button className="btnInteraccion" onClick={(e)=>{e.preventDefault(); verRespuesta()}}>
+                        <LastPageRoundedIcon/>
+                        VerRespuesta</button>
                 </div>
                 </div>
             </div>}
@@ -192,9 +208,12 @@ export default function Interaccion(props) {
                 <div className="subctn">Preguntas Pendientes</div>
                 <div className="pendientesCtn">
                 <div>
-                    <input type="text" name="sala" 
+                    <input type="text" className="toSala" name="sala" 
                     value={newSala} onChange={e=>handleNewSala(e)}/>
-                    <button onClick ={()=>{conectSala()}}>Ir a Sala</button>
+                    <button className="btnSala" onClick ={()=>{conectSala()}}>
+                        <PlaylistPlaySharpIcon sx={{fontSize:20 , color:'white'}}  />
+                        <div className="refSala">Ir a Sala</div>
+                    </button>
                 </div>
                 <ListQuestion/>
                 </div>

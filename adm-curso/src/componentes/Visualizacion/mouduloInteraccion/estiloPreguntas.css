@@ -104,3 +104,19 @@
     display:block;
     font-size:1em;
 }
+.ctnVF{
+    display:flex;
+    align-items: center;
+}
+.btnAlt{
+    width:10%;
+    text-align: center;
+}
+
+.sltItem{
+    background-color:green;
+
+}
+.btndes{
+    background-color:transparent;
+}

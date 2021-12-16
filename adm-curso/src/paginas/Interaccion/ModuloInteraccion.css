@@ -32,8 +32,8 @@
     
 }
 .contenido{
-    
-    height:300px;
+    margin-left: 10px;
+    height:350px;
     width:350px;
     background-color:var(--colorBack);
     
@@ -47,7 +47,8 @@
     
     z-index: 110;
     display:grid;
-    grid-template-rows:30px 30px 1fr 30px;
+    grid-template-rows:30px 30px 1fr 60px;
+    
 }
 .containerSesion{
     grid-row:1;
@@ -114,4 +115,31 @@
 }
 .bar-ctn-interaccion{
     position: relative;
+}
+.toSala{
+    width:70%;
+    font-size:20px;
+    border: none;
+}
+.btnSala{
+    background-color:transparent;
+    position: relative;
+}
+.refSala{
+    display:none;
+    position: absolute;
+    right:-20px;
+    width:200%;
+    background-color: #000A;
+    color:white;
+}
+.btnSala:hover .refSala{
+    display:block;
+}
+.btnInteraccion{
+    background-color:transparent;
+    color:white;
+}
+.btnInteraccion:hover{
+    cursor:pointer;
 }

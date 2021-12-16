@@ -7,6 +7,8 @@ import { SocketContext } from '../../../context/SocketContext';
 import { useStore } from 'react-redux';
 import { SalaContext } from '../../../context/SalaContext';
 import { types } from '../../../types/types';
+
+
 function mensaje(tipo){
     if(tipo==1){
         return 'Describa con una palabra';
@@ -106,7 +108,7 @@ export default function VerPregunta() {
     },[socket])
 
     return (
-        <div className="container">
+        <div className="containerP">
             {mensaje(pregunta.tipo)}
             <div className="ctnVerPregunta">
                 {pregunta.content}
@@ -121,17 +123,17 @@ export default function VerPregunta() {
                 pregunta.tipo == 3 &&
                 aleatorio(pregunta.options).map((alt,i) =>{
                     return <>
-                    <div className={'itmalt '} 
+                    <div className={'itmalt '+(i===parseInt(content)?'selectItem':'')} 
                      onClick={()=>handleTipo3(i)} key = {i} value={i}>
-                        { alt.letra + ") " +alt.cont}</div></>
+                        { alt.letra + ") " +alt.cont }</div></>
                 })
             }
             {
                 pregunta.tipo == 4 &&
-                <>
-                <div onClick = {() => handleTipo4(0)}>a) V</div>
-                <div onClick = {() => handleTipo4(1)}>b) F</div>
-                </>
+                <div className="ctnVF">
+                <div className={"itmVF "+(0===parseInt(content)?'selectItem':'')} onClick = {() => handleTipo4(0)}>a) V</div>
+                <div className={"itmVF "+(1===parseInt(content)?'selectItem':'')} onClick = {() => handleTipo4(1)}>b) F</div>
+                </div>
             }
             {pregunta.archivo && <button>Subir Archivo</button>}
             <button className="enviarRpta" onClick = {e=>enviarRespuesta()}>Enviar Respuesta</button>

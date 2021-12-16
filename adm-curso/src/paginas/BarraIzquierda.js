@@ -50,7 +50,7 @@ export default function BarraIzquierda() {
     return (
         <div className="barra-izquierda">
             <button className="btn-barra btnLogout" onClick={()=>{goHome()}}>
-                <HomeIcon  sx={{fontSize:40}} />
+                <HomeIcon  sx={{fontSize:40}}  />
                 <div className="lblLogout"> Home</div>
             </button>
             <div className="bar-ctn-interaccion">
