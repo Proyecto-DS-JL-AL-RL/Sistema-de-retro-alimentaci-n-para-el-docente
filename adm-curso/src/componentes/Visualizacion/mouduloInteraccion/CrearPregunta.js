@@ -114,14 +114,14 @@ export default function CrearPregunta() {
                 </div>
                 <fieldset className="itmform lblform">
                     <legend>Previsualización:</legend>
-                <div className="ctnPrevius">
-                    <ResponderPregunta 
-                    pregunta={pregunta} 
-                    archivo={archivo}
-                    tipo={tipo}
-                    alternativas = {alternativas}
-                    />
-                </div>
+                    <div className="ctnPrevius">
+                        <ResponderPregunta 
+                        pregunta={pregunta} 
+                        archivo={archivo}
+                        tipo={tipo}
+                        alternativas = {alternativas}
+                        />
+                    </div>
                 </fieldset>
                 
             </form>
