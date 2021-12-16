@@ -34,9 +34,9 @@ export default function  BasicTable(props){
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">ID Curso</TableCell>
             <TableCell align="right">Tipo Práctica</TableCell>
             <TableCell align="right">Nota</TableCell>
+            <TableCell align="right">ID Curso</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -45,9 +45,9 @@ export default function  BasicTable(props){
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="right">{row.codigCurso}</TableCell>
               <TableCell align="right">{row.TipoPractica}</TableCell>
               <TableCell align="right">{row.Puntuacion}</TableCell>
+              <TableCell align="right">{row.codigCurso}</TableCell>
             </TableRow>
           ))}
         </TableBody>

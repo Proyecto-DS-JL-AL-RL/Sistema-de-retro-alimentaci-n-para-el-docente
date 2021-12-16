@@ -1,8 +1,8 @@
 #NCuadro{
     position:absolute center;
-    padding:30%;
+    padding:20%;
     width:auto;
-    height:70%;
+    height:50%;
     left:10%;
     margin:10% 15%;
     background-color: rgb(44, 4, 82);
@@ -16,11 +16,11 @@
     position:absolute;
     width:40%;
     height:20%;
-    margin:-50% -15%;
+    margin:-30% -5%;
 }
 
 
 #texto{
     color:whitesmoke;
-    font-size:3vw;
+    font-size:2vw;
 }
