@@ -5,6 +5,8 @@ const { verEstadisticas } = require("../Controllers/estadisticas");
 const User = require('../Esquemas/Gestion/gUser');
 const { terminarSala,preguntaWithAnswers } = require("../Controllers/Sala");
 const { mensajeError } = require("../Controllers/funcionesUtiles");
+const saveGenStats = require('../Datos/Retroalimentacion/RetFeedbackStats').storeStats;
+
 router.get('/sesion/:salaToken', async (req,res)=>{
     const salaToken = req.params.salaToken;
     const sesions = await Sesion.findOne({salaToken});
@@ -103,6 +105,7 @@ router.put('/endSesion/',async (req,res)=>{
     const sesion = await terminarSala(salaToken);
     const {fin} = sesion;
     console.log(fin); 
+    saveGenStats(salaToken);
     res.json({fin});
 })
 router.get('/questionsUS/:salaToken/:idUser', async(req,res)=>{
