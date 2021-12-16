@@ -12,6 +12,7 @@ export default function SubirMaterial(props){
     const [file, setFile] = useState(null)
     const [idCurso,setIdCurso] = React.useState(useParams().id);
     return (
+        <div className="containerGen">
         <div className="eText">
             <h1>Subir Material</h1>
                 <div id="Edit">
@@ -41,6 +42,7 @@ export default function SubirMaterial(props){
                             }
                         }>Guardar</button>
                 </div>
+        </div>
         </div>
     )
 

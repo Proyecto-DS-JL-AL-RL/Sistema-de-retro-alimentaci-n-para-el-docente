@@ -39,6 +39,7 @@ componentDidMount() {
 
     render() {    
     return (
+        <div className="containerGen">
         <div className="eText">
             <h1>Editar Curso</h1>
                 <div id="Edit">
@@ -76,6 +77,7 @@ componentDidMount() {
                         >Guardar</button>
                 </div>
             <BasicButtons  variant={"contained"} text={<Link id="link" to="/"> Volver Inicio </Link>}/>
+        </div>
         </div>
     )
 

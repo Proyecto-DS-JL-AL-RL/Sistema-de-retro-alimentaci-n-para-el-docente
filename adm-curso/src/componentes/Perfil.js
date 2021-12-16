@@ -40,7 +40,7 @@ class VerPerfil extends  React.Component {
         <div className=' containerGen'>
 
             <div id="pCuadro">
-                    <Avatar style={this.state.avatar_style} avatar={'https://somoskudasai.com/wp-content/uploads/2021/05/portada_kaguya-47.jpg'}/>
+                    <Avatar style={this.state.avatar_style} avatar={'https://source.unsplash.com/random'}/>
                     <div id="Perfil">
             <h1 id="Titulo">Mi Perfil</h1>
                         <h2>Nombre:</h2>
@@ -71,7 +71,6 @@ class VerPerfil extends  React.Component {
                         }}>Guardar</button>    
                 </div>
             </div>         
-                <BasicButtons style={this.state.id_style} variant={this.state.variant_button} text={<Link id="link" to="/"> Volver Inicio </Link>}/>
         </div>
     )}
 }

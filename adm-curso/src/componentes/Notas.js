@@ -22,7 +22,7 @@ import ListaNota from './ListaNotas'
   
 function GutterlessList(props) {
     return (      
-        <List sx={{width: '100%', maxWidth: 360, bgcolor: '#FFA500' }}>
+        <List sx={{width: '100%', maxWidth: 360, bgcolor: '#A9A9A9' }}>
           {props.alumnos.map((value) => (
          <Button onClick={()=>{
            props.selectalumno(value)
@@ -75,7 +75,7 @@ export default function VerNotas(props) {
         },[listcodAlum])
     return(
 
-        <div>
+        <div className="containerGen">
               {esProfesor(tipo)?<div id="contenedor">
               <div className="izq">
                                     <h2>Alumnos</h2>
