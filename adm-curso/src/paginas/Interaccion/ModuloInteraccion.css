@@ -1,11 +1,10 @@
 
 .interaccion{
     position:absolute;
-    right:0px;
+    left:var(---ancho-barra);
     display: flex;
-    
     align-items:center;
-    top:20vh;
+    top:0;
     margin-top:calc(20px+var(--tamanoNav));
     z-index: 1200;
 }
@@ -33,12 +32,19 @@
     
 }
 .contenido{
-    padding-top: 10px;
+    
     height:300px;
     width:350px;
+    background-color:var(--colorBack);
     
+}
+.capa{
+    padding-top: 10px;
+    height:100%;
+    width:100%;
+    background-color: rgba(2, 1, 1, 0.411);
     text-align:center;
-    background-color: black;
+    
     z-index: 110;
     display:grid;
     grid-template-rows:30px 30px 1fr 30px;
@@ -105,4 +111,7 @@
 .pendientesCtn{
     grid-row:2/5;
     overflow-y: auto;
+}
+.bar-ctn-interaccion{
+    position: relative;
 }

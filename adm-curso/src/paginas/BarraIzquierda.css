@@ -7,4 +7,19 @@
     background-color: rgba(2, 1, 1, 0.411);
     padding-top: 10px;
     box-shadow:10px 5px 10px black;
+    
+}
+.btn-barra{
+    background-color:transparent;
+    border:none;
+    color:white;
+    margin-top:15px;
+    position:relative;
+}
+.btn-barra:hover{
+    cursor:pointer;
+    transform: scale(1.2);
+}
+.visible{
+    transform: scale(1.2);
 }

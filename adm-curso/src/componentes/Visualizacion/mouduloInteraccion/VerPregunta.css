@@ -32,10 +32,29 @@
     border: 2px solid rgb(95, 37, 255);
 }
 .enviarRpta{
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom:10px;
     font-size:1em;
-
+    border: none;
+    background-color: rgb(68, 0, 255);
+    animation: 1s infinite alternate buttonRpta;
+    color:white;
+}
+@keyframes buttonRpta{
+    from{
+        transform: scale(1.1,1)
+    }
+    to{
+        transform: scale(1,1)
+    }
 }
 .enviarRpta:hover{
-    color:blueviolet;
+    color:goldenrod;
+}
+
+.ctnVerPregunta{
+    font-size:1.5em;
+    border-bottom: 5px dashed red;
+    font: oblique bold 120% cursive;
+    font-family: "Homer Simpson UI";
 }

@@ -1,15 +1,12 @@
 import React,{useState,useEffect,useContext} from 'react'
 import { useHistory,useLocation, useParams } from "react-router-dom";
 import {useLocationStorage} from "../../hook/useLocationStorage";
-import MostrarPreguntas from "./MostrarPreguntas";
 import ConfSesion from "./ConfSesion";
 import './ModuloInteraccion.css'
-import PreguntasPendientes from './PreguntasPendientes';
 import { useStore } from 'react-redux';
 import ListQuestion from './ListQuestion';
 import { SalaContext } from '../../context/SalaContext';
 import { types } from '../../types/types';
-import { Socket } from 'socket.io-client';
 import { SocketContext } from '../../context/SocketContext';
 const atrib = ['Curso','Sesion'];
 const curses = ['Curso1','Curso2','Curso3'];
@@ -23,7 +20,7 @@ function getHoraMin(){
 const opt = ['Sesion','Preguntas'];
 const usuarioTipo =['Profesor','Alumno'] 
 //const socket = io('/');
-export default function Interaccion() {
+export default function Interaccion(props) {
     const store = useStore();
     const history = useHistory();
     const location = useLocation();
@@ -44,7 +41,6 @@ export default function Interaccion() {
     const [activo,setActivo] = useState(opt[1]);
     const [tipoUser,setTipoUser] = useState(usuarioTipo[0]);
     //////
-    const [allQuestion,setAllQuestion] = useState([]);
     const {salaState,dispatch} = useContext(SalaContext);
     const {socket} = useContext(SocketContext);
     const [newSala,setNewSala] = useState('');
@@ -105,6 +101,18 @@ export default function Interaccion() {
         console.log(e.target)
         
     }
+    useEffect(()=>{
+        socket.on('newQuestion',(data)=>{
+            console.log(salaState.preguntas,"NewQuestion");
+            dispatch({
+                type:types.actualizarPreguntas,
+                payload:{id:data._id,valid:false}
+            })
+        })
+        return ()=>{
+            socket.off('newQuestion');
+        }
+    },[socket,salaState]);
     //Refactorring
     const changeVisible =()=>{
         setVisible(!visible);
@@ -115,42 +123,38 @@ export default function Interaccion() {
     const conectSala = async() =>{
         const res = await fetch('/sesion/'+newSala);
         const sala = await res.json();
+        console.log(sala);
         dispatch({
-            type: types.actualizarSala,
+            type: types.conectarSala,
             payload:{
-                ...salaState.sala,
-                title:sala.title,
-                salaToken:sala.salaToken,
-                inicio:sala.inicio
+                sala:{
+                    ...salaState.sala,
+                    title:sala.title,
+                    salaToken:sala.salaToken,
+                    inicio:sala.inicio
+                },
+                preguntas: sala.questions?sala.questions.reverse():[]
             }
         })
+        dispatch({
+            type:types.actualizarCurso,
+            payload:sala.curso?sala.curso:''
+        })
+        
         socket.emit('unirse-sala',sala.salaToken);
-        console.log(sala);
+  
     }
     
     const handleNewSala = (e)=>{
         setNewSala(e.target.value);
         
     }
-    useEffect(()=>{
-        socket.on('newQuestion',(data)=>{
-            dispatch({
-                type:types.actualizarPreguntas,
-                payload:{id:data._id,valid:false}
-            })
-        })
-        return ()=>{
-            socket.off('newQuestion');
-        }
-    },[socket]);
+    
     return (
         
         <div className="interaccion">
-            
-            <button className="actionModule"
-            onClick={(e)=>changeVisible()}>{"<"}</button>
-            
-            {tipoUser == usuarioTipo[0]&& visible && <div className="contenido">
+            {tipoUser == usuarioTipo[0]&& props.visible && <div className="contenido">
+                <div className="capa">
                 <div className="containerSesion">{salaState.sala.title+ ": " + salaState.sala.salaToken}</div>
                 <div className="containerOpt">
                 {opt.map((e,i)=>{
@@ -181,8 +185,10 @@ export default function Interaccion() {
                     <button onClick={(e) => {e.preventDefault(); verEstadisticas()}}>VerEstadisticas</button>
                     <button onClick={(e)=>{e.preventDefault(); verRespuesta()}}>VerRespuesta</button>
                 </div>
+                </div>
             </div>}
-            {tipoUser == usuarioTipo[1] && visible && <div className="contenido">
+            {tipoUser == usuarioTipo[1] && props.visible && <div className="contenido">
+                <div className="capa">
                 <div className="subctn">Preguntas Pendientes</div>
                 <div className="pendientesCtn">
                 <div>
@@ -192,8 +198,13 @@ export default function Interaccion() {
                 </div>
                 <ListQuestion/>
                 </div>
+                </div>            
             </div>}
             
         </div>
     )
 }
+/**
+ * <button className="actionModule"
+            onClick={(e)=>changeVisible()}>{"<"}</button>
+ */

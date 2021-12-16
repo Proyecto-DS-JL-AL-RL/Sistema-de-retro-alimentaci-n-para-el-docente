@@ -1,0 +1,27 @@
+.ctnAlt{
+    width:100%;
+}
+.itmAltPreg{
+    margin-right: auto;
+    margin-left:auto;
+    width:60%;
+    display: grid;
+    grid-template-columns: 1fr 40px 40px;
+}
+.btnAlt{
+    border:none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.3em;
+    font-family: fantasy;
+}
+.btnAlt:hover{
+    cursor: pointer;
+    
+}
+.btnadd:hover{
+    color:green;
+}
+.btnpop:hover{
+    color:red;
+}

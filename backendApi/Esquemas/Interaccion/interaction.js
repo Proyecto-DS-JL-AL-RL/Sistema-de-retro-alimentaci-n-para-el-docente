@@ -18,6 +18,7 @@ const SesionSchema = new Schema({
     title: String,
     questions: {type:[{type : Schema.Types.ObjectId, ref:'Question'}],default: []},
     user:{type:Schema.Types.ObjectId,ref:'User'},
+    curso:{type:Schema.Types.ObjectId, ref:'curso'},
     salaToken:String,
     inicio:{type:Date, default: new Date()},
     fin:Date

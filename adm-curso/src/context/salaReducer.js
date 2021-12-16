@@ -16,6 +16,13 @@ export const salaReducer = (state, action) =>{
                 preguntas:[],
                 pedido:false
             }
+        case types.conectarSala:
+            return{
+                ...state,
+                sala: action.payload.sala,
+                preguntas : [...action.payload.preguntas],
+                pedido:false
+            }
         case types.iniciarPreguntas:
             return{
                 ...state,
@@ -26,6 +33,11 @@ export const salaReducer = (state, action) =>{
             return{
                 ...state,
                 preguntas:[action.payload,...state.preguntas]
+            }
+        case types.actualizarCurso:
+            return{
+                ...state,
+                curso:action.payload
             }
         default:
             return state;

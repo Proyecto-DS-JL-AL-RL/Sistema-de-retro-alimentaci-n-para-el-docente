@@ -1,3 +1,7 @@
+:root{
+    ---ancho-barra : 50px;
+    --colorBack: green;
+}
 body{
     overflow:none;
     overflow-y: hidden;
@@ -21,13 +25,13 @@ body{
 .todoPrincipal{
     width: 100%;
     display:grid;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: var(---ancho-barra) 1fr;
     grid-template-rows: 100px calc(100vh - 100px);
     height: 100vh;
     margin:0;
     padding: 0;
     border:0;
-    background-color: gray;
+    background-color: var(--colorBack);
 }
 .ctngeneral{
     grid-column: 2;

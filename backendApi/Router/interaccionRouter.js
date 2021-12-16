@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router();
 const {Answer,Question,Sesion} = require("../Esquemas/Interaccion/interaction");
+const Curso = require("../Esquemas/Gestion/gCurso");
 const { verEstadisticas } = require("../Controllers/estadisticas");
 const User = require('../Esquemas/Gestion/gUser');
 const { terminarSala,preguntaWithAnswers } = require("../Controllers/Sala");
@@ -78,7 +79,7 @@ router.get('/QA/:id_question',async (req, res) =>{
     const idQuestion = req.params.id_question;
     const question =  await Question.findById(idQuestion);
     const answers = await Answer.find({question:idQuestion}).populate('user',['codigo','nombre','apellido']);
-    console.log(answers[answers.length-1]);
+    
     res.json({question,answers});
 });
 router.get('/estadisticas/:salaToken',async (req,res) =>{
@@ -115,4 +116,9 @@ router.get('/questionsUS/:salaToken/:idUser', async(req,res)=>{
     
     res.json(questions); 
 })
+router.get('/cursos/:idUser', async(req,res)=>{
+    const idUser = req.params.idUser;
+    const cursos = await Curso.find({IDProfe:idUser});
+    res.json(cursos); 
+});
 module.exports = router;

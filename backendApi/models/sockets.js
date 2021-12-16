@@ -1,5 +1,5 @@
 const {PreguntasSesion,newQuestion,newAnswer,comprobarPregunta} = require('../Controllers/sockets');
-const {actualizarSala,terminarSala} = require('../Controllers/Sala');
+const {actualizarSala,terminarSala,cambiarCurso} = require('../Controllers/Sala');
 class Sockets{
     constructor(io){
         this.io = io;
@@ -29,7 +29,6 @@ class Sockets{
                 }
             })
             socket.on('newQuestion',  async (data,user,salaToken)=>{
-
                 const question = await  newQuestion(data,user,salaToken);
                 //socket.emit('allQuestion', question);
                 //socket.broadcast.emit('allQuestion', question);
@@ -43,8 +42,12 @@ class Sockets{
                     socket.join(salaToken);
                 }
 
-                this.io.to(salaToken).emit('allQuestion', question);
+                socket.emit('allQuestion', question);
                 this.io.to(salaToken).emit('newQuestion', question);
+            });
+            socket.on('change-curso',async (salaToken,idCurso)=>{
+                if(salaToken=='') return;
+                await cambiarCurso(salaToken,idCurso)
             })
             /*socket.on('comprobar-usuario', async(codigoUser,idQuestion)=>{
                 console.log(codigoUser,idQuestion);
@@ -59,7 +62,7 @@ class Sockets{
                 //console.log(io.sockets.adapter.rooms);
                 //console.log(this.io,"Hola");
                 const answer = await newAnswer(data,idQuestion);
-                console.log(answer);
+                //console.log(answer);
                 if(answer.error) {
                     socket.emit('error-answer',answer);
                     return;

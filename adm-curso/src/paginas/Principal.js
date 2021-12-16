@@ -87,8 +87,7 @@ export default function Principal() {
                     <BarraIzquierda/>
                 <div className="ctnGeneral">
 
-                
-                <ModuloInteraccion/>     
+                  
                 <Switch>
                     <Route exact path="/">
                         <Inicio iduser={session.user}/>
