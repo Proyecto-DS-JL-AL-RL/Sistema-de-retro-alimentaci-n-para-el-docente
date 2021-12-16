@@ -14,13 +14,11 @@ var updateNota = async function(codigo, update){
     const newnota = await Nota.findOneAndUpdate(codigo, update,  {
         new: true
       }).catch(err=> console.log(err))
-    console.log(update)
-    console.log(codigo)
-    console.log(newnota)
     return newnota.save()
 }
 
 var deleteNota = async function(codigo){
+    console.log(codigo)
     await Nota.findOneAndDelete(codigo)
 }
 /*
