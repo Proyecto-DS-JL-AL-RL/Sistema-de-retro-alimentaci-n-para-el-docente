@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header'
 import './notas.css'
 //import VerNotaAlumnos from './VerNotaAlumnos'
 import SubirNota from './SubirNota';
@@ -77,7 +76,6 @@ export default function VerNotas(props) {
     return(
 
         <div>
-        <Header/>
               {esProfesor(tipo)?<div id="contenedor">
               <div className="izq">
                                     <h2>Alumnos</h2>
