@@ -29,6 +29,7 @@ export default function PagCurso(props) {
         store.dispatch(setHeaderContent(body[0].nombre));
         store.dispatch(setIdCourse(idCurso));
         //setNameCurso(body[0].nombre)
+        axios.post('/login/setCourse',{idCur:idCurso});
         }) 
     },[])
     const switchMobil = function(){

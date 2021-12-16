@@ -80,7 +80,7 @@ class MaterialCurso  extends React.Component{
                       {this.state.material[card-1].description} 
                       </Typography>
                     </CardContent>
-                    <CardActions> 
+                    <CardActions>
                       <Button  size="small"><a href={'http://localhost:4000/static/'+this.state.material[card-1].file}>ver</a></Button>
                       {this.props.type?<Button size="small"><Link to={"/EditarMaterial/"+this.state.material[card-1].file}>Editar</Link></Button>:null}
                       {this.props.type?<Button onClick={()=>{axios.delete('/material/'+this.state.material[card-1]._id+'/delete')}} size="small">Eliminar</Button>:null}

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import {Link,BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function SelectedListAvatar(props) {
   const [selectedIndex, setSelectedIndex] = React.useState(1);

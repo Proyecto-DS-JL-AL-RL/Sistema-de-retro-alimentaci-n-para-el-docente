@@ -60,8 +60,8 @@ router.post('/nota/:id/update', async (req,res)=>{
     res.json(nota);
 });
 
-router.delete('/nota/:idcurso/delete', async (req,res)=>{
-    await deleteNota(req.params.idcurso.toString());
+router.delete('/nota/delete', async (req,res)=>{
+    await deleteNota(req.body);
     res.send('Se eliminó una nota')
 });
 
